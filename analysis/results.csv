@@ -1,0 +1,15 @@
+run_id,model,variant,session_outcome,wall_minutes,llm_calls,total_input,total_output,cache_read,reasoning,cost_usd_official_list_price,cost_usd_opencode_reported,total_tool_calls,failed_tool_calls,recorder_starts,images_returned_to_model
+claude-opus-5-5-medium-opencode-cam-combo-1-20261026-150532,anthropic/claude-opus-5.5,medium,succeeded,12.1,75,4396513,28055,4287992,8096,1.9344,1.9344,110,3,6,64
+claude-opus-5-5-medium-opencode-cam-combo-2-20261026-152035,anthropic/claude-opus-5.5,medium,succeeded,9.7,66,3626647,23184,3534894,7053,1.6121,1.6121,83,0,6,41
+claude-opus-5-5-medium-opencode-cam-combo-3-20261026-153111,anthropic/claude-opus-5.5,medium,succeeded,16.1,108,6605582,27484,6502329,9839,2.3473,2.3473,110,2,8,45
+gemini-4-argon-medium-opencode-cam-combo-1-20261026-170713,google/gemini-4-argon,medium,succeeded,13.0,52,5062523,27249,4868049,13473,1.1482,1.1482,112,0,2,62
+gemini-4-argon-medium-opencode-cam-combo-2-20261027-014431,google/gemini-4-argon,medium,succeeded,18.7,85,8751037,16702,8453436,0,1.6076,1.6076,143,0,2,70
+gemini-4-argon-medium-opencode-cam-combo-3-20261027-020702,google/gemini-4-argon,medium,succeeded,105.5,88,7379152,16128,7002860,0,1.6142,1.6142,115,0,2,37
+gpt-6-1-sol-medium-opencode-cam-combo-1-20261026-234907,openai/gpt-6.1-sol,medium,succeeded,11.6,89,4632664,17971,4551605,3458,0.8374,0.8374,144,1,0,57
+gpt-6-1-sol-medium-opencode-cam-combo-2-20261027-000138,openai/gpt-6.1-sol,medium,interrupted,33.6,118,7215435,21991,7103452,6852,1.21,1.21,160,5,2,56
+gpt-6-1-sol-medium-opencode-cam-combo-3-20261027-003536,openai/gpt-6.1-sol,medium,succeeded,39.3,128,7841707,29019,7741198,9553,1.3154,1.3154,145,5,1,52
+gpt-6-1-terra-medium-opencode-cam-combo-1-20261027-215348,openai/gpt-6.1-terra,medium,succeeded,33.8,151,11827464,28152,11413587,8520,1.2287,1.2287,167,3,3,56
+gpt-6-1-terra-medium-opencode-cam-combo-2-20261027-222824,openai/gpt-6.1-terra,medium,succeeded,14.3,113,10526238,25912,9992401,8027,1.2964,1.2964,180,9,3,42
+gpt-astra-latest-medium-opencode-cam-combo-1-20261028-002116,openai/gpt-6-astra,medium,succeeded,15.1,73,5524890,13075,5353888,3605,8.1446,8.1446,94,3,3,24
+gpt-astra-latest-medium-opencode-cam-combo-2-20261028-004041,openai/gpt-6-astra,medium,succeeded,20.8,71,3638637,16459,3548317,3190,5.4997,5.4997,109,3,4,47
+gpt-astra-latest-medium-opencode-cam-combo-3-20261028-010225,openai/gpt-6-astra,medium,succeeded,29.0,134,7856235,27394,7764237,11089,10.2829,10.2829,151,2,3,59

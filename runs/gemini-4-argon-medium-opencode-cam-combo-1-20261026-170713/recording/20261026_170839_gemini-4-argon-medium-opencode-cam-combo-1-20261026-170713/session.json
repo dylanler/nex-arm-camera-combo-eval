@@ -1,0 +1,17 @@
+{
+  "task": "gemini-4-argon-medium-opencode-cam-combo-1-20261026-170713",
+  "started": "2026-10-26T17:08:37.507",
+  "updated": "2026-10-26T17:18:33.527",
+  "clips": 1,
+  "success": 0,
+  "fail": 0,
+  "unlabeled": 1,
+  "clip_files": [
+    {
+      "clip": 1,
+      "video": "clip001.mp4",
+      "outcome": null,
+      "duration_s": 593.8
+    }
+  ]
+}

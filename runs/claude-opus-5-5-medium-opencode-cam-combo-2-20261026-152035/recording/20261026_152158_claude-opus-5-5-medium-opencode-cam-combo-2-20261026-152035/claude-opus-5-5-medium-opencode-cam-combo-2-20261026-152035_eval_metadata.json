@@ -1,0 +1,114 @@
+{
+  "eval": "02 of 09",
+  "experiment": "camera-combo eval: does more camera input improve robot manipulation",
+  "task": "Place the yellow screwdriver in the bowl.",
+  "model": "anthropic/claude-opus-5.5",
+  "reasoning_effort": "medium",
+  "harness": "opencode opencode v2.1.4",
+  "opencode_session_id": "ses_e85b2f692ffez2nDvsTBrmgIX1",
+  "camera_combo": 2,
+  "cameras_enabled": [
+    "logitech",
+    "wrist"
+  ],
+  "cameras_disabled": [
+    "realsense"
+  ],
+  "cameras_in_recording": [
+    "wrist",
+    "logitech"
+  ],
+  "disabled_camera_cutoff_method": "record.py launched with --realsense DISABLED_NO_SUCH_CAMERA so the RealSense device is never matched/opened (recorded composite contains only wrist + logitech tiles); the agent's own perception snapshots (r.sh snap, ffmpeg) only opened 'C922 Pro Stream Webcam' and 'icspring camera'. RealSense was never read.",
+  "start_time": "2026-10-26T15:21:41",
+  "end_time": "2026-10-26T15:28:59",
+  "wall_clock_duration_s": 438.0,
+  "llm_calls": 64,
+  "tokens": {
+    "total_input": 3462540,
+    "input": 17296,
+    "cache_read": 3373765,
+    "cache_write": 71479,
+    "total_output": 22152,
+    "output": 15149,
+    "reasoning": 7003
+  },
+  "cost_usd_opencode_reported": 1.544372,
+  "cost_usd_provider_list_price": 1.544372,
+  "price_table": {
+    "input": 4.0,
+    "output_incl_reasoning": 20.0,
+    "cache_read": 0.2,
+    "cache_write": 5.0,
+    "unit": "USD per 1M tokens"
+  },
+  "outcome": "success",
+  "evidence": "Final Logitech top-down frame (snaps/152834_top.jpg) shows the yellow screwdriver lying inside the gray bowl with the arm moved clear; the wrist camera at release (snaps/152812_wrist.jpg) shows the screwdriver tip inside the bowl.",
+  "budget_200_calls_exceeded": false,
+  "recording": {
+    "clip_folders": [
+      "20261026_152158_claude-opus-5-5-medium-opencode-cam-combo-2-20261026-152035"
+    ],
+    "video_files": [
+      "clip001.mp4"
+    ],
+    "clip_durations_s": [
+      433.033
+    ],
+    "recorder_start_count": 1,
+    "note": "Recorder started (15:21:58) before the robot server connected / first move; stopped with SIGINT after arm returned to start pose (q via stdin fifo was not picked up)."
+  },
+  "robot": {
+    "joint_order": [
+      "shoulder_pan",
+      "shoulder_lift",
+      "elbow_flex",
+      "wrist_flex",
+      "wrist_roll",
+      "gripper"
+    ],
+    "start_positions_raw": [
+      2046,
+      2593,
+      1467,
+      2024,
+      2045,
+      1792
+    ],
+    "end_positions_raw": [
+      2052,
+      2579,
+      1461,
+      2035,
+      2045,
+      1792
+    ],
+    "grasp_pose_raw": [
+      2265,
+      1540,
+      1900,
+      2080,
+      2045,
+      2338
+    ],
+    "release_pose_raw": [
+      1862,
+      1758,
+      2060,
+      2200,
+      2047,
+      2338
+    ]
+  },
+  "problems": [
+    "Serial port /dev/tty.usbserial-110 and TCP 8799 were held by a stale arm_server.py and a still-running record.py from a previous eval (combo-1-20261026-150156); stopped them (SIGTERM / SIGINT so the old recorder saved its clip) before connecting.",
+    "Elbow_flex consistently lagged target by ~30-40 raw units under load (gravity); gripper stalled at ~2338 when gripping the handle (expected, object blocking).",
+    "record.py did not respond to 'q' over a fifo stdin; stopped with SIGINT instead, clip saved cleanly (0 dropped / 0 duplicated frames).",
+    "No crashes or camera lag observed."
+  ],
+  "scripts_written": [
+    "robot_server.py (persistent NexArm TCP server with smooth interpolated moves)",
+    "r.sh (client: read/move/pos/quit + snap of logitech & wrist cams via ffmpeg)",
+    "write_metadata.py (this file)"
+  ],
+  "note": "Token/cost numbers are a snapshot taken before the agent's final reply."
+}

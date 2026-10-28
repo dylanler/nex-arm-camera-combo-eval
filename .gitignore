@@ -1,0 +1,12 @@
+# full opencode exports embed base64 camera frames (up to 228 MB) - regenerate with opencode session export
+_raw_exports/
+
+# large videos: only the 30 s 8x clips are committed
+*.mp4
+!runs/*/clips/*_last240s_8x.mp4
+
+# local junk
+.DS_Store
+__pycache__/
+*.pyc
+chrome-profile/

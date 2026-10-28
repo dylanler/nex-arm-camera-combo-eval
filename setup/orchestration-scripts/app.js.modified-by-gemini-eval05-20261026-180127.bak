@@ -1,0 +1,248 @@
+// NEX Arm 3-camera eval frontend.
+// Auto-detects the three USB cameras by label / USB vendor ID and never opens the
+// built-in FaceTime camera.
+
+const CAMERAS = [
+  {
+    key: "wrist",
+    name: "Robot Wrist (USB)",
+    // icspring UVC camera, VendorID 13030 = 0x32e6, ProductID 36869 = 0x9005
+    match: (l) => /icspring/i.test(l) || /32e6:9005/i.test(l),
+  },
+  {
+    key: "realsense",
+    name: "RealSense D415 (RGB)",
+    // Intel 0x8086, ProductID 2771 = 0x0ad3
+    match: (l) => /realsense/i.test(l) || /8086:0ad3/i.test(l),
+  },
+  {
+    key: "logitech",
+    name: "Logitech C922",
+    // Logitech 0x046d, ProductID 2140 = 0x085c
+    match: (l) => /c922|logitech/i.test(l) || /046d:/i.test(l),
+  },
+];
+
+const isExcluded = (label) => /facetime|built-in|integrated/i.test(label);
+
+const grid = document.getElementById("grid");
+const tpl = document.getElementById("tileTpl");
+const statusEl = document.getElementById("status");
+const resSel = document.getElementById("resolution");
+const fpsSel = document.getElementById("fps");
+
+const tiles = {}; // key -> { cfg, el, video, select, stream, deviceId }
+let devices = [];
+
+function setStatus(t) { statusEl.textContent = t; }
+
+function buildTiles() {
+  for (const cfg of CAMERAS) {
+    const el = tpl.content.firstElementChild.cloneNode(true);
+    el.querySelector(".name").textContent = cfg.name;
+    const t = {
+      cfg, el,
+      video: el.querySelector("video"),
+      select: el.querySelector(".device"),
+      msg: el.querySelector(".msg"),
+      stats: el.querySelector(".stats"),
+      label: el.querySelector(".label"),
+      stream: null, deviceId: null,
+    };
+    t.select.addEventListener("change", () => startTile(t, t.select.value));
+    el.querySelector(".snap").addEventListener("click", () => snapshot(t));
+    el.querySelector(".full").addEventListener("click", () => t.video.requestFullscreen?.());
+    grid.appendChild(el);
+    tiles[cfg.key] = t;
+  }
+}
+
+async function unlockLabels() {
+  // Device labels are hidden until camera permission is granted once.
+  const probe = await navigator.mediaDevices.enumerateDevices();
+  if (probe.some((d) => d.kind === "videoinput" && d.label)) return;
+  // Ask for a non-FaceTime camera if possible; any camera unlocks labels.
+  const s = await navigator.mediaDevices.getUserMedia({ video: true });
+  s.getTracks().forEach((tr) => tr.stop());
+}
+
+async function refreshDevices() {
+  const all = await navigator.mediaDevices.enumerateDevices();
+  devices = all.filter((d) => d.kind === "videoinput" && !isExcluded(d.label));
+}
+
+function fillSelect(t) {
+  t.select.innerHTML = "";
+  const none = new Option("— none —", "");
+  t.select.add(none);
+  for (const d of devices) t.select.add(new Option(d.label || d.deviceId.slice(0, 8), d.deviceId));
+  t.select.value = t.deviceId || "";
+}
+
+function stopTile(t) {
+  t.stream?.getTracks().forEach((tr) => tr.stop());
+  t.stream = null;
+  t.video.srcObject = null;
+}
+
+async function startTile(t, deviceId) {
+  stopTile(t);
+  t.deviceId = deviceId || null;
+  t.msg.textContent = "";
+  t.stats.textContent = "";
+  if (!deviceId) {
+    t.msg.textContent = `${t.cfg.name} not found. Is it plugged in?`;
+    t.label.textContent = "";
+    return;
+  }
+  const [w, h] = resSel.value.split("x").map(Number);
+  const fps = Number(fpsSel.value);
+  try {
+    t.stream = await navigator.mediaDevices.getUserMedia({
+      audio: false,
+      video: {
+        deviceId: { exact: deviceId },
+        width: { ideal: w }, height: { ideal: h }, frameRate: { ideal: fps },
+      },
+    });
+    t.video.srcObject = t.stream;
+    const dev = devices.find((d) => d.deviceId === deviceId);
+    t.label.textContent = dev?.label || deviceId;
+  } catch (e) {
+    t.msg.textContent = `Failed to open camera: ${e.name} — ${e.message}`;
+  }
+}
+
+function autoAssign() {
+  const used = new Set();
+  for (const cfg of CAMERAS) {
+    if (cfg.key === "realsense") {
+      tiles[cfg.key].deviceId = null;
+      continue;
+    }
+    const d = devices.find((d) => !used.has(d.deviceId) && cfg.match(d.label));
+    tiles[cfg.key].deviceId = d?.deviceId || null;
+    if (d) used.add(d.deviceId);
+  }
+}
+
+async function startAll() {
+  for (const t of Object.values(tiles)) fillSelect(t);
+  // Open sequentially; opening several UVC cameras at once can fail on macOS.
+  for (const t of Object.values(tiles)) await startTile(t, t.deviceId);
+  const live = Object.values(tiles).filter((t) => t.stream).length;
+  setStatus(`${live}/3 cameras live · FaceTime excluded`);
+}
+
+// --- Stats overlay (resolution + measured FPS) ---
+function startStatsLoop() {
+  for (const t of Object.values(tiles)) {
+    let frames = 0, last = performance.now();
+    const tick = () => {
+      frames++;
+      const now = performance.now();
+      if (now - last >= 1000) {
+        if (t.stream) {
+          const fps = (frames * 1000) / (now - last);
+          t.stats.textContent = `${t.video.videoWidth}×${t.video.videoHeight} · ${fps.toFixed(1)} fps`;
+        }
+        frames = 0; last = now;
+      }
+      t.video.requestVideoFrameCallback(tick);
+    };
+    if ("requestVideoFrameCallback" in HTMLVideoElement.prototype) t.video.requestVideoFrameCallback(tick);
+  }
+}
+
+// --- Snapshot / record ---
+const stamp = () => new Date().toISOString().replace(/[:.]/g, "-");
+
+function download(blob, filename) {
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+}
+
+function snapshot(t, ts = stamp()) {
+  if (!t.stream || !t.video.videoWidth) return;
+  const c = document.createElement("canvas");
+  c.width = t.video.videoWidth;
+  c.height = t.video.videoHeight;
+  c.getContext("2d").drawImage(t.video, 0, 0);
+  c.toBlob((b) => download(b, `${t.cfg.key}_${ts}.png`), "image/png");
+}
+
+let recorders = [];
+const recBtn = document.getElementById("recordAll");
+
+function toggleRecord() {
+  if (recorders.length) {
+    recorders.forEach((r) => r.stop());
+    recorders = [];
+    recBtn.textContent = "● Record all";
+    recBtn.classList.remove("recording");
+    return;
+  }
+  const ts = stamp();
+  const mime = ["video/mp4", "video/webm;codecs=vp9", "video/webm"].find((m) => MediaRecorder.isTypeSupported(m));
+  const ext = mime?.startsWith("video/mp4") ? "mp4" : "webm";
+  for (const t of Object.values(tiles)) {
+    if (!t.stream) continue;
+    const chunks = [];
+    const r = new MediaRecorder(t.stream, mime ? { mimeType: mime } : undefined);
+    r.ondataavailable = (e) => e.data.size && chunks.push(e.data);
+    r.onstop = () => download(new Blob(chunks, { type: r.mimeType }), `${t.cfg.key}_${ts}.${ext}`);
+    r.start(1000);
+    recorders.push(r);
+  }
+  if (recorders.length) {
+    recBtn.textContent = "■ Stop recording";
+    recBtn.classList.add("recording");
+  }
+}
+
+// --- Wire up ---
+document.getElementById("restart").addEventListener("click", startAll);
+document.getElementById("snapAll").addEventListener("click", () => {
+  const ts = stamp();
+  Object.values(tiles).forEach((t) => snapshot(t, ts));
+});
+recBtn.addEventListener("click", toggleRecord);
+resSel.addEventListener("change", startAll);
+fpsSel.addEventListener("change", startAll);
+
+navigator.mediaDevices.addEventListener("devicechange", async () => {
+  await refreshDevices();
+  for (const t of Object.values(tiles)) {
+    if (t.deviceId && !devices.some((d) => d.deviceId === t.deviceId)) t.deviceId = null;
+  }
+  // Fill empty slots with newly plugged-in cameras.
+  const used = new Set(Object.values(tiles).map((t) => t.deviceId).filter(Boolean));
+  for (const t of Object.values(tiles)) {
+    if (t.deviceId || t.cfg.key === "realsense") continue;
+    const d = devices.find((d) => !used.has(d.deviceId) && t.cfg.match(d.label));
+    if (d) { t.deviceId = d.deviceId; used.add(d.deviceId); }
+  }
+  setStatus("Devices changed — restarting…");
+  startAll();
+});
+
+(async function main() {
+  buildTiles();
+  if (!navigator.mediaDevices?.getUserMedia) {
+    setStatus("Camera API unavailable. Open via http://localhost (not file://).");
+    return;
+  }
+  try {
+    setStatus("Requesting camera permission…");
+    await unlockLabels();
+    await refreshDevices();
+    autoAssign();
+    await startAll();
+    startStatsLoop();
+  } catch (e) {
+    setStatus(`Error: ${e.name} — ${e.message}`);
+  }
+})();

@@ -1,0 +1,63 @@
+{
+  "clip": 1,
+  "task": "claude-opus-5-5-medium-opencode-cam-combo-2-20261026-152035",
+  "outcome": null,
+  "video": "clip001.mp4",
+  "raw_videos": {},
+  "frames_csv": "clip001_frames.csv",
+  "fps": 30,
+  "size": [
+    1920,
+    1080
+  ],
+  "frames": 12991,
+  "duration_s": 433.033,
+  "duplicated_frames": 0,
+  "dropped_frames": 0,
+  "start_wall_time": "2026-10-26T15:21:58.734",
+  "end_wall_time": "2026-10-26T15:29:11.816",
+  "cameras": [
+    {
+      "key": "wrist",
+      "name": "Robot Wrist",
+      "device": "icspring camera",
+      "size": [
+        640,
+        480
+      ]
+    },
+    {
+      "key": "logitech",
+      "name": "Logitech C922",
+      "device": "C922 Pro Stream Webcam",
+      "size": [
+        640,
+        480
+      ]
+    }
+  ],
+  "events": [
+    {
+      "type": "start",
+      "label": "",
+      "video_time_s": 0.0,
+      "wall_time": "2026-10-26T15:21:58.734",
+      "settings": {
+        "fps": 30,
+        "layout": "grid",
+        "color": "normal",
+        "brightness": 0,
+        "contrast": 1.0,
+        "timestamp": true,
+        "hidden": []
+      }
+    },
+    {
+      "type": "end",
+      "label": "",
+      "video_time_s": 433.033,
+      "wall_time": "2026-10-26T15:29:11.766"
+    }
+  ],
+  "encoder_errors": []
+}

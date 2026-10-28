@@ -1,0 +1,747 @@
+[
+  {
+    "run_id": "claude-opus-5-5-medium-opencode-cam-combo-1-20261026-150532",
+    "model": "anthropic/claude-opus-5.5",
+    "variant": "medium",
+    "session_id": "ses_e85c0c150ffeWiH2XDWY4iSw3B",
+    "session_outcome": "succeeded",
+    "start": "2026-10-26T15:05:27",
+    "end": "2026-10-26T15:17:34",
+    "wall_minutes": 12.1,
+    "llm_calls": 75,
+    "tokens": {
+      "input": 26927,
+      "output": 19959,
+      "reasoning": 8096,
+      "cache_read": 4287992,
+      "cache_write": 81594,
+      "total_input": 4396513,
+      "total_output": 28055
+    },
+    "cost_usd_official_list_price": 1.9344,
+    "cost_usd_opencode_reported": 1.9344,
+    "calls_in_long_context_tier": 0,
+    "pricing_usd_per_1m": {
+      "base": {
+        "input": 4.0,
+        "cache_read": 0.2,
+        "cache_write": 5.0,
+        "output": 20.0
+      },
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    "tool_calls": {
+      "shell": 42,
+      "write": 3,
+      "read": 65
+    },
+    "total_tool_calls": 110,
+    "failed_tool_calls": 3,
+    "shell_commands": 42,
+    "recorder_starts": 6,
+    "shell_cmds_mentioning_arm_motion": 27,
+    "shell_cmds_mentioning_gripper": 0,
+    "shell_cmds_mentioning_camera_capture": 31,
+    "images_returned_to_model": 64,
+    "files_written_or_edited": [
+      "/Users/dylanler/github/nex-arm-3-cam-eval/claude-opus-5-5-medium-opencode-cam-combo-1-20261026-150532/robot_server.py",
+      "/Users/dylanler/github/nex-arm-3-cam-eval/claude-opus-5-5-medium-opencode-cam-combo-1-20261026-150532/snap.sh",
+      "/Users/dylanler/github/nex-arm-3-cam-eval/claude-opus-5-5-medium-opencode-cam-combo-1-20261026-150532/write_metadata.py"
+    ],
+    "final_message": "The arm put the yellow screwdriver in the bowl on its first grasp. The final top-down Logitech frame shows the screwdriver inside the bowl, with the arm back at its start pose.\n\n**Robot:**\n- **Joints:** joint values are listed in order shoulder rotation, shoulder lift, elbow, wrist pitch, wrist roll, gripper.\n  - **Start:** `[2052, 2605, 1458, 2027, 2046, 1792]`\n  - **End:** `[2046, 2590, 1455, 2024, 2045, 1792]`\n- **Process:** I didn't know which way each joint turned, so I first made small test moves and checked them on the cameras. The grasp and the drop into the bowl were steered with the wrist and RealSense views.\n- **Problems:** no stuck joints, crashes or camera lag. The elbow stopped a little short of its targets under load. One reach went past the handle and I backed it off. One camera snapshot came back empty and worked on retry.\n\n**Recording:** the recorder ran once, with all three cameras. It made one clip, `clip001.mp4` (9:39), in `eval-recording/20261026_150631_claude-opus-5-5-medium-opencode-cam-combo-1-20261026-150532/`. No camera was disabled, so none had to be cut off.\n\n**Metadata:** the JSON file is in that same folder, named `claude-opus-5-5-medium-opencode-cam-combo-1-20261026-150532_eval_metadata.json`.\n- 72 LLM calls at the time of the snapshot, well under the 200-call budget.\n- Cost was about $1.84, both as opencode reported it and by the list-price calculation.\n- The token and cost numbers were taken before this reply.\n\n**Processes:** I stopped the recorder, my robot-control server and the app server on port 8770. The operator alert has played.\n\n**Serial port still busy:** some processes from an earlier eval run (directory `...-20261026-150156`) were already running before this session started. I left them alone because I didn't start them:\n- `arm_server.py` (PID 43076). It still holds the robot's serial port `/dev/tty.usbserial-110`.\n- A `record.py` recorder from that run (PID 43096).\n- An `http.server` on port 8765.\n\nYou'll probably want to kill PID 43076 before the next eval so the port is free.\n\nMy scripts are in `claude-opus-5-5-medium-opencode-cam-combo-1-20261026-150532/`: `robot_server.py` (moves the arm), `snap.sh` (grabs one frame from each camera) and `write_metadata.py` (builds the JSON)."
+  },
+  {
+    "run_id": "claude-opus-5-5-medium-opencode-cam-combo-2-20261026-152035",
+    "model": "anthropic/claude-opus-5.5",
+    "variant": "medium",
+    "session_id": "ses_e85b2f692ffez2nDvsTBrmgIX1",
+    "session_outcome": "succeeded",
+    "start": "2026-10-26T15:20:31",
+    "end": "2026-10-26T15:30:13",
+    "wall_minutes": 9.7,
+    "llm_calls": 66,
+    "tokens": {
+      "input": 17300,
+      "output": 16131,
+      "reasoning": 7053,
+      "cache_read": 3534894,
+      "cache_write": 74453,
+      "total_input": 3626647,
+      "total_output": 23184
+    },
+    "cost_usd_official_list_price": 1.6121,
+    "cost_usd_opencode_reported": 1.6121,
+    "calls_in_long_context_tier": 0,
+    "pricing_usd_per_1m": {
+      "base": {
+        "input": 4.0,
+        "cache_read": 0.2,
+        "cache_write": 5.0,
+        "output": 20.0
+      },
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    "tool_calls": {
+      "shell": 39,
+      "write": 3,
+      "read": 41
+    },
+    "total_tool_calls": 83,
+    "failed_tool_calls": 0,
+    "shell_commands": 39,
+    "recorder_starts": 6,
+    "shell_cmds_mentioning_arm_motion": 22,
+    "shell_cmds_mentioning_gripper": 4,
+    "shell_cmds_mentioning_camera_capture": 24,
+    "images_returned_to_model": 41,
+    "files_written_or_edited": [
+      "/Users/dylanler/github/nex-arm-3-cam-eval/claude-opus-5-5-medium-opencode-cam-combo-2-20261026-152035/r.sh",
+      "/Users/dylanler/github/nex-arm-3-cam-eval/claude-opus-5-5-medium-opencode-cam-combo-2-20261026-152035/robot_server.py",
+      "/Users/dylanler/github/nex-arm-3-cam-eval/claude-opus-5-5-medium-opencode-cam-combo-2-20261026-152035/write_metadata.py"
+    ],
+    "final_message": "The task succeeded: the yellow screwdriver is in the bowl. The final top-down Logitech frame shows it lying inside the bowl, with the arm moved clear and then returned to its starting pose.\n\n- **Budget:** 64 LLM calls, under the 200 cap. That count and the cost below were taken just before this reply.\n- **Cost:** $1.544. The figure opencode reports and my list-price calculation came out the same. Input was 3,462,540 tokens in total (17,296 new, 3,373,765 cache read, 71,479 cache write). Output was 22,152 tokens (15,149 output plus 7,003 reasoning).\n- **Recording:** I started the recorder once, at 15:21:58, before the robot's first move. The clip is `clip001.mp4`, 7 min 13 s long, with no dropped frames. It's in `eval-recording/20261026_152158_claude-opus-5-5-medium-opencode-cam-combo-2-20261026-152035/`, and the metadata JSON is in the same folder.\n- **Cameras:** Only the wrist and Logitech cameras are in the video. I cut off the RealSense by starting the recorder with a camera name that matches nothing, so that camera was never opened. My own still images for steering the arm also used only those two cameras.\n- **Robot positions:** It started at `[2046, 2593, 1467, 2024, 2045, 1792]` and ended at `[2052, 2579, 1461, 2035, 2045, 1792]`. Joint order is shoulder pan, shoulder lift, elbow, wrist flex, wrist roll, gripper.\n\n**Problems I hit:**\n- **Leftover eval-1 processes:** An arm server from the earlier eval (combo-1) was still running and holding the robot's serial port. That eval's recorder was also still recording. I stopped both, letting the old recorder shut down cleanly so its clip was saved.\n- **Recorder stop:** My recorder didn't respond to the normal \"q\" quit key. I stopped it with an interrupt signal instead, and the clip saved fine.\n- **Elbow lag:** The elbow joint consistently sat about 30–40 units short of its target under load.\n\nEverything I started has been stopped: the recorder, the app server and the robot server. The serial port is free. I wrote three scripts in the eval directory: `robot_server.py` (the arm controller), `r.sh` (sends it commands and grabs still images from the two cameras) and `write_metadata.py`. The session export is saved there too, and the notification sound has played."
+  },
+  {
+    "run_id": "claude-opus-5-5-medium-opencode-cam-combo-3-20261026-153111",
+    "model": "anthropic/claude-opus-5.5",
+    "variant": "medium",
+    "session_id": "ses_e85a93f8cffeVQYIlDmJeSs3j2",
+    "session_outcome": "succeeded",
+    "start": "2026-10-26T15:31:08",
+    "end": "2026-10-26T15:47:12",
+    "wall_minutes": 16.1,
+    "llm_calls": 108,
+    "tokens": {
+      "input": 19118,
+      "output": 17645,
+      "reasoning": 9839,
+      "cache_read": 6502329,
+      "cache_write": 84135,
+      "total_input": 6605582,
+      "total_output": 27484
+    },
+    "cost_usd_official_list_price": 2.3473,
+    "cost_usd_opencode_reported": 2.3473,
+    "calls_in_long_context_tier": 0,
+    "pricing_usd_per_1m": {
+      "base": {
+        "input": 4.0,
+        "cache_read": 0.2,
+        "cache_write": 5.0,
+        "output": 20.0
+      },
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    "tool_calls": {
+      "shell": 61,
+      "write": 2,
+      "read": 47
+    },
+    "total_tool_calls": 110,
+    "failed_tool_calls": 2,
+    "shell_commands": 61,
+    "recorder_starts": 8,
+    "shell_cmds_mentioning_arm_motion": 45,
+    "shell_cmds_mentioning_gripper": 0,
+    "shell_cmds_mentioning_camera_capture": 2,
+    "images_returned_to_model": 45,
+    "files_written_or_edited": [
+      "/Users/dylanler/github/nex-arm-3-cam-eval/claude-opus-5-5-medium-opencode-cam-combo-3-20261026-153111/make_metadata.py",
+      "/Users/dylanler/github/nex-arm-3-cam-eval/claude-opus-5-5-medium-opencode-cam-combo-3-20261026-153111/robot_server.py"
+    ],
+    "final_message": "The yellow screwdriver is now in the bowl. After the gripper released it and lifted, the wrist camera showed the handle and shaft fully inside the rim. The arm then went back to its start pose.\n\n- **Run folder:** `claude-opus-5-5-medium-opencode-cam-combo-3-20261026-153111/`. It holds the control script `robot_server.py`, the metadata script `make_metadata.py`, the robot log, wrist snapshots and the session export.\n- **Recording:** `eval-recording/20261026_153228_claude-opus-5-5-medium-opencode-cam-combo-3-20261026-153111/clip001.mp4`, about 13:20 long, with no dropped frames. The recorder was started once, just before the first move.\n- **Cameras:** only the wrist camera was recorded and used. I started `record.py` with names for the Logitech and RealSense cameras that match no device, so it never opened them. The control script also opened only the wrist camera. The browser page from `start.sh` was running but I didn't use it.\n- **Grasp:** the first two tries closed above the handle and got nothing. The third went lower until the arm stopped at the table, and it gripped the metal shaft next to the handle. One earlier move pressed the gripper into the table, and I backed it off straight away.\n- **Joints:** shoulder and elbow sag 20–50 units short of their targets under load, and the wrist tilt seems to max out around 3080. Joint positions went from `[2052, 2593, 1465, 2027, 2051, 1791]` at the start to `[2046, 2577, 1462, 2041, 2048, 1783]` at the end.\n- **Budget and cost:** the session export counts 103 LLM calls, under the 200 cap. Cost was $2.15, both as reported by opencode and at list price. These numbers were taken before this reply.\n- **Shutdown:** the recorder, robot control script and app server are all stopped, and the serial port is free. The control script ignored Ctrl-C while running in the background, so I stopped it with a kill signal. A second web server on port 8765 was already running from 01:43; it isn't mine, so I left it alone.\n\nThe metadata file `claude-opus-5-5-medium-opencode-cam-combo-3-20261026-153111_eval_metadata.json` is in the same folder as the clip, and the notification has played."
+  },
+  {
+    "run_id": "gemini-4-argon-medium-opencode-cam-combo-1-20261026-170713",
+    "model": "google/gemini-4-argon",
+    "variant": "medium",
+    "session_id": "ses_e85515e5effeHRGkVu5LuVI0aq",
+    "session_outcome": "succeeded",
+    "start": "2026-10-26T17:07:07",
+    "end": "2026-10-26T17:20:05",
+    "wall_minutes": 13.0,
+    "llm_calls": 52,
+    "tokens": {
+      "input": 194474,
+      "output": 13776,
+      "reasoning": 13473,
+      "cache_read": 4868049,
+      "cache_write": 0,
+      "total_input": 5062523,
+      "total_output": 27249
+    },
+    "cost_usd_official_list_price": 1.1482,
+    "cost_usd_opencode_reported": 1.1482,
+    "calls_in_long_context_tier": 0,
+    "pricing_usd_per_1m": {
+      "base": {
+        "input": 2.0,
+        "cache_read": 0.1,
+        "cache_write": 0.0,
+        "output": 10.0
+      },
+      "source": "https://ai.google.dev/gemini-api/docs/pricing (implicit caching only; no write fee)"
+    },
+    "tool_calls": {
+      "shell": 29,
+      "read": 81,
+      "write": 2
+    },
+    "total_tool_calls": 112,
+    "failed_tool_calls": 0,
+    "shell_commands": 29,
+    "recorder_starts": 2,
+    "shell_cmds_mentioning_arm_motion": 20,
+    "shell_cmds_mentioning_gripper": 0,
+    "shell_cmds_mentioning_camera_capture": 1,
+    "images_returned_to_model": 62,
+    "files_written_or_edited": [
+      "/Users/dylanler/github/nex-arm-3-cam-eval/gemini-4-argon-medium-opencode-cam-combo-1-20261026-170713/robot_helper.py",
+      "/Users/dylanler/github/nex-arm-3-cam-eval/gemini-4-argon-medium-opencode-cam-combo-1-20261026-170713/write_metadata.py"
+    ],
+    "final_message": "The task **\"Place the yellow screwdriver in the bowl.\"** has been completed successfully.\n\n### Summary\n- **Working Directory**: `/Users/dylanler/github/nex-arm-3-cam-eval/gemini-4-argon-medium-opencode-cam-combo-1-20261026-170713`\n- **Recording Folder**: `/Users/dylanler/github/nex-arm-3-cam-eval/eval-recording/20261026_170839_gemini-4-argon-medium-opencode-cam-combo-1-20261026-170713` (`clip001.mp4`, 593.8s, all 3 enabled cameras recorded)\n- **Eval Metadata JSON**: `/Users/dylanler/github/nex-arm-3-cam-eval/eval-recording/20261026_170839_gemini-4-argon-medium-opencode-cam-combo-1-20261026-170713/gemini-4-argon-medium-opencode-cam-combo-1-20261026-170713_eval_metadata.json`\n- **Outcome**: `success` (50 LLM calls at snapshot, well within the 200-call budget; all three cameras confirm the yellow screwdriver is inside the grey bowl and the arm returned to home pose).\n- **Cleanup**: The recorder, frontend HTTP server, and serial connection to `/dev/cu.usbserial-110` have all been stopped and released."
+  },
+  {
+    "run_id": "gemini-4-argon-medium-opencode-cam-combo-2-20261027-014431",
+    "model": "google/gemini-4-argon",
+    "variant": "medium",
+    "session_id": "ses_e8377bff7ffenvt51pnUS3R2dm",
+    "session_outcome": "succeeded",
+    "start": "2026-10-27T01:44:26",
+    "end": "2026-10-27T02:03:07",
+    "wall_minutes": 18.7,
+    "llm_calls": 85,
+    "tokens": {
+      "input": 297601,
+      "output": 16702,
+      "reasoning": 0,
+      "cache_read": 8453436,
+      "cache_write": 0,
+      "total_input": 8751037,
+      "total_output": 16702
+    },
+    "cost_usd_official_list_price": 1.6076,
+    "cost_usd_opencode_reported": 1.6076,
+    "calls_in_long_context_tier": 0,
+    "pricing_usd_per_1m": {
+      "base": {
+        "input": 2.0,
+        "cache_read": 0.1,
+        "cache_write": 0.0,
+        "output": 10.0
+      },
+      "source": "https://ai.google.dev/gemini-api/docs/pricing (implicit caching only; no write fee)"
+    },
+    "tool_calls": {
+      "read": 91,
+      "shell": 49,
+      "glob": 1,
+      "write": 2
+    },
+    "total_tool_calls": 143,
+    "failed_tool_calls": 0,
+    "shell_commands": 49,
+    "recorder_starts": 2,
+    "shell_cmds_mentioning_arm_motion": 34,
+    "shell_cmds_mentioning_gripper": 0,
+    "shell_cmds_mentioning_camera_capture": 2,
+    "images_returned_to_model": 70,
+    "files_written_or_edited": [
+      "/Users/dylanler/github/nex-arm-3-cam-eval/gemini-4-argon-medium-opencode-cam-combo-2-20261027-014431/arm_ctl.py",
+      "/Users/dylanler/github/nex-arm-3-cam-eval/gemini-4-argon-medium-opencode-cam-combo-2-20261027-014431/generate_metadata.py"
+    ],
+    "final_message": "The task to place the yellow screwdriver in the bowl has been completed, all processes have been cleanly stopped, the serial port has been released, and the recording metadata has been saved.\n\n### Summary\n- **Working Directory**: `/Users/dylanler/github/nex-arm-3-cam-eval/gemini-4-argon-medium-opencode-cam-combo-2-20261027-014431`\n- **Outcome**: **Success** (82 LLM calls used out of the 200-call budget)\n- **Camera Settings**: Logitech C922 (top-down) and Robot Wrist (`icspring`) enabled; Intel RealSense D415 disabled and cut off from both the recording (`--realsense __disabled__`) and control snapshots.\n- **Recording**: `/Users/dylanler/github/nex-arm-3-cam-eval/eval-recording/20261027_014514_gemini-4-argon-medium-opencode-cam-combo-2-20261027-014431/clip001.mp4`\n- **Metadata File**: `/Users/dylanler/github/nex-arm-3-cam-eval/eval-recording/20261027_014514_gemini-4-argon-medium-opencode-cam-combo-2-20261027-014431/gemini-4-argon-medium-opencode-cam-combo-2-20261027-014431_eval_metadata.json`"
+  },
+  {
+    "run_id": "gemini-4-argon-medium-opencode-cam-combo-3-20261027-020702",
+    "model": "google/gemini-4-argon",
+    "variant": "medium",
+    "session_id": "ses_e83633cadffe1ls5JktmyrqvQY",
+    "session_outcome": "succeeded",
+    "start": "2026-10-27T02:06:50",
+    "end": "2026-10-27T03:52:21",
+    "wall_minutes": 105.5,
+    "llm_calls": 88,
+    "tokens": {
+      "input": 376292,
+      "output": 16128,
+      "reasoning": 0,
+      "cache_read": 7002860,
+      "cache_write": 0,
+      "total_input": 7379152,
+      "total_output": 16128
+    },
+    "cost_usd_official_list_price": 1.6142,
+    "cost_usd_opencode_reported": 1.6142,
+    "calls_in_long_context_tier": 0,
+    "pricing_usd_per_1m": {
+      "base": {
+        "input": 2.0,
+        "cache_read": 0.1,
+        "cache_write": 0.0,
+        "output": 10.0
+      },
+      "source": "https://ai.google.dev/gemini-api/docs/pricing (implicit caching only; no write fee)"
+    },
+    "tool_calls": {
+      "read": 56,
+      "shell": 51,
+      "edit": 6,
+      "write": 2
+    },
+    "total_tool_calls": 115,
+    "failed_tool_calls": 0,
+    "shell_commands": 51,
+    "recorder_starts": 2,
+    "shell_cmds_mentioning_arm_motion": 36,
+    "shell_cmds_mentioning_gripper": 1,
+    "shell_cmds_mentioning_camera_capture": 38,
+    "images_returned_to_model": 37,
+    "files_written_or_edited": [
+      "/Users/dylanler/github/nex-arm-3-cam-eval/app.js",
+      "/Users/dylanler/github/nex-arm-3-cam-eval/gemini-4-argon-medium-opencode-cam-combo-3-20261027-020702/generate_metadata.py",
+      "/Users/dylanler/github/nex-arm-3-cam-eval/gemini-4-argon-medium-opencode-cam-combo-3-20261027-020702/robot_ctl.py"
+    ],
+    "final_message": "The task **\"Place the yellow screwdriver in the bowl\"** has been completed successfully using only the **Robot Wrist** camera (`camera_combo: 3`).\n\n### Summary of Actions & Results\n- **Working Directory**: `/Users/dylanler/github/nex-arm-3-cam-eval/gemini-4-argon-medium-opencode-cam-combo-3-20261027-020702`\n- **Camera Configuration**: Enabled only the robot wrist camera (`icspring camera`). Disabled both the Logitech C922 and Intel RealSense D415 cameras in the web frontend (`app.js`) and in `record.py` (`--realsense DISABLED_NONE --logitech DISABLED_NONE`) so their signals were completely cut off.\n- **Execution**: Used visual servoing from the wrist camera (`robot_ctl.py`) to locate the yellow screwdriver, align the gripper jaws with the handle (`wrist_roll` = 2414), grasp the handle (`gripper` = 2321), lift, pan over the grey bowl (`shoulder_pan` = 2018), release the screwdriver into the bowl, and return the arm to its home pose with torque disabled and serial port released.\n- **Recording & Metadata**:\n  - Recording saved to: `/Users/dylanler/github/nex-arm-3-cam-eval/eval-recording/20261027_020822_gemini-4-argon-medium-opencode-cam-combo-3-20261027-020702/clip001.mp4` (802.3s)\n  - Evaluation metadata saved to: `/Users/dylanler/github/nex-arm-3-cam-eval/eval-recording/20261027_020822_gemini-4-argon-medium-opencode-cam-combo-3-20261027-020702/gemini-4-argon-medium-opencode-cam-combo-3-20261027-020702_eval_metadata.json`\n  - **LLM Calls**: 86 (well within the 200-call budget)\n  - **All processes stopped**: Recorder, frontend web server, and robot serial connection have all been cleanly terminated."
+  },
+  {
+    "run_id": "gpt-6-1-sol-medium-opencode-cam-combo-1-20261026-234907",
+    "model": "openai/gpt-6.1-sol",
+    "variant": "medium",
+    "session_id": "ses_e83e15bc3ffe5xPbD4R9AgmSJ3",
+    "session_outcome": "succeeded",
+    "start": "2026-10-26T23:49:05",
+    "end": "2026-10-27T00:00:43",
+    "wall_minutes": 11.6,
+    "llm_calls": 89,
+    "tokens": {
+      "input": 267,
+      "output": 14513,
+      "reasoning": 3458,
+      "cache_read": 4551605,
+      "cache_write": 80792,
+      "total_input": 4632664,
+      "total_output": 17971
+    },
+    "cost_usd_official_list_price": 0.8374,
+    "cost_usd_opencode_reported": 0.8374,
+    "calls_in_long_context_tier": 0,
+    "pricing_usd_per_1m": {
+      "base": {
+        "input": 2.0,
+        "cache_read": 0.1,
+        "cache_write": 2.5,
+        "output": 10.0
+      },
+      "long": {
+        "input": 4.0,
+        "cache_read": 0.2,
+        "cache_write": 5.0,
+        "output": 15.0
+      },
+      "source": "https://developers.openai.com/api/docs/pricing"
+    },
+    "tool_calls": {
+      "shell": 63,
+      "read": 73,
+      "grep": 3,
+      "glob": 2,
+      "patch": 3
+    },
+    "total_tool_calls": 144,
+    "failed_tool_calls": 1,
+    "shell_commands": 63,
+    "recorder_starts": 0,
+    "shell_cmds_mentioning_arm_motion": 25,
+    "shell_cmds_mentioning_gripper": 1,
+    "shell_cmds_mentioning_camera_capture": 22,
+    "images_returned_to_model": 57,
+    "files_written_or_edited": [],
+    "final_message": "Success—the yellow screwdriver is fully inside the bowl, verified by the wrist and top-down cameras.\n\n- Video and evaluation metadata saved in:\n  `eval-recording/20261026_235002_gpt-6-1-sol-medium-opencode-cam-combo-1-20261026-234907/`\n- All three enabled cameras were recorded.\n- Arm returned home; recorder, controller, and app server stopped. Serial port released.\n- Usage snapshot: **87 calls**, below the 200-call budget.\n- Recording caveat: playback is approximately **1.16× speed**, documented in metadata.\n\nOperator reset notification sounded."
+  },
+  {
+    "run_id": "gpt-6-1-sol-medium-opencode-cam-combo-2-20261027-000138",
+    "model": "openai/gpt-6.1-sol",
+    "variant": "medium",
+    "session_id": "ses_e83d5e930ffeREWPAcQzQIzRSE",
+    "session_outcome": "interrupted",
+    "start": "2026-10-27T00:01:35",
+    "end": "2026-10-27T00:35:08",
+    "wall_minutes": 33.6,
+    "llm_calls": 118,
+    "tokens": {
+      "input": 351,
+      "output": 15139,
+      "reasoning": 6852,
+      "cache_read": 7103452,
+      "cache_write": 111632,
+      "total_input": 7215435,
+      "total_output": 21991
+    },
+    "cost_usd_official_list_price": 1.21,
+    "cost_usd_opencode_reported": 1.21,
+    "calls_in_long_context_tier": 0,
+    "pricing_usd_per_1m": {
+      "base": {
+        "input": 2.0,
+        "cache_read": 0.1,
+        "cache_write": 2.5,
+        "output": 10.0
+      },
+      "long": {
+        "input": 4.0,
+        "cache_read": 0.2,
+        "cache_write": 5.0,
+        "output": 15.0
+      },
+      "source": "https://developers.openai.com/api/docs/pricing"
+    },
+    "tool_calls": {
+      "shell": 87,
+      "read": 66,
+      "grep": 2,
+      "glob": 2,
+      "patch": 3
+    },
+    "total_tool_calls": 160,
+    "failed_tool_calls": 5,
+    "shell_commands": 87,
+    "recorder_starts": 2,
+    "shell_cmds_mentioning_arm_motion": 32,
+    "shell_cmds_mentioning_gripper": 6,
+    "shell_cmds_mentioning_camera_capture": 29,
+    "images_returned_to_model": 56,
+    "files_written_or_edited": [],
+    "final_message": "The attempt is stopped and the serial port is free. I also found that screen capture stalled about 3 minutes 43 seconds into the clip; I’m documenting that recording problem and preserving the camera snapshots alongside the failed-attempt metadata."
+  },
+  {
+    "run_id": "gpt-6-1-sol-medium-opencode-cam-combo-3-20261027-003536",
+    "model": "openai/gpt-6.1-sol",
+    "variant": "medium",
+    "session_id": "ses_e83b6dabeffeMgpudnyp9bU2VO",
+    "session_outcome": "succeeded",
+    "start": "2026-10-27T00:35:30",
+    "end": "2026-10-27T01:14:50",
+    "wall_minutes": 39.3,
+    "llm_calls": 128,
+    "tokens": {
+      "input": 384,
+      "output": 19466,
+      "reasoning": 9553,
+      "cache_read": 7741198,
+      "cache_write": 100125,
+      "total_input": 7841707,
+      "total_output": 29019
+    },
+    "cost_usd_official_list_price": 1.3154,
+    "cost_usd_opencode_reported": 1.3154,
+    "calls_in_long_context_tier": 0,
+    "pricing_usd_per_1m": {
+      "base": {
+        "input": 2.0,
+        "cache_read": 0.1,
+        "cache_write": 2.5,
+        "output": 10.0
+      },
+      "long": {
+        "input": 4.0,
+        "cache_read": 0.2,
+        "cache_write": 5.0,
+        "output": 15.0
+      },
+      "source": "https://developers.openai.com/api/docs/pricing"
+    },
+    "tool_calls": {
+      "read": 64,
+      "shell": 76,
+      "glob": 1,
+      "patch": 3,
+      "grep": 1
+    },
+    "total_tool_calls": 145,
+    "failed_tool_calls": 5,
+    "shell_commands": 76,
+    "recorder_starts": 1,
+    "shell_cmds_mentioning_arm_motion": 47,
+    "shell_cmds_mentioning_gripper": 1,
+    "shell_cmds_mentioning_camera_capture": 56,
+    "images_returned_to_model": 52,
+    "files_written_or_edited": [],
+    "final_message": "**Outcome: fail.** The screwdriver remains on the table beside the empty bowl.\n\n- Arm retreated; all started processes stopped and serial port released.\n- Only the wrist camera was used.\n- Recording saved, but screen capture was obscured early and later stalled. Final wrist-image evidence and full metadata are saved alongside it.\n- Usage snapshot: **126 LLM calls**, **$1.2821**—below the 200-call limit.\n- Operator notification played.\n\nResults folder:\n`eval-recording/20261027_003713_gpt-6-1-sol-medium-opencode-cam-combo-3-20261027-003536/`"
+  },
+  {
+    "run_id": "gpt-6-1-terra-medium-opencode-cam-combo-1-20261027-215348",
+    "model": "openai/gpt-6.1-terra",
+    "variant": "medium",
+    "session_id": "ses_e7f2493e3ffeC4NvA51wF5UiYg",
+    "session_outcome": "succeeded",
+    "start": "2026-10-27T21:53:46",
+    "end": "2026-10-27T22:27:33",
+    "wall_minutes": 33.8,
+    "llm_calls": 151,
+    "tokens": {
+      "input": 453,
+      "output": 19632,
+      "reasoning": 8520,
+      "cache_read": 11413587,
+      "cache_write": 413424,
+      "total_input": 11827464,
+      "total_output": 28152
+    },
+    "cost_usd_official_list_price": 1.2287,
+    "cost_usd_opencode_reported": 1.2287,
+    "calls_in_long_context_tier": 0,
+    "pricing_usd_per_1m": {
+      "base": {
+        "input": 1.0,
+        "cache_read": 0.05,
+        "cache_write": 1.25,
+        "output": 5.0
+      },
+      "long": {
+        "input": 2.0,
+        "cache_read": 0.1,
+        "cache_write": 2.5,
+        "output": 7.5
+      },
+      "source": "https://developers.openai.com/api/docs/pricing"
+    },
+    "tool_calls": {
+      "shell": 97,
+      "read": 66,
+      "grep": 2,
+      "patch": 2
+    },
+    "total_tool_calls": 167,
+    "failed_tool_calls": 3,
+    "shell_commands": 97,
+    "recorder_starts": 3,
+    "shell_cmds_mentioning_arm_motion": 0,
+    "shell_cmds_mentioning_gripper": 0,
+    "shell_cmds_mentioning_camera_capture": 59,
+    "images_returned_to_model": 56,
+    "files_written_or_edited": [],
+    "final_message": "**The final Logitech snapshot shows the screwdriver inside the bowl.** The recording stalled before the end, however, and an unexplained robot reset and bowl movement occurred during the attempt, so the clip does not establish an uninterrupted manipulation.\n\nThe [recording and metadata folder](eval-recording/20261027_215824_gpt-6-1-terra-medium-opencode-cam-combo-1-20261027-215348) includes the final evidence image. The recorder, app server, and robot-control processes are stopped; the serial port is released."
+  },
+  {
+    "run_id": "gpt-6-1-terra-medium-opencode-cam-combo-2-20261027-222824",
+    "model": "openai/gpt-6.1-terra",
+    "variant": "medium",
+    "session_id": "ses_e7f04ee39ffegbHq1YiPKTfhk3",
+    "session_outcome": "succeeded",
+    "start": "2026-10-27T22:28:20",
+    "end": "2026-10-27T22:42:38",
+    "wall_minutes": 14.3,
+    "llm_calls": 113,
+    "tokens": {
+      "input": 339,
+      "output": 17885,
+      "reasoning": 8027,
+      "cache_read": 9992401,
+      "cache_write": 533498,
+      "total_input": 10526238,
+      "total_output": 25912
+    },
+    "cost_usd_official_list_price": 1.2964,
+    "cost_usd_opencode_reported": 1.2964,
+    "calls_in_long_context_tier": 0,
+    "pricing_usd_per_1m": {
+      "base": {
+        "input": 1.0,
+        "cache_read": 0.05,
+        "cache_write": 1.25,
+        "output": 5.0
+      },
+      "long": {
+        "input": 2.0,
+        "cache_read": 0.1,
+        "cache_write": 2.5,
+        "output": 7.5
+      },
+      "source": "https://developers.openai.com/api/docs/pricing"
+    },
+    "tool_calls": {
+      "shell": 117,
+      "read": 57,
+      "glob": 2,
+      "patch": 3,
+      "grep": 1
+    },
+    "total_tool_calls": 180,
+    "failed_tool_calls": 9,
+    "shell_commands": 117,
+    "recorder_starts": 3,
+    "shell_cmds_mentioning_arm_motion": 29,
+    "shell_cmds_mentioning_gripper": 1,
+    "shell_cmds_mentioning_camera_capture": 45,
+    "images_returned_to_model": 42,
+    "files_written_or_edited": [],
+    "final_message": "**Outcome: fail.** The screwdriver remains beside the empty bowl. The arm was returned near its starting pose, and the serial port was released.\n\nThe recording’s camera views froze, and its screen source later stalled. The clip and metadata are saved in:\n\n`eval-recording/20261027_222959_gpt-6-1-terra-medium-opencode-cam-combo-2-20261027-222824/`"
+  },
+  {
+    "run_id": "gpt-astra-latest-medium-opencode-cam-combo-1-20261028-002116",
+    "model": "openai/gpt-6-astra",
+    "variant": "medium",
+    "session_id": "ses_e7e9d9299ffeAdlRysIsSE6c6E",
+    "session_outcome": "succeeded",
+    "start": "2026-10-28T00:21:13",
+    "end": "2026-10-28T00:36:19",
+    "wall_minutes": 15.1,
+    "llm_calls": 73,
+    "tokens": {
+      "input": 219,
+      "output": 9470,
+      "reasoning": 3605,
+      "cache_read": 5353888,
+      "cache_write": 170783,
+      "total_input": 5524890,
+      "total_output": 13075
+    },
+    "cost_usd_official_list_price": 8.1446,
+    "cost_usd_opencode_reported": 8.1446,
+    "calls_in_long_context_tier": 0,
+    "pricing_usd_per_1m": {
+      "base": {
+        "input": 10.0,
+        "cache_read": 1.0,
+        "cache_write": 12.5,
+        "output": 50.0
+      },
+      "long": {
+        "input": 20.0,
+        "cache_read": 2.0,
+        "cache_write": 25.0,
+        "output": 75.0
+      },
+      "source": "https://developers.openai.com/api/docs/pricing (alias of openai/gpt-6-astra)"
+    },
+    "tool_calls": {
+      "read": 34,
+      "shell": 54,
+      "grep": 2,
+      "patch": 3,
+      "skill": 1
+    },
+    "total_tool_calls": 94,
+    "failed_tool_calls": 3,
+    "shell_commands": 54,
+    "recorder_starts": 3,
+    "shell_cmds_mentioning_arm_motion": 0,
+    "shell_cmds_mentioning_gripper": 2,
+    "shell_cmds_mentioning_camera_capture": 5,
+    "images_returned_to_model": 24,
+    "files_written_or_edited": [],
+    "final_message": "**Success:** the yellow screwdriver is in the bowl, confirmed by the top-down and wrist cameras.\n\n- Main recording: **9m 51s**, with all three cameras.\n- Video, final evidence image, and evaluation metadata saved in:\n  `eval-recording/20261028_002308_gpt-astra-latest-medium-opencode-cam-combo-1-20261028-002116/`\n- Usage snapshot: **70 LLM calls**, below the 200-call budget.\n- All started processes stopped; robot serial port released.\n- Operator notification played."
+  },
+  {
+    "run_id": "gpt-astra-latest-medium-opencode-cam-combo-2-20261028-004041",
+    "model": "openai/gpt-6-astra",
+    "variant": "medium",
+    "session_id": "ses_e7e8bc7f3ffeF2I4ADfkQiNtg4",
+    "session_outcome": "succeeded",
+    "start": "2026-10-28T00:40:39",
+    "end": "2026-10-28T01:01:25",
+    "wall_minutes": 20.8,
+    "llm_calls": 71,
+    "tokens": {
+      "input": 213,
+      "output": 13269,
+      "reasoning": 3190,
+      "cache_read": 3548317,
+      "cache_write": 90107,
+      "total_input": 3638637,
+      "total_output": 16459
+    },
+    "cost_usd_official_list_price": 5.4997,
+    "cost_usd_opencode_reported": 5.4997,
+    "calls_in_long_context_tier": 0,
+    "pricing_usd_per_1m": {
+      "base": {
+        "input": 10.0,
+        "cache_read": 1.0,
+        "cache_write": 12.5,
+        "output": 50.0
+      },
+      "long": {
+        "input": 20.0,
+        "cache_read": 2.0,
+        "cache_write": 25.0,
+        "output": 75.0
+      },
+      "source": "https://developers.openai.com/api/docs/pricing (alias of openai/gpt-6-astra)"
+    },
+    "tool_calls": {
+      "shell": 41,
+      "read": 59,
+      "glob": 2,
+      "grep": 2,
+      "patch": 4,
+      "skill": 1
+    },
+    "total_tool_calls": 109,
+    "failed_tool_calls": 3,
+    "shell_commands": 41,
+    "recorder_starts": 4,
+    "shell_cmds_mentioning_arm_motion": 0,
+    "shell_cmds_mentioning_gripper": 1,
+    "shell_cmds_mentioning_camera_capture": 4,
+    "images_returned_to_model": 47,
+    "files_written_or_edited": [],
+    "final_message": "**Success:** the yellow screwdriver is in the bowl.\n\n- Verified using the Logitech and wrist cameras; RealSense was disabled before movement and recording.\n- Main screen recording stalled. A separate 10-second, two-camera clip confirms the final placement.\n- Videos and metadata saved in `eval-recording/`; metadata lists both clip folders.\n- Usage snapshot: **69 calls**, **$5.28**, below the 200-call cap.\n- All started processes stopped, serial port released, and operator notification played."
+  },
+  {
+    "run_id": "gpt-astra-latest-medium-opencode-cam-combo-3-20261028-010225",
+    "model": "openai/gpt-6-astra",
+    "variant": "medium",
+    "session_id": "ses_e7e77eab8ffepwoHG6M3pPsYWi",
+    "session_outcome": "succeeded",
+    "start": "2026-10-28T01:02:21",
+    "end": "2026-10-28T01:31:24",
+    "wall_minutes": 29.0,
+    "llm_calls": 134,
+    "tokens": {
+      "input": 402,
+      "output": 16305,
+      "reasoning": 11089,
+      "cache_read": 7764237,
+      "cache_write": 91596,
+      "total_input": 7856235,
+      "total_output": 27394
+    },
+    "cost_usd_official_list_price": 10.2829,
+    "cost_usd_opencode_reported": 10.2829,
+    "calls_in_long_context_tier": 0,
+    "pricing_usd_per_1m": {
+      "base": {
+        "input": 10.0,
+        "cache_read": 1.0,
+        "cache_write": 12.5,
+        "output": 50.0
+      },
+      "long": {
+        "input": 20.0,
+        "cache_read": 2.0,
+        "cache_write": 25.0,
+        "output": 75.0
+      },
+      "source": "https://developers.openai.com/api/docs/pricing (alias of openai/gpt-6-astra)"
+    },
+    "tool_calls": {
+      "read": 71,
+      "shell": 73,
+      "grep": 3,
+      "glob": 1,
+      "patch": 3
+    },
+    "total_tool_calls": 151,
+    "failed_tool_calls": 2,
+    "shell_commands": 73,
+    "recorder_starts": 3,
+    "shell_cmds_mentioning_arm_motion": 0,
+    "shell_cmds_mentioning_gripper": 1,
+    "shell_cmds_mentioning_camera_capture": 5,
+    "images_returned_to_model": 59,
+    "files_written_or_edited": [],
+    "final_message": "Success—the wrist camera confirmed the yellow screwdriver resting inside the bowl.\n\n- Video and metadata saved in `eval-recording/20261028_010357_gpt-astra-latest-medium-opencode-cam-combo-3-20261028-010225/`.\n- Only the wrist camera was used; Logitech and RealSense feeds were disabled.\n- Usage snapshot: **132 calls**, within the 200-call budget.\n- All started processes stopped; robot serial port released.\n- Operator notification played."
+  }
+]

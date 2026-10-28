@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NEX Arm · 3-Camera Eval</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="title">
+      <h1>NEX Arm · 3-Camera Eval</h1>
+      <span id="status" class="status">Starting…</span>
+    </div>
+    <div class="controls">
+      <label>Resolution
+        <select id="resolution">
+          <option value="640x480" selected>640 × 480</option>
+          <option value="1280x720">1280 × 720</option>
+          <option value="1920x1080">1920 × 1080</option>
+        </select>
+      </label>
+      <label>FPS
+        <select id="fps">
+          <option value="15">15</option>
+          <option value="30" selected>30</option>
+          <option value="60">60</option>
+        </select>
+      </label>
+      <button id="restart">Restart all</button>
+      <button id="snapAll">Snapshot all</button>
+      <button id="recordAll">● Record all</button>
+    </div>
+  </header>
+
+  <main id="grid"></main>
+
+  <template id="tileTpl">
+    <section class="tile">
+      <div class="tile-head">
+        <h2 class="name"></h2>
+        <select class="device"></select>
+      </div>
+      <div class="view">
+        <video autoplay playsinline muted></video>
+        <div class="overlay msg"></div>
+        <div class="overlay stats"></div>
+      </div>
+      <div class="tile-foot">
+        <span class="label"></span>
+        <div>
+          <button class="snap">Snapshot</button>
+          <button class="full">Fullscreen</button>
+        </div>
+      </div>
+    </section>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>

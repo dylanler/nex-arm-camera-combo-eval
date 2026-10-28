@@ -1,0 +1,17 @@
+{
+  "task": "gpt-6-1-sol-medium-opencode-cam-combo-3-20261027-003536",
+  "started": "2026-10-27T00:37:11.402",
+  "updated": "2026-10-27T01:09:26.765",
+  "clips": 1,
+  "success": 0,
+  "fail": 0,
+  "unlabeled": 1,
+  "clip_files": [
+    {
+      "clip": 1,
+      "video": "clip001.mp4",
+      "outcome": null,
+      "duration_s": 1933.133
+    }
+  ]
+}

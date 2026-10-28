@@ -1,0 +1,10 @@
+NEX Arm recorder
+  Robot Wrist     <- icspring camera
+  RealSense D415  <- Intel(R) RealSense(TM) Depth Camera 415  RGB
+  Logitech C922   <- C922 Pro Stream Webcam
+  output: 1920x1080 @ 30 fps, x264, -> /Users/dylanler/github/nex-arm-3-cam-eval/eval-recording
+  hotkeys: SPACE pause/resume  n next clip  y/x success/fail  m marker  s snapshot  +/- fps  c color  l layout  t timestamp  h help  q quit
+  · REC clip 001 @ 30 fps
+
+Session: /Users/dylanler/github/nex-arm-3-cam-eval/eval-recording/20261026_150631_claude-opus-5-5-medium-opencode-cam-combo-1-20261026-150532
+  clip 001   09:39.43   17383 frames  30 fps  -         clip001.mp4

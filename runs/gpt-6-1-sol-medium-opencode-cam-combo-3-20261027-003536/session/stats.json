@@ -1,0 +1,55 @@
+{
+  "run_id": "gpt-6-1-sol-medium-opencode-cam-combo-3-20261027-003536",
+  "model": "openai/gpt-6.1-sol",
+  "variant": "medium",
+  "session_id": "ses_e83b6dabeffeMgpudnyp9bU2VO",
+  "session_outcome": "succeeded",
+  "start": "2026-10-27T00:35:30",
+  "end": "2026-10-27T01:14:50",
+  "wall_minutes": 39.3,
+  "llm_calls": 128,
+  "tokens": {
+    "input": 384,
+    "output": 19466,
+    "reasoning": 9553,
+    "cache_read": 7741198,
+    "cache_write": 100125,
+    "total_input": 7841707,
+    "total_output": 29019
+  },
+  "cost_usd_official_list_price": 1.3154,
+  "cost_usd_opencode_reported": 1.3154,
+  "calls_in_long_context_tier": 0,
+  "pricing_usd_per_1m": {
+    "base": {
+      "input": 2.0,
+      "cache_read": 0.1,
+      "cache_write": 2.5,
+      "output": 10.0
+    },
+    "long": {
+      "input": 4.0,
+      "cache_read": 0.2,
+      "cache_write": 5.0,
+      "output": 15.0
+    },
+    "source": "https://developers.openai.com/api/docs/pricing"
+  },
+  "tool_calls": {
+    "read": 64,
+    "shell": 76,
+    "glob": 1,
+    "patch": 3,
+    "grep": 1
+  },
+  "total_tool_calls": 145,
+  "failed_tool_calls": 5,
+  "shell_commands": 76,
+  "recorder_starts": 1,
+  "shell_cmds_mentioning_arm_motion": 47,
+  "shell_cmds_mentioning_gripper": 1,
+  "shell_cmds_mentioning_camera_capture": 56,
+  "images_returned_to_model": 52,
+  "files_written_or_edited": [],
+  "final_message": "**Outcome: fail.** The screwdriver remains on the table beside the empty bowl.\n\n- Arm retreated; all started processes stopped and serial port released.\n- Only the wrist camera was used.\n- Recording saved, but screen capture was obscured early and later stalled. Final wrist-image evidence and full metadata are saved alongside it.\n- Usage snapshot: **126 LLM calls**, **$1.2821**—below the 200-call limit.\n- Operator notification played.\n\nResults folder:\n`eval-recording/20261027_003713_gpt-6-1-sol-medium-opencode-cam-combo-3-20261027-003536/`"
+}

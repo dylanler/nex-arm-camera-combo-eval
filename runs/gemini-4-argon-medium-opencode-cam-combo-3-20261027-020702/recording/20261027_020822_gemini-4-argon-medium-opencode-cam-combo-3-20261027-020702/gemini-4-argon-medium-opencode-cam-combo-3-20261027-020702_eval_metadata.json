@@ -1,0 +1,86 @@
+{
+  "eval": "06 of 09",
+  "experiment": "camera-combo eval: does more camera input improve robot manipulation",
+  "task": "Place the yellow screwdriver in the bowl.",
+  "model": "google/gemini-4-argon",
+  "reasoning_effort": "medium",
+  "harness": "opencode v2.1.4",
+  "opencode_session_id": "ses_e83633cadffe1ls5JktmyrqvQY",
+  "camera_combo": 3,
+  "cameras_enabled": [
+    "wrist"
+  ],
+  "cameras_disabled": [
+    "logitech",
+    "realsense"
+  ],
+  "cameras_in_recording": [
+    "wrist"
+  ],
+  "how_disabled_cameras_cut_off": "Passed --realsense DISABLED_NONE --logitech DISABLED_NONE to record.py so FFmpegSource was never created or opened for RealSense D415 or Logitech C922, and updated app.js in the web frontend so RealSense and Logitech matchers returned false during the eval (reverted after completion).",
+  "start_time": "2026-10-27T02:06:56-07:00",
+  "end_time": "2026-10-27T02:22:45.595376-07:00",
+  "wall_clock_duration_s": 949.6,
+  "llm_calls": 86,
+  "tokens": {
+    "total_input_tokens": 7136537,
+    "input": 250973,
+    "cache_read": 6885564,
+    "cache_write": 0,
+    "total_output_tokens": 15377,
+    "output": 15377,
+    "reasoning": 0
+  },
+  "cost_usd_opencode_reported": 1.344272,
+  "cost_usd_provider_list_price": 1.344272,
+  "price_table_usd_per_1m_tokens": {
+    "input_per_1m_usd": 2.0,
+    "output_including_reasoning_per_1m_usd": 10.0,
+    "cache_read_per_1m_usd": 0.1,
+    "cache_write_per_1m_usd": 0.1875
+  },
+  "outcome": "success",
+  "evidence": "The final wrist camera frame (and recording clip001.mp4) clearly shows the yellow screwdriver resting completely inside the grey bowl, with the gripper open and returned to the home pose above the bowl.",
+  "budget_200_calls_exceeded": false,
+  "recording": {
+    "clip_folders": [
+      "20261027_020822_gemini-4-argon-medium-opencode-cam-combo-3-20261027-020702"
+    ],
+    "video_file_names": [
+      "clip001.mp4"
+    ],
+    "clip_durations_s": [
+      802.3
+    ],
+    "recorder_start_count": 1
+  },
+  "robot": {
+    "start_joint_positions": {
+      "shoulder_pan": 2044,
+      "shoulder_lift": 2614,
+      "elbow_flex": 1458,
+      "wrist_flex": 2035,
+      "wrist_roll": 2044,
+      "gripper": 1789
+    },
+    "end_joint_positions": {
+      "shoulder_pan": 2041,
+      "shoulder_lift": 2619,
+      "elbow_flex": 1448,
+      "wrist_flex": 2048,
+      "wrist_roll": 2043,
+      "gripper": 1786
+    }
+  },
+  "problems_and_scripts": {
+    "problems_hit": [
+      "Initial ffmpeg snapshot without -pixel_format bgr0 printed a yuv420p warning on macOS AVFoundation; added -pixel_format bgr0 to fix.",
+      "Occasional corrupted or byte-shifted serial position reads (e.g., 4095 or shifted array values) from the NexArm AT32 bridge; mitigated by adding safe_read_positions() requiring two consecutive consistent reads within bounds."
+    ],
+    "scripts_written": [
+      "gemini-4-argon-medium-opencode-cam-combo-3-20261027-020702/robot_ctl.py",
+      "gemini-4-argon-medium-opencode-cam-combo-3-20261027-020702/generate_metadata.py"
+    ]
+  },
+  "note": "Token and cost numbers are a snapshot taken before the final assistant reply."
+}

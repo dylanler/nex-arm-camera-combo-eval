@@ -1,0 +1,133 @@
+{
+  "eval": "07 of 09",
+  "experiment": "camera-combo eval: does more camera input improve robot manipulation",
+  "task": "Place the yellow screwdriver in the bowl.",
+  "model": "openai/gpt-6.1-sol",
+  "reasoning_effort": "medium",
+  "harness": "opencode v2.1.4",
+  "opencode_session_id": "ses_e83e15bc3ffe5xPbD4R9AgmSJ3",
+  "camera_combo": 1,
+  "cameras_enabled": [
+    "logitech",
+    "realsense",
+    "wrist"
+  ],
+  "cameras_disabled": [
+    "none"
+  ],
+  "cameras_actually_in_recording": [
+    "logitech",
+    "realsense",
+    "wrist"
+  ],
+  "disabled_camera_cutoff": "Not applicable: all three designated cameras enabled; FaceTime excluded by record.py device filter.",
+  "start_time": "2026-10-26T23:49:07-07:00",
+  "end_time": "2026-10-26T23:59:03.005000-07:00",
+  "wall_clock_duration_s": 596.005,
+  "timing_note": "Start is attempt-directory creation; end is task/recording stop. Setup included. Metadata preparation follows task end.",
+  "llm_calls": 87,
+  "total_input_tokens": 4471555,
+  "input_tokens": 261,
+  "cache_read_tokens": 4393153,
+  "cache_write_tokens": 78141,
+  "total_output_tokens": 17493,
+  "output_tokens": 14145,
+  "reasoning_tokens": 3348,
+  "cost_usd_opencode_reported": 0.8101197999999998,
+  "cost_usd_provider_list_price": 0.8101197999999998,
+  "price_table_usd_per_million_tokens": {
+    "prompt_tokens_at_most_272000": {
+      "input": 2,
+      "output_including_reasoning": 10,
+      "cache_read": 0.1,
+      "cache_write": 2.5
+    },
+    "prompt_tokens_over_272000": {
+      "input": 4,
+      "output_including_reasoning": 15,
+      "cache_read": 0.2,
+      "cache_write": 5
+    },
+    "prompt_definition": "input + cache read + cache write",
+    "long_prompt_calls": 0,
+    "source": "Default provider list-price table supplied in evaluation instructions."
+  },
+  "outcome": "success",
+  "evidence": "Wrist released image shows entire yellow screwdriver resting inside bowl with empty open jaws. Final Logitech top-down image shows yellow handle and metal shaft fully within bowl after arm returns home. RealSense confirms lift and release; final interior obscured by bowl wall.",
+  "budget_exceeded": false,
+  "llm_call_budget": 200,
+  "recording": {
+    "clip_folders": [
+      "20261026_235002_gpt-6-1-sol-medium-opencode-cam-combo-1-20261026-234907"
+    ],
+    "main_attempt_clip_folder": "20261026_235002_gpt-6-1-sol-medium-opencode-cam-combo-1-20261026-234907",
+    "video_files": [
+      "clip001.mp4"
+    ],
+    "clip_durations_s": [
+      468.05
+    ],
+    "recorder_started_count": 1,
+    "recording_start_time": "2026-10-26T23:50:02.049",
+    "recording_end_time": "2026-10-26T23:59:03.062",
+    "recording_wall_clock_duration_s": 541.013,
+    "source": "Supplied record.py Recorder, FFmpegSource, render and Clip classes imported by control.py; direct composite of the same three frontend cameras.",
+    "resolution": [
+      1920,
+      1080
+    ],
+    "fps": 20,
+    "encoder_errors": [],
+    "dropped_frames": 0,
+    "timing_issue": "Custom recording loop slept after rendering rather than scheduling fixed-rate ticks. All manipulation was captured, but nominal-20fps video is 468.05 seconds versus about 541 seconds wall time (approximately 1.16x playback). Per-frame wall-clock timestamps retained in clip001_frames.csv."
+  },
+  "robot": {
+    "joint_order": [
+      "shoulder_pan",
+      "shoulder_lift",
+      "elbow_flex",
+      "wrist_flex",
+      "wrist_roll",
+      "gripper"
+    ],
+    "position_units": "raw 12-bit servo ticks",
+    "measured_start_positions": [
+      2053,
+      2611,
+      1467,
+      2020,
+      2045,
+      1791
+    ],
+    "measured_end_positions": [
+      2045,
+      2613,
+      1462,
+      2031,
+      2044,
+      1792
+    ],
+    "serial_port": "/dev/cu.usbserial-110",
+    "serial_released": true,
+    "shutdown": "Control process exited, bus disconnected. Torque left holding home pose to avoid an uncontrolled drop. App server terminated and frontend Chrome tab closed."
+  },
+  "hardware_software_problems": [
+    "First grasp at insufficient depth rotated the handle but failed the lift check. Reopened, lowered farther, and second grasp lifted successfully.",
+    "Modest servo tracking offsets, especially elbow (up to roughly 50 ticks) and shoulder under load. No stuck joint, serial timeout, camera dropout, or crash observed.",
+    "Gripper measured about 2452 ticks against the handle despite 2650-tick close command, consistent with object contact.",
+    "Recording time-base issue described under recording.timing_issue."
+  ],
+  "scripts_written": [
+    "control.py",
+    "write_metadata.py"
+  ],
+  "other_artifacts": [
+    "moves.jsonl",
+    "state.json",
+    "control.log",
+    "opencode_session_export.json",
+    "camera snapshots"
+  ],
+  "usage_snapshot_note": "Token, cost and LLM-call values are a session-export snapshot taken before the final reply; excludes this metadata-writing tool call and subsequent final response as applicable.",
+  "metadata_written_at": "2026-10-27T00:00:26.399596-07:00"
+}

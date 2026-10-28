@@ -1,0 +1,8 @@
+NEX Arm recorder
+  screen crop (pixels): x=0 y=66 w=3024 h=1898
+  output: 1280x900 @ 15 fps, x264, -> /Users/dylanler/github/nex-arm-3-cam-eval/eval-recording
+  hotkeys: SPACE pause/resume  n next clip  y/x success/fail  m marker  s snapshot  +/- fps  c color  l layout  t timestamp  h help  q quit
+  · REC clip 001 @ 15 fps
+
+Session: /Users/dylanler/github/nex-arm-3-cam-eval/eval-recording/20261028_010313_gpt-astra-latest-medium-opencode-cam-combo-3-20261028-010225
+  clip 001   00:40.13     602 frames  15 fps  -         clip001.mp4

@@ -1,0 +1,23 @@
+{
+  "start_time": "2026-10-26T23:49:50.230",
+  "initial_positions": [
+    2053,
+    2611,
+    1467,
+    2020,
+    2045,
+    1791
+  ],
+  "recorder_starts": 1,
+  "clip_folder": "/Users/dylanler/github/nex-arm-3-cam-eval/eval-recording/20261026_235002_gpt-6-1-sol-medium-opencode-cam-combo-1-20261026-234907",
+  "final_positions": [
+    2045,
+    2613,
+    1462,
+    2031,
+    2044,
+    1792
+  ],
+  "end_time": "2026-10-26T23:59:03.005",
+  "outcome": "success"
+}

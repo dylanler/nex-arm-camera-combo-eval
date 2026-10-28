@@ -1,0 +1,56 @@
+{
+  "run_id": "gpt-astra-latest-medium-opencode-cam-combo-2-20261028-004041",
+  "model": "openai/gpt-6-astra",
+  "variant": "medium",
+  "session_id": "ses_e7e8bc7f3ffeF2I4ADfkQiNtg4",
+  "session_outcome": "succeeded",
+  "start": "2026-10-28T00:40:39",
+  "end": "2026-10-28T01:01:25",
+  "wall_minutes": 20.8,
+  "llm_calls": 71,
+  "tokens": {
+    "input": 213,
+    "output": 13269,
+    "reasoning": 3190,
+    "cache_read": 3548317,
+    "cache_write": 90107,
+    "total_input": 3638637,
+    "total_output": 16459
+  },
+  "cost_usd_official_list_price": 5.4997,
+  "cost_usd_opencode_reported": 5.4997,
+  "calls_in_long_context_tier": 0,
+  "pricing_usd_per_1m": {
+    "base": {
+      "input": 10.0,
+      "cache_read": 1.0,
+      "cache_write": 12.5,
+      "output": 50.0
+    },
+    "long": {
+      "input": 20.0,
+      "cache_read": 2.0,
+      "cache_write": 25.0,
+      "output": 75.0
+    },
+    "source": "https://developers.openai.com/api/docs/pricing (alias of openai/gpt-6-astra)"
+  },
+  "tool_calls": {
+    "shell": 41,
+    "read": 59,
+    "glob": 2,
+    "grep": 2,
+    "patch": 4,
+    "skill": 1
+  },
+  "total_tool_calls": 109,
+  "failed_tool_calls": 3,
+  "shell_commands": 41,
+  "recorder_starts": 4,
+  "shell_cmds_mentioning_arm_motion": 0,
+  "shell_cmds_mentioning_gripper": 1,
+  "shell_cmds_mentioning_camera_capture": 4,
+  "images_returned_to_model": 47,
+  "files_written_or_edited": [],
+  "final_message": "**Success:** the yellow screwdriver is in the bowl.\n\n- Verified using the Logitech and wrist cameras; RealSense was disabled before movement and recording.\n- Main screen recording stalled. A separate 10-second, two-camera clip confirms the final placement.\n- Videos and metadata saved in `eval-recording/`; metadata lists both clip folders.\n- Usage snapshot: **69 calls**, **$5.28**, below the 200-call cap.\n- All started processes stopped, serial port released, and operator notification played."
+}

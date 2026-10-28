@@ -1,0 +1,20 @@
+{
+  "saved_at": "2026-10-26T14:23:47",
+  "port": "/dev/cu.usbserial-110",
+  "joint_order": [
+    "shoulder_pan",
+    "shoulder_lift",
+    "elbow_flex",
+    "wrist_flex",
+    "wrist_roll",
+    "gripper"
+  ],
+  "positions": [
+    2054,
+    2607,
+    1461,
+    2027,
+    2047,
+    1793
+  ]
+}

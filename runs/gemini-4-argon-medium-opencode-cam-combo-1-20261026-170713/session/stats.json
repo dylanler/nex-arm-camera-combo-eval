@@ -1,0 +1,50 @@
+{
+  "run_id": "gemini-4-argon-medium-opencode-cam-combo-1-20261026-170713",
+  "model": "google/gemini-4-argon",
+  "variant": "medium",
+  "session_id": "ses_e85515e5effeHRGkVu5LuVI0aq",
+  "session_outcome": "succeeded",
+  "start": "2026-10-26T17:07:07",
+  "end": "2026-10-26T17:20:05",
+  "wall_minutes": 13.0,
+  "llm_calls": 52,
+  "tokens": {
+    "input": 194474,
+    "output": 13776,
+    "reasoning": 13473,
+    "cache_read": 4868049,
+    "cache_write": 0,
+    "total_input": 5062523,
+    "total_output": 27249
+  },
+  "cost_usd_official_list_price": 1.1482,
+  "cost_usd_opencode_reported": 1.1482,
+  "calls_in_long_context_tier": 0,
+  "pricing_usd_per_1m": {
+    "base": {
+      "input": 2.0,
+      "cache_read": 0.1,
+      "cache_write": 0.0,
+      "output": 10.0
+    },
+    "source": "https://ai.google.dev/gemini-api/docs/pricing (implicit caching only; no write fee)"
+  },
+  "tool_calls": {
+    "shell": 29,
+    "read": 81,
+    "write": 2
+  },
+  "total_tool_calls": 112,
+  "failed_tool_calls": 0,
+  "shell_commands": 29,
+  "recorder_starts": 2,
+  "shell_cmds_mentioning_arm_motion": 20,
+  "shell_cmds_mentioning_gripper": 0,
+  "shell_cmds_mentioning_camera_capture": 1,
+  "images_returned_to_model": 62,
+  "files_written_or_edited": [
+    "/Users/dylanler/github/nex-arm-3-cam-eval/gemini-4-argon-medium-opencode-cam-combo-1-20261026-170713/robot_helper.py",
+    "/Users/dylanler/github/nex-arm-3-cam-eval/gemini-4-argon-medium-opencode-cam-combo-1-20261026-170713/write_metadata.py"
+  ],
+  "final_message": "The task **\"Place the yellow screwdriver in the bowl.\"** has been completed successfully.\n\n### Summary\n- **Working Directory**: `/Users/dylanler/github/nex-arm-3-cam-eval/gemini-4-argon-medium-opencode-cam-combo-1-20261026-170713`\n- **Recording Folder**: `/Users/dylanler/github/nex-arm-3-cam-eval/eval-recording/20261026_170839_gemini-4-argon-medium-opencode-cam-combo-1-20261026-170713` (`clip001.mp4`, 593.8s, all 3 enabled cameras recorded)\n- **Eval Metadata JSON**: `/Users/dylanler/github/nex-arm-3-cam-eval/eval-recording/20261026_170839_gemini-4-argon-medium-opencode-cam-combo-1-20261026-170713/gemini-4-argon-medium-opencode-cam-combo-1-20261026-170713_eval_metadata.json`\n- **Outcome**: `success` (50 LLM calls at snapshot, well within the 200-call budget; all three cameras confirm the yellow screwdriver is inside the grey bowl and the arm returned to home pose).\n- **Cleanup**: The recorder, frontend HTTP server, and serial connection to `/dev/cu.usbserial-110` have all been stopped and released."
+}

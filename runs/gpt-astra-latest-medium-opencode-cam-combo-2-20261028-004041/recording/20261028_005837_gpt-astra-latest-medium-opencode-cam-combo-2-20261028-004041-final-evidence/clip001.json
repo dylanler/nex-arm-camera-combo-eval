@@ -1,0 +1,63 @@
+{
+  "clip": 1,
+  "task": "gpt-astra-latest-medium-opencode-cam-combo-2-20261028-004041-final-evidence",
+  "outcome": null,
+  "video": "clip001.mp4",
+  "raw_videos": {},
+  "frames_csv": "clip001_frames.csv",
+  "fps": 15,
+  "size": [
+    1920,
+    1080
+  ],
+  "frames": 150,
+  "duration_s": 10.0,
+  "duplicated_frames": 0,
+  "dropped_frames": 0,
+  "start_wall_time": "2026-10-28T00:58:37.843",
+  "end_wall_time": "2026-10-28T00:58:47.836",
+  "cameras": [
+    {
+      "key": "wrist",
+      "name": "Robot Wrist",
+      "device": "icspring camera",
+      "size": [
+        640,
+        480
+      ]
+    },
+    {
+      "key": "logitech",
+      "name": "Logitech C922",
+      "device": "C922 Pro Stream Webcam",
+      "size": [
+        640,
+        480
+      ]
+    }
+  ],
+  "events": [
+    {
+      "type": "start",
+      "label": "",
+      "video_time_s": 0.0,
+      "wall_time": "2026-10-28T00:58:37.844",
+      "settings": {
+        "fps": 15,
+        "layout": "grid",
+        "color": "normal",
+        "brightness": 0,
+        "contrast": 1.0,
+        "timestamp": true,
+        "hidden": []
+      }
+    },
+    {
+      "type": "end",
+      "label": "",
+      "video_time_s": 10.0,
+      "wall_time": "2026-10-28T00:58:47.793"
+    }
+  ],
+  "encoder_errors": []
+}

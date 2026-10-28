@@ -1,0 +1,54 @@
+{
+  "run_id": "gpt-6-1-terra-medium-opencode-cam-combo-1-20261027-215348",
+  "model": "openai/gpt-6.1-terra",
+  "variant": "medium",
+  "session_id": "ses_e7f2493e3ffeC4NvA51wF5UiYg",
+  "session_outcome": "succeeded",
+  "start": "2026-10-27T21:53:46",
+  "end": "2026-10-27T22:27:33",
+  "wall_minutes": 33.8,
+  "llm_calls": 151,
+  "tokens": {
+    "input": 453,
+    "output": 19632,
+    "reasoning": 8520,
+    "cache_read": 11413587,
+    "cache_write": 413424,
+    "total_input": 11827464,
+    "total_output": 28152
+  },
+  "cost_usd_official_list_price": 1.2287,
+  "cost_usd_opencode_reported": 1.2287,
+  "calls_in_long_context_tier": 0,
+  "pricing_usd_per_1m": {
+    "base": {
+      "input": 1.0,
+      "cache_read": 0.05,
+      "cache_write": 1.25,
+      "output": 5.0
+    },
+    "long": {
+      "input": 2.0,
+      "cache_read": 0.1,
+      "cache_write": 2.5,
+      "output": 7.5
+    },
+    "source": "https://developers.openai.com/api/docs/pricing"
+  },
+  "tool_calls": {
+    "shell": 97,
+    "read": 66,
+    "grep": 2,
+    "patch": 2
+  },
+  "total_tool_calls": 167,
+  "failed_tool_calls": 3,
+  "shell_commands": 97,
+  "recorder_starts": 3,
+  "shell_cmds_mentioning_arm_motion": 0,
+  "shell_cmds_mentioning_gripper": 0,
+  "shell_cmds_mentioning_camera_capture": 59,
+  "images_returned_to_model": 56,
+  "files_written_or_edited": [],
+  "final_message": "**The final Logitech snapshot shows the screwdriver inside the bowl.** The recording stalled before the end, however, and an unexplained robot reset and bowl movement occurred during the attempt, so the clip does not establish an uninterrupted manipulation.\n\nThe [recording and metadata folder](eval-recording/20261027_215824_gpt-6-1-terra-medium-opencode-cam-combo-1-20261027-215348) includes the final evidence image. The recorder, app server, and robot-control processes are stopped; the serial port is released."
+}

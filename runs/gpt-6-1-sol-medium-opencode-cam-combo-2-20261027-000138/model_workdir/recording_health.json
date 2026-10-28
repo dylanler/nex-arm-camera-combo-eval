@@ -1,0 +1,7 @@
+{
+  "total_frames": 25603,
+  "frames_with_fresh_screen": 3347,
+  "stalled_frames": 22256,
+  "first_stalled_video_time_s": 223.1333,
+  "last_fresh_video_time_s": 223.0667
+}

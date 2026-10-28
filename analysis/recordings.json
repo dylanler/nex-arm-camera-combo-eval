@@ -1,0 +1,201 @@
+{
+  "claude-opus-5-5-medium-opencode-cam-combo-2-20261026-152035": {
+    "recording_folders": [
+      "20261026_152158_claude-opus-5-5-medium-opencode-cam-combo-2-20261026-152035"
+    ],
+    "main_recording": "20261026_152158_claude-opus-5-5-medium-opencode-cam-combo-2-20261026-152035/clip001.mp4",
+    "main_recording_seconds": 433.0,
+    "recording_stalled_at_s": null,
+    "clip_source_window_s": [
+      193.0,
+      433.0
+    ],
+    "clip": "runs/claude-opus-5-5-medium-opencode-cam-combo-2-20261026-152035/clips/claude-opus-5-5-medium-opencode-cam-combo-2-20261026-152035_last240s_8x.mp4",
+    "opencode_session_id": "ses_e85b2f692ffez2nDvsTBrmgIX1"
+  },
+  "gpt-astra-latest-medium-opencode-cam-combo-3-20261028-010225": {
+    "recording_folders": [
+      "20261028_010313_gpt-astra-latest-medium-opencode-cam-combo-3-20261028-010225",
+      "20261028_010357_gpt-astra-latest-medium-opencode-cam-combo-3-20261028-010225"
+    ],
+    "main_recording": "20261028_010357_gpt-astra-latest-medium-opencode-cam-combo-3-20261028-010225/clip001.mp4",
+    "main_recording_seconds": 1509.1,
+    "recording_stalled_at_s": null,
+    "clip_source_window_s": [
+      1269.1,
+      1509.1
+    ],
+    "clip": "runs/gpt-astra-latest-medium-opencode-cam-combo-3-20261028-010225/clips/gpt-astra-latest-medium-opencode-cam-combo-3-20261028-010225_last240s_8x.mp4",
+    "opencode_session_id": "ses_e7e77eab8ffepwoHG6M3pPsYWi"
+  },
+  "gemini-4-argon-medium-opencode-cam-combo-2-20261027-014431": {
+    "recording_folders": [
+      "20261027_014514_gemini-4-argon-medium-opencode-cam-combo-2-20261027-014431"
+    ],
+    "main_recording": "20261027_014514_gemini-4-argon-medium-opencode-cam-combo-2-20261027-014431/clip001.mp4",
+    "main_recording_seconds": 965.6,
+    "recording_stalled_at_s": null,
+    "clip_source_window_s": [
+      725.6,
+      965.6
+    ],
+    "clip": "runs/gemini-4-argon-medium-opencode-cam-combo-2-20261027-014431/clips/gemini-4-argon-medium-opencode-cam-combo-2-20261027-014431_last240s_8x.mp4",
+    "opencode_session_id": "ses_e8377bff7ffenvt51pnUS3R2dm"
+  },
+  "gpt-6-1-sol-medium-opencode-cam-combo-3-20261027-003536": {
+    "recording_folders": [
+      "20261027_003713_gpt-6-1-sol-medium-opencode-cam-combo-3-20261027-003536"
+    ],
+    "main_recording": "20261027_003713_gpt-6-1-sol-medium-opencode-cam-combo-3-20261027-003536/clip001.mp4",
+    "main_recording_seconds": 1933.1,
+    "recording_stalled_at_s": 221.0,
+    "clip_source_window_s": [
+      0,
+      220.0
+    ],
+    "clip": "runs/gpt-6-1-sol-medium-opencode-cam-combo-3-20261027-003536/clips/gpt-6-1-sol-medium-opencode-cam-combo-3-20261027-003536_last240s_8x.mp4",
+    "opencode_session_id": "ses_e83b6dabeffeMgpudnyp9bU2VO"
+  },
+  "gemini-4-argon-medium-opencode-cam-combo-1-20261026-170713": {
+    "recording_folders": [
+      "20261026_170839_gemini-4-argon-medium-opencode-cam-combo-1-20261026-170713"
+    ],
+    "main_recording": "20261026_170839_gemini-4-argon-medium-opencode-cam-combo-1-20261026-170713/clip001.mp4",
+    "main_recording_seconds": 593.8,
+    "recording_stalled_at_s": null,
+    "clip_source_window_s": [
+      353.8,
+      593.8
+    ],
+    "clip": "runs/gemini-4-argon-medium-opencode-cam-combo-1-20261026-170713/clips/gemini-4-argon-medium-opencode-cam-combo-1-20261026-170713_last240s_8x.mp4",
+    "opencode_session_id": "ses_e85515e5effeHRGkVu5LuVI0aq"
+  },
+  "gpt-6-1-terra-medium-opencode-cam-combo-1-20261027-215348": {
+    "recording_folders": [
+      "20261027_215824_gpt-6-1-terra-medium-opencode-cam-combo-1-20261027-215348"
+    ],
+    "main_recording": "20261027_215824_gpt-6-1-terra-medium-opencode-cam-combo-1-20261027-215348/clip001.mp4",
+    "main_recording_seconds": 1467.2,
+    "recording_stalled_at_s": 228.0,
+    "clip_source_window_s": [
+      0,
+      227.0
+    ],
+    "clip": "runs/gpt-6-1-terra-medium-opencode-cam-combo-1-20261027-215348/clips/gpt-6-1-terra-medium-opencode-cam-combo-1-20261027-215348_last240s_8x.mp4",
+    "opencode_session_id": "ses_e7f2493e3ffeC4NvA51wF5UiYg"
+  },
+  "gpt-6-1-sol-medium-opencode-cam-combo-1-20261026-234907": {
+    "recording_folders": [
+      "20261026_235002_gpt-6-1-sol-medium-opencode-cam-combo-1-20261026-234907"
+    ],
+    "main_recording": "20261026_235002_gpt-6-1-sol-medium-opencode-cam-combo-1-20261026-234907/clip001.mp4",
+    "main_recording_seconds": 468.1,
+    "recording_stalled_at_s": null,
+    "clip_source_window_s": [
+      228.1,
+      468.1
+    ],
+    "clip": "runs/gpt-6-1-sol-medium-opencode-cam-combo-1-20261026-234907/clips/gpt-6-1-sol-medium-opencode-cam-combo-1-20261026-234907_last240s_8x.mp4",
+    "opencode_session_id": "ses_e83e15bc3ffe5xPbD4R9AgmSJ3"
+  },
+  "claude-opus-5-5-medium-opencode-cam-combo-1-20261026-150532": {
+    "recording_folders": [
+      "20261026_150631_claude-opus-5-5-medium-opencode-cam-combo-1-20261026-150532"
+    ],
+    "main_recording": "20261026_150631_claude-opus-5-5-medium-opencode-cam-combo-1-20261026-150532/clip001.mp4",
+    "main_recording_seconds": 579.4,
+    "recording_stalled_at_s": null,
+    "clip_source_window_s": [
+      339.4,
+      579.4
+    ],
+    "clip": "runs/claude-opus-5-5-medium-opencode-cam-combo-1-20261026-150532/clips/claude-opus-5-5-medium-opencode-cam-combo-1-20261026-150532_last240s_8x.mp4",
+    "opencode_session_id": "ses_e85c0c150ffeWiH2XDWY4iSw3B"
+  },
+  "gpt-astra-latest-medium-opencode-cam-combo-2-20261028-004041": {
+    "recording_folders": [
+      "20261028_004144_gpt-astra-latest-medium-opencode-cam-combo-2-20261028-004041",
+      "20261028_005837_gpt-astra-latest-medium-opencode-cam-combo-2-20261028-004041-final-evidence"
+    ],
+    "main_recording": "20261028_004144_gpt-astra-latest-medium-opencode-cam-combo-2-20261028-004041/clip001.mp4",
+    "main_recording_seconds": 850.5,
+    "recording_stalled_at_s": 247.0,
+    "clip_source_window_s": [
+      6.0,
+      246.0
+    ],
+    "clip": "runs/gpt-astra-latest-medium-opencode-cam-combo-2-20261028-004041/clips/gpt-astra-latest-medium-opencode-cam-combo-2-20261028-004041_last240s_8x.mp4",
+    "opencode_session_id": "ses_e7e8bc7f3ffeF2I4ADfkQiNtg4"
+  },
+  "gpt-6-1-sol-medium-opencode-cam-combo-2-20261027-000138": {
+    "recording_folders": [
+      "20261027_000334_gpt-6-1-sol-medium-opencode-cam-combo-2-20261027-000138"
+    ],
+    "main_recording": "20261027_000334_gpt-6-1-sol-medium-opencode-cam-combo-2-20261027-000138/clip001.mp4",
+    "main_recording_seconds": 1706.9,
+    "recording_stalled_at_s": 223.0,
+    "clip_source_window_s": [
+      0,
+      222.0
+    ],
+    "clip": "runs/gpt-6-1-sol-medium-opencode-cam-combo-2-20261027-000138/clips/gpt-6-1-sol-medium-opencode-cam-combo-2-20261027-000138_last240s_8x.mp4",
+    "opencode_session_id": "ses_e83d5e930ffeREWPAcQzQIzRSE"
+  },
+  "gemini-4-argon-medium-opencode-cam-combo-3-20261027-020702": {
+    "recording_folders": [
+      "20261027_020822_gemini-4-argon-medium-opencode-cam-combo-3-20261027-020702"
+    ],
+    "main_recording": "20261027_020822_gemini-4-argon-medium-opencode-cam-combo-3-20261027-020702/clip001.mp4",
+    "main_recording_seconds": 802.3,
+    "recording_stalled_at_s": null,
+    "clip_source_window_s": [
+      562.3,
+      802.3
+    ],
+    "clip": "runs/gemini-4-argon-medium-opencode-cam-combo-3-20261027-020702/clips/gemini-4-argon-medium-opencode-cam-combo-3-20261027-020702_last240s_8x.mp4",
+    "opencode_session_id": "ses_e83633cadffe1ls5JktmyrqvQY"
+  },
+  "gpt-6-1-terra-medium-opencode-cam-combo-2-20261027-222824": {
+    "recording_folders": [
+      "20261027_222959_gpt-6-1-terra-medium-opencode-cam-combo-2-20261027-222824"
+    ],
+    "main_recording": "20261027_222959_gpt-6-1-terra-medium-opencode-cam-combo-2-20261027-222824/clip001.mp4",
+    "main_recording_seconds": 569.2,
+    "recording_stalled_at_s": 224.0,
+    "clip_source_window_s": [
+      0,
+      223.0
+    ],
+    "clip": "runs/gpt-6-1-terra-medium-opencode-cam-combo-2-20261027-222824/clips/gpt-6-1-terra-medium-opencode-cam-combo-2-20261027-222824_last240s_8x.mp4",
+    "opencode_session_id": "ses_e7f04ee39ffegbHq1YiPKTfhk3"
+  },
+  "claude-opus-5-5-medium-opencode-cam-combo-3-20261026-153111": {
+    "recording_folders": [
+      "20261026_153228_claude-opus-5-5-medium-opencode-cam-combo-3-20261026-153111"
+    ],
+    "main_recording": "20261026_153228_claude-opus-5-5-medium-opencode-cam-combo-3-20261026-153111/clip001.mp4",
+    "main_recording_seconds": 800.1,
+    "recording_stalled_at_s": null,
+    "clip_source_window_s": [
+      560.1,
+      800.1
+    ],
+    "clip": "runs/claude-opus-5-5-medium-opencode-cam-combo-3-20261026-153111/clips/claude-opus-5-5-medium-opencode-cam-combo-3-20261026-153111_last240s_8x.mp4",
+    "opencode_session_id": "ses_e85a93f8cffeVQYIlDmJeSs3j2"
+  },
+  "gpt-astra-latest-medium-opencode-cam-combo-1-20261028-002116": {
+    "recording_folders": [
+      "20261028_002200_gpt-astra-latest-medium-opencode-cam-combo-1-20261028-002116",
+      "20261028_002308_gpt-astra-latest-medium-opencode-cam-combo-1-20261028-002116"
+    ],
+    "main_recording": "20261028_002308_gpt-astra-latest-medium-opencode-cam-combo-1-20261028-002116/clip001.mp4",
+    "main_recording_seconds": 590.9,
+    "recording_stalled_at_s": null,
+    "clip_source_window_s": [
+      350.9,
+      590.9
+    ],
+    "clip": "runs/gpt-astra-latest-medium-opencode-cam-combo-1-20261028-002116/clips/gpt-astra-latest-medium-opencode-cam-combo-1-20261028-002116_last240s_8x.mp4",
+    "opencode_session_id": "ses_e7e9d9299ffeAdlRysIsSE6c6E"
+  }
+}

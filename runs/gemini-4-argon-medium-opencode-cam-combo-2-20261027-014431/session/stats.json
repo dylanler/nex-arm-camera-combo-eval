@@ -1,0 +1,51 @@
+{
+  "run_id": "gemini-4-argon-medium-opencode-cam-combo-2-20261027-014431",
+  "model": "google/gemini-4-argon",
+  "variant": "medium",
+  "session_id": "ses_e8377bff7ffenvt51pnUS3R2dm",
+  "session_outcome": "succeeded",
+  "start": "2026-10-27T01:44:26",
+  "end": "2026-10-27T02:03:07",
+  "wall_minutes": 18.7,
+  "llm_calls": 85,
+  "tokens": {
+    "input": 297601,
+    "output": 16702,
+    "reasoning": 0,
+    "cache_read": 8453436,
+    "cache_write": 0,
+    "total_input": 8751037,
+    "total_output": 16702
+  },
+  "cost_usd_official_list_price": 1.6076,
+  "cost_usd_opencode_reported": 1.6076,
+  "calls_in_long_context_tier": 0,
+  "pricing_usd_per_1m": {
+    "base": {
+      "input": 2.0,
+      "cache_read": 0.1,
+      "cache_write": 0.0,
+      "output": 10.0
+    },
+    "source": "https://ai.google.dev/gemini-api/docs/pricing (implicit caching only; no write fee)"
+  },
+  "tool_calls": {
+    "read": 91,
+    "shell": 49,
+    "glob": 1,
+    "write": 2
+  },
+  "total_tool_calls": 143,
+  "failed_tool_calls": 0,
+  "shell_commands": 49,
+  "recorder_starts": 2,
+  "shell_cmds_mentioning_arm_motion": 34,
+  "shell_cmds_mentioning_gripper": 0,
+  "shell_cmds_mentioning_camera_capture": 2,
+  "images_returned_to_model": 70,
+  "files_written_or_edited": [
+    "/Users/dylanler/github/nex-arm-3-cam-eval/gemini-4-argon-medium-opencode-cam-combo-2-20261027-014431/arm_ctl.py",
+    "/Users/dylanler/github/nex-arm-3-cam-eval/gemini-4-argon-medium-opencode-cam-combo-2-20261027-014431/generate_metadata.py"
+  ],
+  "final_message": "The task to place the yellow screwdriver in the bowl has been completed, all processes have been cleanly stopped, the serial port has been released, and the recording metadata has been saved.\n\n### Summary\n- **Working Directory**: `/Users/dylanler/github/nex-arm-3-cam-eval/gemini-4-argon-medium-opencode-cam-combo-2-20261027-014431`\n- **Outcome**: **Success** (82 LLM calls used out of the 200-call budget)\n- **Camera Settings**: Logitech C922 (top-down) and Robot Wrist (`icspring`) enabled; Intel RealSense D415 disabled and cut off from both the recording (`--realsense __disabled__`) and control snapshots.\n- **Recording**: `/Users/dylanler/github/nex-arm-3-cam-eval/eval-recording/20261027_014514_gemini-4-argon-medium-opencode-cam-combo-2-20261027-014431/clip001.mp4`\n- **Metadata File**: `/Users/dylanler/github/nex-arm-3-cam-eval/eval-recording/20261027_014514_gemini-4-argon-medium-opencode-cam-combo-2-20261027-014431/gemini-4-argon-medium-opencode-cam-combo-2-20261027-014431_eval_metadata.json`"
+}

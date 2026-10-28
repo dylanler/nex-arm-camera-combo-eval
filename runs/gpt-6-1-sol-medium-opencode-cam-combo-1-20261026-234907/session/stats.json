@@ -1,0 +1,55 @@
+{
+  "run_id": "gpt-6-1-sol-medium-opencode-cam-combo-1-20261026-234907",
+  "model": "openai/gpt-6.1-sol",
+  "variant": "medium",
+  "session_id": "ses_e83e15bc3ffe5xPbD4R9AgmSJ3",
+  "session_outcome": "succeeded",
+  "start": "2026-10-26T23:49:05",
+  "end": "2026-10-27T00:00:43",
+  "wall_minutes": 11.6,
+  "llm_calls": 89,
+  "tokens": {
+    "input": 267,
+    "output": 14513,
+    "reasoning": 3458,
+    "cache_read": 4551605,
+    "cache_write": 80792,
+    "total_input": 4632664,
+    "total_output": 17971
+  },
+  "cost_usd_official_list_price": 0.8374,
+  "cost_usd_opencode_reported": 0.8374,
+  "calls_in_long_context_tier": 0,
+  "pricing_usd_per_1m": {
+    "base": {
+      "input": 2.0,
+      "cache_read": 0.1,
+      "cache_write": 2.5,
+      "output": 10.0
+    },
+    "long": {
+      "input": 4.0,
+      "cache_read": 0.2,
+      "cache_write": 5.0,
+      "output": 15.0
+    },
+    "source": "https://developers.openai.com/api/docs/pricing"
+  },
+  "tool_calls": {
+    "shell": 63,
+    "read": 73,
+    "grep": 3,
+    "glob": 2,
+    "patch": 3
+  },
+  "total_tool_calls": 144,
+  "failed_tool_calls": 1,
+  "shell_commands": 63,
+  "recorder_starts": 0,
+  "shell_cmds_mentioning_arm_motion": 25,
+  "shell_cmds_mentioning_gripper": 1,
+  "shell_cmds_mentioning_camera_capture": 22,
+  "images_returned_to_model": 57,
+  "files_written_or_edited": [],
+  "final_message": "Success—the yellow screwdriver is fully inside the bowl, verified by the wrist and top-down cameras.\n\n- Video and evaluation metadata saved in:\n  `eval-recording/20261026_235002_gpt-6-1-sol-medium-opencode-cam-combo-1-20261026-234907/`\n- All three enabled cameras were recorded.\n- Arm returned home; recorder, controller, and app server stopped. Serial port released.\n- Usage snapshot: **87 calls**, below the 200-call budget.\n- Recording caveat: playback is approximately **1.16× speed**, documented in metadata.\n\nOperator reset notification sounded."
+}

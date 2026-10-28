@@ -1,0 +1,116 @@
+{
+  "eval": "01 of 09",
+  "experiment": "camera-combo eval: does more camera input improve robot manipulation",
+  "task": "Place the yellow screwdriver in the bowl.",
+  "model": "anthropic/claude-opus-5.5",
+  "reasoning_effort": "medium",
+  "harness": "opencode v2.1.4",
+  "opencode_session_id": "ses_e85c0c150ffeWiH2XDWY4iSw3B",
+  "camera_combo": 1,
+  "cameras_enabled": [
+    "logitech",
+    "realsense",
+    "wrist"
+  ],
+  "cameras_disabled": [
+    "none"
+  ],
+  "cameras_in_recording": [
+    "wrist",
+    "realsense",
+    "logitech"
+  ],
+  "disabled_camera_cutoff": "Not needed: all three cameras were enabled, so record.py ran with all three and none were hidden.",
+  "start_time": "2026-10-26T15:05:32",
+  "end_time": "2026-10-26T15:16:10",
+  "wall_clock_duration_s": 638.0,
+  "llm_calls": 72,
+  "tokens": {
+    "total_input": 4123809,
+    "input_uncached": 26921,
+    "cache_read": 4018067,
+    "cache_write": 78821,
+    "total_output": 26856,
+    "output": 18787,
+    "reasoning": 8069
+  },
+  "cost_usd_opencode_reported": 1.842522,
+  "cost_usd_provider_list_price": 1.842522,
+  "price_table_usd": {
+    "input_per_M": 4.0,
+    "output_incl_reasoning_per_M": 20.0,
+    "cache_read_per_M": 0.2,
+    "cache_write_per_M": 5.0
+  },
+  "outcome": "success",
+  "evidence": "Final Logitech top-down frame shows the yellow screwdriver lying inside the bowl, with the arm back at its start pose. Right after release, the wrist camera showed the screwdriver resting in the bottom of the bowl. The RealSense showed the screwdriver gone from its original spot behind the bowl.",
+  "budget_200_calls_exceeded": false,
+  "recording": {
+    "clip_folders": [
+      "20261026_150631_claude-opus-5-5-medium-opencode-cam-combo-1-20261026-150532"
+    ],
+    "video_files": [
+      "clip001.mp4"
+    ],
+    "clip_durations_s": [
+      579.433
+    ],
+    "recorder_starts": 1,
+    "duplicated_frames": 98,
+    "dropped_frames": 0
+  },
+  "robot": {
+    "joint_order": [
+      "shoulder_pan",
+      "shoulder_lift",
+      "elbow_flex",
+      "wrist_flex",
+      "wrist_roll",
+      "gripper"
+    ],
+    "start_positions_raw": [
+      2052,
+      2605,
+      1458,
+      2027,
+      2046,
+      1792
+    ],
+    "end_positions_raw": [
+      2046,
+      2590,
+      1455,
+      2024,
+      2045,
+      1792
+    ],
+    "grasp_pose_raw": [
+      2285,
+      1490,
+      1745,
+      1695,
+      2046,
+      2347
+    ],
+    "release_pose_raw": [
+      1840,
+      1700,
+      1700,
+      1880,
+      2046,
+      1792
+    ]
+  },
+  "problems": [
+    "No stuck joints and no crashes. The elbow ran about 30-40 units short of its target under load. The gripper stopped at about 2347 when told 2420, because it was squeezing the handle.",
+    "The joint directions were unknown at the start, so the first moves were small probing moves. One reach went past the handle and had to be backed off.",
+    "Snapshots came from a separate ffmpeg grab while record.py was running. One grab came back empty and was simply retried.",
+    "Processes from an earlier run were still alive when this eval started: arm_server.py (PID 43076, holds /dev/tty.usbserial-110), a record.py for the ...150156 run, and http.server on port 8765. They were not started by this session, so they were left running."
+  ],
+  "scripts_written": [
+    "claude-opus-5-5-medium-opencode-cam-combo-1-20261026-150532/robot_server.py",
+    "claude-opus-5-5-medium-opencode-cam-combo-1-20261026-150532/snap.sh",
+    "claude-opus-5-5-medium-opencode-cam-combo-1-20261026-150532/write_metadata.py"
+  ],
+  "note": "Token and cost numbers are a snapshot taken before the final reply."
+}

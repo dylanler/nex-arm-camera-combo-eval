@@ -1,0 +1,137 @@
+{
+  "eval": "09 of 09",
+  "experiment": "camera-combo eval: does more camera input improve robot manipulation",
+  "task": "Place the yellow screwdriver in the bowl.",
+  "model": "openai/gpt-6.1-sol",
+  "reasoning_effort": "medium",
+  "harness": "opencode v2.1.4",
+  "opencode_version": "opencode v2.1.4",
+  "opencode_session_id": "ses_e83b6dabeffeMgpudnyp9bU2VO",
+  "camera_combo": 3,
+  "cameras_enabled": [
+    "wrist"
+  ],
+  "cameras_disabled": [
+    "logitech",
+    "realsense"
+  ],
+  "cameras_actually_appearing_in_recording": {
+    "source": "Screen capture of Chrome frontend; no direct camera sources in recorder",
+    "camera_signals": [
+      "wrist only, where frontend is visible"
+    ],
+    "limitations": "Terminal obscured frontend in sampled early video; recording became black STALLED at about 220.867 seconds. Final wrist evidence is final.png, not an end-of-video camera frame.",
+    "disabled_camera_signals": []
+  },
+  "disabled_camera_cutoff_method": "Temporary startTile guard in app.js stopped existing streams and returned before getUserMedia for every non-wrist role; selectors disabled, black DISABLED tiles. Applied before start.sh. Original app.js restored after stopping recorder and server; frontend tabs closed.",
+  "frontend_original_restored": true,
+  "start_time": "2026-10-27T00:35:30.886000-07:00",
+  "end_time": "2026-10-27T01:14:20.376404-07:00",
+  "wall_clock_duration_s": 2329.490404,
+  "robot_first_measurement_time": "2026-10-27T00:36:18.332829-07:00",
+  "robot_last_measurement_time": "2026-10-27T01:08:00.741466-07:00",
+  "llm_calls": 126,
+  "tokens": {
+    "total_input": 7641967,
+    "input_uncached": 378,
+    "cache_read": 7544832,
+    "cache_write": 96757,
+    "total_output": 28496,
+    "output": 19152,
+    "reasoning": 9344
+  },
+  "cost_usd_opencode_reported": 1.2820916999999996,
+  "cost_usd_provider_list_price": 1.2820916999999996,
+  "provider_price_table_usd_per_million_tokens": {
+    "default": {
+      "input": 2.0,
+      "output_including_reasoning": 10.0,
+      "cache_read": 0.1,
+      "cache_write": 2.5
+    },
+    "prompt_over_272000": {
+      "input": 4.0,
+      "output_including_reasoning": 15.0,
+      "cache_read": 0.2,
+      "cache_write": 5.0
+    }
+  },
+  "provider_cost_formula": "Per assistant call: input*input_price + (output+reasoning)*output_price + cache.read*cache_read_price + cache.write*cache_write_price, divided by 1e6. High-context table applies only when input+cache.read+cache.write > 272000.",
+  "outcome": "fail",
+  "outcome_evidence": "Final wrist snapshot final.png shows empty metal bowl on left and yellow screwdriver lying horizontally on tabletop to its right. Multiple grasp/lift checks failed to retain screwdriver. No placement in bowl occurred. Video itself ends STALLED, so it does not verify final scene.",
+  "budget": {
+    "limit_llm_calls": 200,
+    "exceeded": false,
+    "snapshot_before_final_reply": true
+  },
+  "recording": {
+    "clip_folders": [
+      "20261027_003713_gpt-6-1-sol-medium-opencode-cam-combo-3-20261027-003536"
+    ],
+    "main_attempt_clip_folder": "20261027_003713_gpt-6-1-sol-medium-opencode-cam-combo-3-20261027-003536",
+    "video_files": [
+      "clip001.mp4"
+    ],
+    "clip_durations_s": [
+      1933.133
+    ],
+    "recorder_starts": 1,
+    "fps": 15,
+    "frames": 28997,
+    "recording_start": "2026-10-27T00:37:13.578",
+    "recording_end": "2026-10-27T01:09:26.765",
+    "first_screen_frame_age_over_2s_at_video_time_s": 220.8667,
+    "encoder_errors": [],
+    "evidence_files": [
+      "final.png",
+      "frontend2.png",
+      "recording_start.png",
+      "recording_end.png",
+      "joint_log.jsonl"
+    ]
+  },
+  "robot": {
+    "joint_order": [
+      "shoulder_pan",
+      "shoulder_lift",
+      "elbow_flex",
+      "wrist_flex",
+      "wrist_roll",
+      "gripper"
+    ],
+    "position_units": "raw encoder counts, 0..4095",
+    "measured_joint_positions_start": [
+      2043,
+      2608,
+      1472,
+      2025,
+      2042,
+      1792
+    ],
+    "measured_joint_positions_end": [
+      2049,
+      2607,
+      1467,
+      2237,
+      2044,
+      1795
+    ],
+    "serial_port": "/dev/cu.usbserial-110",
+    "serial_port_released": true,
+    "shutdown": "One-shot control scripts disconnected serial in finally. Recorder SIGTERM completed cleanly, its ffmpeg children exited. App server SIGTERM stopped. Matching processes absent and lsof serial port empty. Torque left enabled to hold retreated pose; no control process remains."
+  },
+  "problems": [
+    "Several approach and closure attempts nudged/rotated the screwdriver instead of securing it; lift checks showed it remained on table.",
+    "Joint tracking offsets, typically a few to about 40 counts, particularly elbow and shoulder at low poses. Gripper maximum closure measured about 2780 for requested 2830; cannot distinguish mechanical limit from load using position alone. No confirmed stuck joint.",
+    "Chrome AppleScript JavaScript disabled, so snapshot.py could not capture browser canvas. System Events menu access denied assistive permission. Used only icspring wrist camera via short ffmpeg snapshots instead.",
+    "Initial ffmpeg snapshot pixel format auto-fell back; subsequent snapshots explicitly used bgr0.",
+    "Screen recorder initially captured foreground terminal obscuring frontend, then AVFoundation screen source stopped delivering fresh frames after about 219 seconds. Recorder emitted STALLED for remaining video. This was discovered during post-run verification, not fixed during attempt."
+  ],
+  "scripts_written": [
+    "control.py",
+    "snapshot.py (browser canvas attempt; failed due permissions)",
+    "write_metadata.py"
+  ],
+  "other_files_written": "Wrist snapshots, frontend screenshots, app/recorder logs, original app.js backup, opencode_session_export.json, joint_log.jsonl. All task scripts and working artifacts are in task directory; final evidence copied into clip folder.",
+  "usage_snapshot_note": "Token and cost numbers are a snapshot from the session export taken before metadata generation, notification, and final reply. Later assistant calls are not included."
+}

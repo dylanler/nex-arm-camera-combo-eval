@@ -1,0 +1,55 @@
+{
+  "run_id": "gpt-6-1-terra-medium-opencode-cam-combo-2-20261027-222824",
+  "model": "openai/gpt-6.1-terra",
+  "variant": "medium",
+  "session_id": "ses_e7f04ee39ffegbHq1YiPKTfhk3",
+  "session_outcome": "succeeded",
+  "start": "2026-10-27T22:28:20",
+  "end": "2026-10-27T22:42:38",
+  "wall_minutes": 14.3,
+  "llm_calls": 113,
+  "tokens": {
+    "input": 339,
+    "output": 17885,
+    "reasoning": 8027,
+    "cache_read": 9992401,
+    "cache_write": 533498,
+    "total_input": 10526238,
+    "total_output": 25912
+  },
+  "cost_usd_official_list_price": 1.2964,
+  "cost_usd_opencode_reported": 1.2964,
+  "calls_in_long_context_tier": 0,
+  "pricing_usd_per_1m": {
+    "base": {
+      "input": 1.0,
+      "cache_read": 0.05,
+      "cache_write": 1.25,
+      "output": 5.0
+    },
+    "long": {
+      "input": 2.0,
+      "cache_read": 0.1,
+      "cache_write": 2.5,
+      "output": 7.5
+    },
+    "source": "https://developers.openai.com/api/docs/pricing"
+  },
+  "tool_calls": {
+    "shell": 117,
+    "read": 57,
+    "glob": 2,
+    "patch": 3,
+    "grep": 1
+  },
+  "total_tool_calls": 180,
+  "failed_tool_calls": 9,
+  "shell_commands": 117,
+  "recorder_starts": 3,
+  "shell_cmds_mentioning_arm_motion": 29,
+  "shell_cmds_mentioning_gripper": 1,
+  "shell_cmds_mentioning_camera_capture": 45,
+  "images_returned_to_model": 42,
+  "files_written_or_edited": [],
+  "final_message": "**Outcome: fail.** The screwdriver remains beside the empty bowl. The arm was returned near its starting pose, and the serial port was released.\n\nThe recording’s camera views froze, and its screen source later stalled. The clip and metadata are saved in:\n\n`eval-recording/20261027_222959_gpt-6-1-terra-medium-opencode-cam-combo-2-20261027-222824/`"
+}

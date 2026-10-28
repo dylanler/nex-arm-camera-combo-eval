@@ -1,0 +1,17 @@
+{
+  "task": "claude-opus-5-5-medium-opencode-cam-combo-1-20261026-150532",
+  "started": "2026-10-26T15:06:29.440",
+  "updated": "2026-10-26T15:16:10.757",
+  "clips": 1,
+  "success": 0,
+  "fail": 0,
+  "unlabeled": 1,
+  "clip_files": [
+    {
+      "clip": 1,
+      "video": "clip001.mp4",
+      "outcome": null,
+      "duration_s": 579.433
+    }
+  ]
+}

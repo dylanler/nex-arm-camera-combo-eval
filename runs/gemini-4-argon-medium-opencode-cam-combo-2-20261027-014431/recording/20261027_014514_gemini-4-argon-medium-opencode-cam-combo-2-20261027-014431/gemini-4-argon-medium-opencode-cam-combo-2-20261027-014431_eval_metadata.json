@@ -1,0 +1,82 @@
+{
+  "eval": "05 of 09",
+  "experiment": "camera-combo eval: does more camera input improve robot manipulation",
+  "task": "Place the yellow screwdriver in the bowl.",
+  "model": "google/gemini-4-argon",
+  "reasoning_effort": "medium",
+  "harness": "opencode opencode v2.1.4",
+  "opencode_session_id": "ses_e8377bff7ffenvt51pnUS3R2dm",
+  "camera_combo": 2,
+  "cameras_enabled": [
+    "logitech",
+    "wrist"
+  ],
+  "cameras_disabled": [
+    "realsense"
+  ],
+  "cameras_in_recording": [
+    "wrist",
+    "logitech"
+  ],
+  "disabled_camera_cutoff_method": "Passed '--realsense __disabled__' to record.py so assign_cameras() did not match the Intel RealSense D415 device, completely excluding it from FFmpeg capture and the composite recording. In arm_ctl.py, only the Logitech C922 and Robot Wrist (icspring) cameras were queried via ffmpeg.",
+  "start_time": "2026-10-27T01:44:26.513",
+  "end_time": "2026-10-27T02:02:36.407",
+  "wall_clock_duration_s": 1089.895,
+  "llm_calls": 82,
+  "tokens": {
+    "total_input_tokens": 8264984,
+    "input_tokens": 289909,
+    "cache_read_tokens": 7975075,
+    "cache_write_tokens": 0,
+    "total_output_tokens": 16195,
+    "output_tokens": 16195,
+    "reasoning_tokens": 0
+  },
+  "cost_usd_opencode_reported": 1.539276,
+  "cost_usd_provider_list_price": 1.539276,
+  "price_table_usd_per_1m_tokens": {
+    "input_per_1m_usd": 2.0,
+    "output_incl_reasoning_per_1m_usd": 10.0,
+    "cache_read_per_1m_usd": 0.1,
+    "cache_write_per_1m_usd": 0.1875
+  },
+  "outcome": "success",
+  "budget_200_calls_exceeded": false,
+  "camera_evidence_at_end": "Both the top-down Logitech C922 view and the Robot Wrist camera view (step34_released_and_home) clearly show the yellow screwdriver resting completely inside the gray bowl, and the robot arm returned cleanly to its home position with the gripper open.",
+  "recording": {
+    "clip_folders": [
+      "20261027_014514_gemini-4-argon-medium-opencode-cam-combo-2-20261027-014431"
+    ],
+    "video_files": [
+      "clip001.mp4"
+    ],
+    "clip_durations_s": [
+      965.6
+    ],
+    "recorder_start_count": 1
+  },
+  "robot": {
+    "measured_joint_positions_start": {
+      "shoulder_pan": 2050,
+      "shoulder_lift": 2611,
+      "elbow_flex": 1482,
+      "wrist_flex": 2023,
+      "wrist_roll": 2046,
+      "gripper": 1793
+    },
+    "measured_joint_positions_end": {
+      "shoulder_pan": 2044,
+      "shoulder_lift": 2613,
+      "elbow_flex": 1468,
+      "wrist_flex": 2035,
+      "wrist_roll": 2045,
+      "gripper": 1790
+    }
+  },
+  "problems_encountered": "Minor servo compliance/stiction on shoulder_lift when descending near the table surface (e.g. commanding 1370 stopped around 1407-1410 due to table contact/gravity load), and gripper stall at ~2360 when firmly gripping the screwdriver handle (commanded 2800). No crashes or serial disconnects occurred.",
+  "scripts_written": [
+    "gemini-4-argon-medium-opencode-cam-combo-2-20261027-014431/arm_ctl.py",
+    "gemini-4-argon-medium-opencode-cam-combo-2-20261027-014431/generate_metadata.py"
+  ],
+  "note": "Token and cost numbers are a snapshot taken from the exported session before the final assistant reply."
+}

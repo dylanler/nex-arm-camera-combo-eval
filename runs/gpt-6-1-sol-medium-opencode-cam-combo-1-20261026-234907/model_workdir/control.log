@@ -1,0 +1,6 @@
+  Robot Wrist     <- icspring camera
+  RealSense D415  <- Intel(R) RealSense(TM) Depth Camera 415  RGB
+  Logitech C922   <- C922 Pro Stream Webcam
+{"ready": true, "positions": [2053, 2611, 1467, 2020, 2045, 1791]}
+  · REC clip 001 @ 20 fps
+  · saved clip 001 [SUCCESS]  07:48.05  ->  clip001.mp4

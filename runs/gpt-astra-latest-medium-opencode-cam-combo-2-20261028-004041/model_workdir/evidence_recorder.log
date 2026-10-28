@@ -1,0 +1,11 @@
+NEX Arm recorder
+  Robot Wrist     <- icspring camera
+  ! RealSense D415: NOT FOUND
+  Logitech C922   <- C922 Pro Stream Webcam
+  output: 1920x1080 @ 15 fps, x264, -> /Users/dylanler/github/nex-arm-3-cam-eval/eval-recording
+  hotkeys: SPACE pause/resume  n next clip  y/x success/fail  m marker  s snapshot  +/- fps  c color  l layout  t timestamp  h help  q quit
+  · REC clip 001 @ 15 fps
+  · duration 10.0s reached
+
+Session: /Users/dylanler/github/nex-arm-3-cam-eval/eval-recording/20261028_005837_gpt-astra-latest-medium-opencode-cam-combo-2-20261028-004041-final-evidence
+  clip 001   00:10.00     150 frames  15 fps  -         clip001.mp4

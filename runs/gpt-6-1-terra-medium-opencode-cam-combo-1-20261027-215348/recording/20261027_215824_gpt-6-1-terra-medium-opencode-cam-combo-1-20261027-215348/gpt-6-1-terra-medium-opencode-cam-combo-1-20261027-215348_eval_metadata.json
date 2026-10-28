@@ -1,0 +1,112 @@
+{
+  "eval": "10 of 18",
+  "experiment": "camera-combo eval: does more camera input improve robot manipulation",
+  "task": "Place the yellow screwdriver in the bowl.",
+  "model": "openai/gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "harness": "opencode v2.1.4",
+  "opencode_session_id": "ses_e7f2493e3ffeC4NvA51wF5UiYg",
+  "camera_combo": 1,
+  "cameras_enabled": [
+    "logitech",
+    "realsense",
+    "wrist"
+  ],
+  "cameras_disabled": [
+    "none"
+  ],
+  "cameras_actually_appearing_in_recording": [
+    "logitech",
+    "realsense",
+    "wrist"
+  ],
+  "camera_recording_qualification": "All three are visible in the frontend early in the recording. The screen source stalled at 228.4 seconds and the remainder of the composite displays STALLED, including the end.",
+  "disabled_camera_signal_cutoff": "None disabled; no cutoff needed.",
+  "start_time": "2026-10-27T21:53:48-07:00",
+  "end_time": "2026-10-27T22:22:51-07:00",
+  "wall_clock_duration_seconds": 1743.0,
+  "llm_calls": 149,
+  "total_input_tokens": 11593308,
+  "input_tokens_excluding_cache": 447,
+  "cache_read_tokens": 11180143,
+  "cache_write_tokens": 412718,
+  "total_output_tokens": 27653,
+  "output_tokens_excluding_reasoning": 19349,
+  "reasoning_tokens": 8304,
+  "cost_usd_opencode_reported": 1.2136166500000005,
+  "cost_usd_provider_list_price": 1.2136166500000005,
+  "price_table_usd_per_million": {
+    "prompt_at_most_272000": {
+      "input": 1.0,
+      "output_including_reasoning": 5.0,
+      "cache_read": 0.05,
+      "cache_write": 1.25
+    },
+    "prompt_over_272000": {
+      "input": 2.0,
+      "output_including_reasoning": 7.5,
+      "cache_read": 0.1,
+      "cache_write": 2.5
+    },
+    "high_context_call_count": 0
+  },
+  "outcome": "success",
+  "outcome_evidence": "After the last motion, an independently captured Logitech image shows the yellow screwdriver resting inside the bowl, both handle and shaft visible; saved as final_logitech_evidence.jpg. The end of the screen recording is STALLED and does not show the final result. An unexplained joint reset and bowl movement occurred before the last command, so uninterrupted video evidence of causation is unavailable.",
+  "budget_exceeded": false,
+  "recording": {
+    "clip_folders": [
+      "20261027_215824_gpt-6-1-terra-medium-opencode-cam-combo-1-20261027-215348"
+    ],
+    "video_files": [
+      "clip001.mp4"
+    ],
+    "clip_durations_seconds": [
+      1467.2
+    ],
+    "recorder_starts": 1,
+    "source": "screen recording of frontend with record.py",
+    "screen_stalled_from_video_seconds": 228.4,
+    "screen_stalled_frame_count": 18582,
+    "screen_total_frame_count": 22008,
+    "final_evidence_image": "final_logitech_evidence.jpg"
+  },
+  "robot": {
+    "port": "/dev/cu.usbserial-110",
+    "joint_order": [
+      "shoulder_pan",
+      "shoulder_lift",
+      "elbow_flex",
+      "wrist_flex",
+      "wrist_roll",
+      "gripper"
+    ],
+    "raw_joint_positions_at_start": [
+      2054,
+      2609,
+      1483,
+      2024,
+      2047,
+      1790
+    ],
+    "raw_joint_positions_at_end": [
+      2062,
+      1661,
+      1902,
+      2024,
+      2046,
+      1603
+    ]
+  },
+  "hardware_software_problems": [
+    "The screen source ceased producing new frames at 22:02:13; recorder produced STALLED frames until stopped, so the final manipulation is not recorded on video.",
+    "Before the final commanded movement the measured joints unexpectedly returned near their original configuration and the bowl was later found displaced; cause unknown.",
+    "Elbow and shoulder occasionally lagged commanded positions under load; two initial grasp attempts failed before the screwdriver was lifted.",
+    "macOS denied simulated keystrokes when trying to close the existing browser tab; the pre-existing browser was not terminated. The started app server, recorder and control scripts were stopped and the serial port released."
+  ],
+  "scripts_written": [
+    "gpt-6-1-terra-medium-opencode-cam-combo-1-20261027-215348/robot.py",
+    "gpt-6-1-terra-medium-opencode-cam-combo-1-20261027-215348/make_metadata.py"
+  ],
+  "snapshot_note": "Token and cost figures are a snapshot exported before the final reply and do not include subsequent calls.",
+  "snapshot_time": "2026-10-27T22:27:13.984808-07:00"
+}

@@ -1,0 +1,141 @@
+{
+  "eval": "17 of 18",
+  "experiment": "camera-combo eval: does more camera input improve robot manipulation",
+  "task": "Place the yellow screwdriver in the bowl.",
+  "model": "~openai/gpt-astra-latest",
+  "reasoning_effort": "medium",
+  "harness": "opencode v2.1.4",
+  "opencode_session_id": "ses_e7e8bc7f3ffeF2I4ADfkQiNtg4",
+  "export_model": {
+    "id": "openai/gpt-6-astra",
+    "providerID": "openrouter",
+    "variant": "medium"
+  },
+  "camera_combo": 2,
+  "cameras_enabled": [
+    "logitech",
+    "wrist"
+  ],
+  "cameras_disabled": [
+    "realsense"
+  ],
+  "cameras_actually_in_recording": {
+    "main": [
+      "logitech",
+      "wrist"
+    ],
+    "final_evidence": [
+      "logitech",
+      "wrist"
+    ],
+    "disabled_tile": "RealSense black, no live imagery"
+  },
+  "disabled_camera_cutoff": "Before any robot movement or recording, stopped RealSense MediaStream tracks, cleared video.srcObject and deviceId, disabled selector, and replaced match function with false through Chrome DevTools. App initially auto-opened all cameras; no RealSense images were viewed or used. Final direct recording used --realsense DISABLED_NO_MATCH, preventing that device from being opened.",
+  "start_time": "2026-10-28T00:40:39.828000-07:00",
+  "end_time": "2026-10-28T01:00:58.701320-07:00",
+  "wall_clock_duration_seconds": 1218.87332,
+  "robot_task_end_time": "2026-10-28T00:55:13.408289-07:00",
+  "metadata_time": "2026-10-28T01:00:58.748143-07:00",
+  "llm_calls": 69,
+  "tokens": {
+    "input": 207,
+    "output": 12846,
+    "reasoning": 3109,
+    "cache_read": 3369971,
+    "cache_write": 89011
+  },
+  "total_input_tokens": 3459189,
+  "total_output_tokens": 15955,
+  "cost_usd_opencode_reported": 5.282428499999999,
+  "cost_usd_provider_list_price": 5.282428499999999,
+  "price_table_usd_per_million_tokens": {
+    "default": {
+      "input": 10,
+      "output_including_reasoning": 50,
+      "cache_read": 1,
+      "cache_write": 12.5
+    },
+    "prompt_over_272000": {
+      "input": 20,
+      "output_including_reasoning": 75,
+      "cache_read": 2,
+      "cache_write": 25
+    }
+  },
+  "price_threshold_prompt_tokens": 272000,
+  "outcome": "success",
+  "outcome_evidence": "Final Logitech still and wrist still show the yellow handle resting on the inside bottom of the bowl, with its metal shaft leaning toward the inner rim; gripper is empty and withdrawn. Second grasp succeeded after first attempt missed. Main screen video suffered frozen/stalled capture; additional direct-camera clip documents final state.",
+  "budget_200_calls_exceeded": false,
+  "recording": {
+    "clip_folders": [
+      "20261028_004144_gpt-astra-latest-medium-opencode-cam-combo-2-20261028-004041",
+      "20261028_005837_gpt-astra-latest-medium-opencode-cam-combo-2-20261028-004041-final-evidence"
+    ],
+    "main_attempt_folder": "20261028_004144_gpt-astra-latest-medium-opencode-cam-combo-2-20261028-004041",
+    "clips": [
+      {
+        "folder": "20261028_004144_gpt-astra-latest-medium-opencode-cam-combo-2-20261028-004041",
+        "video": "clip001.mp4",
+        "duration_seconds": 850.533,
+        "start": "2026-10-28T00:41:44.498",
+        "end": "2026-10-28T00:55:55.025",
+        "source": "screen capture of frontend; stalled/frozen during attempt"
+      },
+      {
+        "folder": "20261028_005837_gpt-astra-latest-medium-opencode-cam-combo-2-20261028-004041-final-evidence",
+        "video": "clip001.mp4",
+        "duration_seconds": 10.0,
+        "start": "2026-10-28T00:58:37.843",
+        "end": "2026-10-28T00:58:47.836",
+        "source": "direct enabled cameras final-state evidence"
+      }
+    ],
+    "recorder_start_count": 2,
+    "main_attempt_recording_problem": "Screen capture began before motion but later showed STALLED; camera snapshots used for control remained live. Early sampled video frame shows frontend with wrist and Logitech and black RealSense tile. Full motion capture is not reliable."
+  },
+  "robot": {
+    "joint_order": [
+      "shoulder_pan",
+      "shoulder_lift",
+      "elbow_flex",
+      "wrist_flex",
+      "wrist_roll",
+      "gripper"
+    ],
+    "units": "raw servo counts (4096 per revolution)",
+    "measured_start": [
+      2050,
+      2606,
+      1460,
+      2028,
+      2040,
+      1791
+    ],
+    "measured_end": [
+      2044,
+      2605,
+      1457,
+      2041,
+      2039,
+      1792
+    ],
+    "serial_port": "/dev/cu.usbserial-110",
+    "serial_released": true,
+    "torque": "left enabled to hold final resting pose; all serial connections closed"
+  },
+  "problems": [
+    "Chrome AppleScript JavaScript disabled and macOS accessibility access unavailable; used an isolated Chrome DevTools connection instead.",
+    "Initial attempt to filter camera enumeration did not prevent auto-opening RealSense; explicitly stopped its tracks before observation and recording.",
+    "First grasp closed above handle and missed; lower second approach achieved contact at gripper count about 2400.",
+    "Joint tracking offsets up to approximately 46 counts observed; no stuck joint or serial communication failure.",
+    "Main screen capture became frozen/stalled; direct camera final-state recording added."
+  ],
+  "scripts_written": [
+    "control.py",
+    "camera.py",
+    "metadata.py"
+  ],
+  "artifacts_directory": "/Users/dylanler/github/nex-arm-3-cam-eval/gpt-astra-latest-medium-opencode-cam-combo-2-20261028-004041",
+  "cleanup": "Recorder(s), dedicated Chrome browser, frontend server and all robot-control commands stopped; serial port verified unclaimed.",
+  "token_cost_snapshot_note": "Token/cost numbers are a snapshot taken before the final reply. Assistant messages without completed usage are counted as calls but contribute zero unavailable tokens/cost."
+}

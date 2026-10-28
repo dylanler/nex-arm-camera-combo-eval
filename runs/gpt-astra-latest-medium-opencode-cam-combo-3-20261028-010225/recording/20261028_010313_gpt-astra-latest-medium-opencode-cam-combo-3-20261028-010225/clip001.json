@@ -1,0 +1,54 @@
+{
+  "clip": 1,
+  "task": "gpt-astra-latest-medium-opencode-cam-combo-3-20261028-010225",
+  "outcome": null,
+  "video": "clip001.mp4",
+  "raw_videos": {},
+  "frames_csv": "clip001_frames.csv",
+  "fps": 15,
+  "size": [
+    1280,
+    900
+  ],
+  "frames": 602,
+  "duration_s": 40.133,
+  "duplicated_frames": 0,
+  "dropped_frames": 0,
+  "start_wall_time": "2026-10-28T01:03:13.642",
+  "end_wall_time": "2026-10-28T01:03:53.748",
+  "cameras": [
+    {
+      "key": "screen",
+      "name": "Frontend (screen)",
+      "device": "Capture screen 0",
+      "size": [
+        1280,
+        856
+      ]
+    }
+  ],
+  "events": [
+    {
+      "type": "start",
+      "label": "",
+      "video_time_s": 0.0,
+      "wall_time": "2026-10-28T01:03:13.642",
+      "settings": {
+        "fps": 15,
+        "layout": "single",
+        "color": "normal",
+        "brightness": 0,
+        "contrast": 1.0,
+        "timestamp": true,
+        "hidden": []
+      }
+    },
+    {
+      "type": "end",
+      "label": "",
+      "video_time_s": 40.133,
+      "wall_time": "2026-10-28T01:03:53.725"
+    }
+  ],
+  "encoder_errors": []
+}

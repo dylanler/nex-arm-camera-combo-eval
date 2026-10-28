@@ -1,0 +1,55 @@
+{
+  "run_id": "gpt-astra-latest-medium-opencode-cam-combo-1-20261028-002116",
+  "model": "openai/gpt-6-astra",
+  "variant": "medium",
+  "session_id": "ses_e7e9d9299ffeAdlRysIsSE6c6E",
+  "session_outcome": "succeeded",
+  "start": "2026-10-28T00:21:13",
+  "end": "2026-10-28T00:36:19",
+  "wall_minutes": 15.1,
+  "llm_calls": 73,
+  "tokens": {
+    "input": 219,
+    "output": 9470,
+    "reasoning": 3605,
+    "cache_read": 5353888,
+    "cache_write": 170783,
+    "total_input": 5524890,
+    "total_output": 13075
+  },
+  "cost_usd_official_list_price": 8.1446,
+  "cost_usd_opencode_reported": 8.1446,
+  "calls_in_long_context_tier": 0,
+  "pricing_usd_per_1m": {
+    "base": {
+      "input": 10.0,
+      "cache_read": 1.0,
+      "cache_write": 12.5,
+      "output": 50.0
+    },
+    "long": {
+      "input": 20.0,
+      "cache_read": 2.0,
+      "cache_write": 25.0,
+      "output": 75.0
+    },
+    "source": "https://developers.openai.com/api/docs/pricing (alias of openai/gpt-6-astra)"
+  },
+  "tool_calls": {
+    "read": 34,
+    "shell": 54,
+    "grep": 2,
+    "patch": 3,
+    "skill": 1
+  },
+  "total_tool_calls": 94,
+  "failed_tool_calls": 3,
+  "shell_commands": 54,
+  "recorder_starts": 3,
+  "shell_cmds_mentioning_arm_motion": 0,
+  "shell_cmds_mentioning_gripper": 2,
+  "shell_cmds_mentioning_camera_capture": 5,
+  "images_returned_to_model": 24,
+  "files_written_or_edited": [],
+  "final_message": "**Success:** the yellow screwdriver is in the bowl, confirmed by the top-down and wrist cameras.\n\n- Main recording: **9m 51s**, with all three cameras.\n- Video, final evidence image, and evaluation metadata saved in:\n  `eval-recording/20261028_002308_gpt-astra-latest-medium-opencode-cam-combo-1-20261028-002116/`\n- Usage snapshot: **70 LLM calls**, below the 200-call budget.\n- All started processes stopped; robot serial port released.\n- Operator notification played."
+}

@@ -1,0 +1,11 @@
+Installed 2 packages in 22ms
+NEX Arm recorder
+  Robot Wrist     <- icspring camera
+  ! RealSense D415: NOT FOUND
+  Logitech C922   <- C922 Pro Stream Webcam
+  output: 1920x1080 @ 30 fps, x264, -> /Users/dylanler/github/nex-arm-3-cam-eval/eval-recording
+  hotkeys: SPACE pause/resume  n next clip  y/x success/fail  m marker  s snapshot  +/- fps  c color  l layout  t timestamp  h help  q quit
+  · REC clip 001 @ 30 fps
+
+Session: /Users/dylanler/github/nex-arm-3-cam-eval/eval-recording/20261026_152158_claude-opus-5-5-medium-opencode-cam-combo-2-20261026-152035
+  clip 001   07:13.03   12991 frames  30 fps  -         clip001.mp4

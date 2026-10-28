@@ -1,0 +1,78 @@
+{
+  "clip": 1,
+  "task": "gpt-6-1-sol-medium-opencode-cam-combo-1-20261026-234907",
+  "outcome": "success",
+  "video": "clip001.mp4",
+  "raw_videos": {},
+  "frames_csv": "clip001_frames.csv",
+  "fps": 20,
+  "size": [
+    1920,
+    1080
+  ],
+  "frames": 9361,
+  "duration_s": 468.05,
+  "duplicated_frames": 1,
+  "dropped_frames": 0,
+  "start_wall_time": "2026-10-26T23:50:02.049",
+  "end_wall_time": "2026-10-26T23:59:03.062",
+  "cameras": [
+    {
+      "key": "wrist",
+      "name": "Robot Wrist",
+      "device": "icspring camera",
+      "size": [
+        640,
+        480
+      ]
+    },
+    {
+      "key": "realsense",
+      "name": "RealSense D415",
+      "device": "Intel(R) RealSense(TM) Depth Camera 415  RGB",
+      "size": [
+        640,
+        480
+      ]
+    },
+    {
+      "key": "logitech",
+      "name": "Logitech C922",
+      "device": "C922 Pro Stream Webcam",
+      "size": [
+        640,
+        480
+      ]
+    }
+  ],
+  "events": [
+    {
+      "type": "start",
+      "label": "",
+      "video_time_s": 0.0,
+      "wall_time": "2026-10-26T23:50:02.049",
+      "settings": {
+        "fps": 20,
+        "layout": "grid",
+        "color": "normal",
+        "brightness": 0,
+        "contrast": 1.0,
+        "timestamp": true,
+        "hidden": []
+      }
+    },
+    {
+      "type": "outcome",
+      "label": "success",
+      "video_time_s": 468.05,
+      "wall_time": "2026-10-26T23:59:03.005"
+    },
+    {
+      "type": "end",
+      "label": "",
+      "video_time_s": 468.05,
+      "wall_time": "2026-10-26T23:59:03.005"
+    }
+  ],
+  "encoder_errors": []
+}

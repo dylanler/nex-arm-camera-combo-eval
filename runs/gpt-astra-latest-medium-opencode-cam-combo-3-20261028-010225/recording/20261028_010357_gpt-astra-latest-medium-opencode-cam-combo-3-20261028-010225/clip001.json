@@ -1,0 +1,54 @@
+{
+  "clip": 1,
+  "task": "gpt-astra-latest-medium-opencode-cam-combo-3-20261028-010225",
+  "outcome": null,
+  "video": "clip001.mp4",
+  "raw_videos": {},
+  "frames_csv": "clip001_frames.csv",
+  "fps": 15,
+  "size": [
+    960,
+    764
+  ],
+  "frames": 22636,
+  "duration_s": 1509.067,
+  "duplicated_frames": 0,
+  "dropped_frames": 0,
+  "start_wall_time": "2026-10-28T01:03:57.935",
+  "end_wall_time": "2026-10-28T01:29:07.152",
+  "cameras": [
+    {
+      "key": "wrist",
+      "name": "Robot Wrist",
+      "device": "icspring camera",
+      "size": [
+        640,
+        480
+      ]
+    }
+  ],
+  "events": [
+    {
+      "type": "start",
+      "label": "",
+      "video_time_s": 0.0,
+      "wall_time": "2026-10-28T01:03:57.935",
+      "settings": {
+        "fps": 15,
+        "layout": "single",
+        "color": "normal",
+        "brightness": 0,
+        "contrast": 1.0,
+        "timestamp": true,
+        "hidden": []
+      }
+    },
+    {
+      "type": "end",
+      "label": "",
+      "video_time_s": 1509.067,
+      "wall_time": "2026-10-28T01:29:06.999"
+    }
+  ],
+  "encoder_errors": []
+}

@@ -1,0 +1,139 @@
+{
+  "eval": "18 of 18",
+  "experiment": "camera-combo eval: does more camera input improve robot manipulation",
+  "task": "Place the yellow screwdriver in the bowl.",
+  "model": "~openai/gpt-astra-latest",
+  "harness_model_id": "openrouter/openai/gpt-6-astra",
+  "reasoning_effort": "medium",
+  "harness": "opencode opencode v2.1.4",
+  "opencode_session_id": "ses_e7e77eab8ffepwoHG6M3pPsYWi",
+  "camera_combo": 3,
+  "cameras_enabled": [
+    "wrist"
+  ],
+  "cameras_disabled": [
+    "logitech",
+    "realsense"
+  ],
+  "cameras_actually_in_recording": [
+    "wrist"
+  ],
+  "disabled_camera_cutoff": "A task-local app-wrist.js is served for /app.js by sitecustomize.py. startTile returns before getUserMedia for both disabled roles, stops any tracks, clears video.srcObject, disables selection and labels the panels DISABLED. The main recorder uses nonmatching --realsense DISABLED_COMBO3 and --logitech DISABLED_COMBO3 device overrides, so neither camera is opened or recorded.",
+  "start_time": "2026-10-28T01:02:21.645000-07:00",
+  "end_time": "2026-10-28T01:29:06.994858-07:00",
+  "wall_clock_duration_seconds": 1605.349858,
+  "llm_calls": 132,
+  "total_input_tokens": 7673379,
+  "input_tokens_uncached": 396,
+  "input_tokens_cache_read": 7584731,
+  "input_tokens_cache_write": 88252,
+  "total_output_tokens": 27061,
+  "output_tokens": 16131,
+  "reasoning_tokens": 10930,
+  "cost_usd_opencode_reported": 10.044891,
+  "cost_usd_provider_list_price": 10.044891,
+  "provider_price_table_usd_per_million_tokens": {
+    "prompt_tokens_lte_272000": {
+      "input": 10.0,
+      "output_including_reasoning": 50.0,
+      "cache_read": 1.0,
+      "cache_write": 12.5
+    },
+    "prompt_tokens_gt_272000": {
+      "input": 20.0,
+      "output_including_reasoning": 75.0,
+      "cache_read": 2.0,
+      "cache_write": 25.0
+    }
+  },
+  "cost_calculation": "Per assistant message: prompt=input+cache.read+cache.write; output charged as output+reasoning, following the requested accounting convention; select the long-prompt price tier when prompt >272000.",
+  "outcome": "success",
+  "end_camera_evidence": "After release and arm retraction, the wrist image and final recorded frame show the yellow handle and entire metal shaft resting within the bowl. The open gripper is visibly clear of the screwdriver.",
+  "budget_limit_llm_calls": 200,
+  "budget_exceeded": false,
+  "recording": {
+    "main_clip_folder": "20261028_010357_gpt-astra-latest-medium-opencode-cam-combo-3-20261028-010225",
+    "clips": [
+      {
+        "clip_folder": "20261028_010313_gpt-astra-latest-medium-opencode-cam-combo-3-20261028-010225",
+        "video_files": [
+          "clip001.mp4"
+        ],
+        "duration_seconds": 40.133,
+        "capture_mode": "screen frontend",
+        "cameras_actually_visible": [
+          "wrist"
+        ]
+      },
+      {
+        "clip_folder": "20261028_010357_gpt-astra-latest-medium-opencode-cam-combo-3-20261028-010225",
+        "video_files": [
+          "clip001.mp4"
+        ],
+        "duration_seconds": 1509.067,
+        "capture_mode": "direct wrist feed with recorder overlays",
+        "cameras_actually_visible": [
+          "wrist"
+        ]
+      }
+    ],
+    "recorder_starts": 2,
+    "main_attempt_recorded_before_first_movement": true,
+    "note": "First clip records the actual frontend with wrist live and disabled panels black. Following an auxiliary screen-capture timeout, the main clip was recorded with record.py camera mode using the same live wrist feed as the frontend, rather than a literal browser-window capture. Later inspection confirmed the first screen clip was valid."
+  },
+  "robot": {
+    "joint_order": [
+      "shoulder_pan",
+      "shoulder_lift",
+      "elbow_flex",
+      "wrist_flex",
+      "wrist_roll",
+      "gripper"
+    ],
+    "units": "raw servo position counts, 0..4095",
+    "measured_start": [
+      2044,
+      2606,
+      1466,
+      2028,
+      2040,
+      1793
+    ],
+    "measured_end_of_motion": [
+      2011,
+      1832,
+      2294,
+      2758,
+      2047,
+      1795
+    ],
+    "measured_final_after_recording": [
+      2011,
+      1832,
+      2294,
+      2758,
+      2047,
+      1795
+    ],
+    "serial_port": "/dev/cu.usbserial-110",
+    "serial_connection_closed": true,
+    "holding_torque_retained": true
+  },
+  "hardware_software_problems": [
+    "Chrome JavaScript via Apple Events was disabled. Used a task-local frontend frame-upload loop instead; only wrist frames were uploaded.",
+    "A separate one-frame AVFoundation screen capture timed out. Switched the main recording to direct wrist-camera capture. The original screen recording was later confirmed valid.",
+    "Several initial closures missed because the gripper was above the handle. Low approaches brushed and displaced the screwdriver; raised and realigned using wrist-only feedback.",
+    "Observed joint tracking errors under load and apparent firmware limits near wrist flex 800/3076 and wrist roll 3082; revised targets and approach. No robot-control process crash or persistent serial failure.",
+    "Final grasp was confirmed by gripper obstruction around raw 2478 versus a 2800 target and by the screwdriver moving with the lifted gripper."
+  ],
+  "scripts_written": [
+    "sitecustomize.py",
+    "app-wrist.js",
+    "browser.py",
+    "robot.py",
+    "finish_metadata.py"
+  ],
+  "cleanup": "Both app-server instances, both recorder runs and their capture/encoder children were stopped; all robot control scripts exited and closed serial; frontend localhost:8770 tabs were closed. A pre-existing unrelated server on port 8765 was not started by this evaluation.",
+  "usage_snapshot_time": "2026-10-28T01:31:01.219977-07:00",
+  "usage_note": "Token/cost numbers are a snapshot taken before the final reply. Assistant messages without completed usage fields contribute zero usage but are counted as calls."
+}

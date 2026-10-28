@@ -1,0 +1,102 @@
+{
+  "eval": "04 of 09",
+  "experiment": "camera-combo eval: does more camera input improve robot manipulation",
+  "task": "Place the yellow screwdriver in the bowl.",
+  "model": "google/gemini-4-argon",
+  "reasoning_effort": "medium",
+  "harness": "opencode opencode v2.1.4",
+  "opencode_version": "opencode v2.1.4",
+  "opencode_session_id": "ses_e85515e5effeHRGkVu5LuVI0aq",
+  "camera_combo": 1,
+  "cameras_enabled": [
+    "logitech",
+    "realsense",
+    "wrist"
+  ],
+  "cameras_disabled": [
+    "none"
+  ],
+  "cameras_in_recording": [
+    "wrist",
+    "realsense",
+    "logitech"
+  ],
+  "disabled_cameras_cutoff_method": "No cameras were labelled DISABLED in camera_combo 1 (all three cameras: logitech, realsense, and wrist were ENABLED and active).",
+  "start_time": "2026-10-26T17:07:07.430",
+  "end_time": "2026-10-26T17:19:46.267",
+  "wall_clock_duration_s": 758.837,
+  "llm_calls": 50,
+  "tokens": {
+    "total_input_tokens": 4753661,
+    "input_tokens": 187660,
+    "cache_read_tokens": 4566001,
+    "cache_write_tokens": 0,
+    "total_output_tokens": 26650,
+    "output_tokens": 13266,
+    "reasoning_tokens": 13384
+  },
+  "cost_usd_opencode_reported": 1.09842,
+  "cost_usd_provider_list_price": 1.09842,
+  "price_table_usd_per_1m_tokens": {
+    "input_per_1m_usd": 2.0,
+    "output_incl_reasoning_per_1m_usd": 10.0,
+    "cache_read_per_1m_usd": 0.1,
+    "cache_write_per_1m_usd": 0.1875
+  },
+  "outcome": "success",
+  "budget_200_calls_exceeded": false,
+  "camera_evidence_at_end": "All three cameras confirm success: Logitech top-down view (end_logitech.jpg) shows the yellow screwdriver lying completely inside the grey bowl with the gripper retracted to the bottom of the frame; RealSense side view (end_realsense.jpg) shows the table surface to the right of the bowl is now empty (the screwdriver is inside the bowl); Wrist camera view (end_wrist.jpg) shows the yellow screwdriver resting inside the grey bowl between the open retracted gripper jaws.",
+  "recording": {
+    "clip_folder_names": [
+      "20261026_170839_gemini-4-argon-medium-opencode-cam-combo-1-20261026-170713"
+    ],
+    "main_clip_folder": "20261026_170839_gemini-4-argon-medium-opencode-cam-combo-1-20261026-170713",
+    "video_file_names": [
+      "clip001.mp4"
+    ],
+    "clip_durations_s": [
+      593.8
+    ],
+    "recorder_start_count": 1
+  },
+  "robot": {
+    "start_joint_positions": {
+      "shoulder_pan": 2053,
+      "shoulder_lift": 2606,
+      "elbow_flex": 1470,
+      "wrist_flex": 2017,
+      "wrist_roll": 2047,
+      "gripper": 1789,
+      "raw_array": [
+        2053,
+        2606,
+        1470,
+        2017,
+        2047,
+        1789
+      ]
+    },
+    "end_joint_positions": {
+      "shoulder_pan": 2048,
+      "shoulder_lift": 2604,
+      "elbow_flex": 1461,
+      "wrist_flex": 2018,
+      "wrist_roll": 2046,
+      "gripper": 1787,
+      "raw_array": [
+        2048,
+        2604,
+        1461,
+        2018,
+        2046,
+        1787
+      ]
+    }
+  },
+  "problems_encountered": "No hardware faults or crashes occurred. On step 11, lowering shoulder_lift to 1450 with elbow_flex at 1750 lightly touched the table behind the screwdriver handle (stopping shoulder_lift at 1516); increasing elbow_flex to 1922 and adjusting wrist_flex to 1883 positioned the jaws directly around the screwdriver handle for a clean grasp and placement into the bowl.",
+  "scripts_written": [
+    "gemini-4-argon-medium-opencode-cam-combo-1-20261026-170713/robot_helper.py",
+    "gemini-4-argon-medium-opencode-cam-combo-1-20261026-170713/write_metadata.py"
+  ],
+  "note": "Token and cost numbers are a snapshot taken from the exported OpenCode session before the final reply."
+}

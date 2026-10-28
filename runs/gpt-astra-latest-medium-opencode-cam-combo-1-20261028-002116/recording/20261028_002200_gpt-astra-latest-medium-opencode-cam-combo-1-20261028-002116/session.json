@@ -1,0 +1,17 @@
+{
+  "task": "gpt-astra-latest-medium-opencode-cam-combo-1-20261028-002116",
+  "started": "2026-10-28T00:21:55.968",
+  "updated": "2026-10-28T00:23:13.347",
+  "clips": 1,
+  "success": 0,
+  "fail": 0,
+  "unlabeled": 1,
+  "clip_files": [
+    {
+      "clip": 1,
+      "video": "clip001.mp4",
+      "outcome": null,
+      "duration_s": 73.2
+    }
+  ]
+}

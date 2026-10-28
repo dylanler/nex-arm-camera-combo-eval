@@ -1,0 +1,52 @@
+{
+  "run_id": "gemini-4-argon-medium-opencode-cam-combo-3-20261027-020702",
+  "model": "google/gemini-4-argon",
+  "variant": "medium",
+  "session_id": "ses_e83633cadffe1ls5JktmyrqvQY",
+  "session_outcome": "succeeded",
+  "start": "2026-10-27T02:06:50",
+  "end": "2026-10-27T03:52:21",
+  "wall_minutes": 105.5,
+  "llm_calls": 88,
+  "tokens": {
+    "input": 376292,
+    "output": 16128,
+    "reasoning": 0,
+    "cache_read": 7002860,
+    "cache_write": 0,
+    "total_input": 7379152,
+    "total_output": 16128
+  },
+  "cost_usd_official_list_price": 1.6142,
+  "cost_usd_opencode_reported": 1.6142,
+  "calls_in_long_context_tier": 0,
+  "pricing_usd_per_1m": {
+    "base": {
+      "input": 2.0,
+      "cache_read": 0.1,
+      "cache_write": 0.0,
+      "output": 10.0
+    },
+    "source": "https://ai.google.dev/gemini-api/docs/pricing (implicit caching only; no write fee)"
+  },
+  "tool_calls": {
+    "read": 56,
+    "shell": 51,
+    "edit": 6,
+    "write": 2
+  },
+  "total_tool_calls": 115,
+  "failed_tool_calls": 0,
+  "shell_commands": 51,
+  "recorder_starts": 2,
+  "shell_cmds_mentioning_arm_motion": 36,
+  "shell_cmds_mentioning_gripper": 1,
+  "shell_cmds_mentioning_camera_capture": 38,
+  "images_returned_to_model": 37,
+  "files_written_or_edited": [
+    "/Users/dylanler/github/nex-arm-3-cam-eval/app.js",
+    "/Users/dylanler/github/nex-arm-3-cam-eval/gemini-4-argon-medium-opencode-cam-combo-3-20261027-020702/generate_metadata.py",
+    "/Users/dylanler/github/nex-arm-3-cam-eval/gemini-4-argon-medium-opencode-cam-combo-3-20261027-020702/robot_ctl.py"
+  ],
+  "final_message": "The task **\"Place the yellow screwdriver in the bowl\"** has been completed successfully using only the **Robot Wrist** camera (`camera_combo: 3`).\n\n### Summary of Actions & Results\n- **Working Directory**: `/Users/dylanler/github/nex-arm-3-cam-eval/gemini-4-argon-medium-opencode-cam-combo-3-20261027-020702`\n- **Camera Configuration**: Enabled only the robot wrist camera (`icspring camera`). Disabled both the Logitech C922 and Intel RealSense D415 cameras in the web frontend (`app.js`) and in `record.py` (`--realsense DISABLED_NONE --logitech DISABLED_NONE`) so their signals were completely cut off.\n- **Execution**: Used visual servoing from the wrist camera (`robot_ctl.py`) to locate the yellow screwdriver, align the gripper jaws with the handle (`wrist_roll` = 2414), grasp the handle (`gripper` = 2321), lift, pan over the grey bowl (`shoulder_pan` = 2018), release the screwdriver into the bowl, and return the arm to its home pose with torque disabled and serial port released.\n- **Recording & Metadata**:\n  - Recording saved to: `/Users/dylanler/github/nex-arm-3-cam-eval/eval-recording/20261027_020822_gemini-4-argon-medium-opencode-cam-combo-3-20261027-020702/clip001.mp4` (802.3s)\n  - Evaluation metadata saved to: `/Users/dylanler/github/nex-arm-3-cam-eval/eval-recording/20261027_020822_gemini-4-argon-medium-opencode-cam-combo-3-20261027-020702/gemini-4-argon-medium-opencode-cam-combo-3-20261027-020702_eval_metadata.json`\n  - **LLM Calls**: 86 (well within the 200-call budget)\n  - **All processes stopped**: Recorder, frontend web server, and robot serial connection have all been cleanly terminated."
+}

@@ -1,0 +1,54 @@
+{
+  "clip": 1,
+  "task": "gpt-6-1-terra-medium-opencode-cam-combo-1-20261027-215348",
+  "outcome": null,
+  "video": "clip001.mp4",
+  "raw_videos": {},
+  "frames_csv": "clip001_frames.csv",
+  "fps": 15,
+  "size": [
+    1920,
+    1080
+  ],
+  "frames": 22008,
+  "duration_s": 1467.2,
+  "duplicated_frames": 0,
+  "dropped_frames": 0,
+  "start_wall_time": "2026-10-27T21:58:24.680",
+  "end_wall_time": "2026-10-27T22:22:51.936",
+  "cameras": [
+    {
+      "key": "screen",
+      "name": "Frontend (screen)",
+      "device": "Capture screen 0",
+      "size": [
+        1920,
+        1036
+      ]
+    }
+  ],
+  "events": [
+    {
+      "type": "start",
+      "label": "",
+      "video_time_s": 0.0,
+      "wall_time": "2026-10-27T21:58:24.680",
+      "settings": {
+        "fps": 15,
+        "layout": "single",
+        "color": "normal",
+        "brightness": 0,
+        "contrast": 1.0,
+        "timestamp": true,
+        "hidden": []
+      }
+    },
+    {
+      "type": "end",
+      "label": "",
+      "video_time_s": 1467.2,
+      "wall_time": "2026-10-27T22:22:51.886"
+    }
+  ],
+  "encoder_errors": []
+}

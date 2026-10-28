@@ -1,0 +1,55 @@
+{
+  "run_id": "gpt-6-1-sol-medium-opencode-cam-combo-2-20261027-000138",
+  "model": "openai/gpt-6.1-sol",
+  "variant": "medium",
+  "session_id": "ses_e83d5e930ffeREWPAcQzQIzRSE",
+  "session_outcome": "interrupted",
+  "start": "2026-10-27T00:01:35",
+  "end": "2026-10-27T00:35:08",
+  "wall_minutes": 33.6,
+  "llm_calls": 118,
+  "tokens": {
+    "input": 351,
+    "output": 15139,
+    "reasoning": 6852,
+    "cache_read": 7103452,
+    "cache_write": 111632,
+    "total_input": 7215435,
+    "total_output": 21991
+  },
+  "cost_usd_official_list_price": 1.21,
+  "cost_usd_opencode_reported": 1.21,
+  "calls_in_long_context_tier": 0,
+  "pricing_usd_per_1m": {
+    "base": {
+      "input": 2.0,
+      "cache_read": 0.1,
+      "cache_write": 2.5,
+      "output": 10.0
+    },
+    "long": {
+      "input": 4.0,
+      "cache_read": 0.2,
+      "cache_write": 5.0,
+      "output": 15.0
+    },
+    "source": "https://developers.openai.com/api/docs/pricing"
+  },
+  "tool_calls": {
+    "shell": 87,
+    "read": 66,
+    "grep": 2,
+    "glob": 2,
+    "patch": 3
+  },
+  "total_tool_calls": 160,
+  "failed_tool_calls": 5,
+  "shell_commands": 87,
+  "recorder_starts": 2,
+  "shell_cmds_mentioning_arm_motion": 32,
+  "shell_cmds_mentioning_gripper": 6,
+  "shell_cmds_mentioning_camera_capture": 29,
+  "images_returned_to_model": 56,
+  "files_written_or_edited": [],
+  "final_message": "The attempt is stopped and the serial port is free. I also found that screen capture stalled about 3 minutes 43 seconds into the clip; I’m documenting that recording problem and preserving the camera snapshots alongside the failed-attempt metadata."
+}
