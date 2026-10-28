@@ -128,7 +128,7 @@ supplied `NexArm.stp` CAD file — at most a few read its header.
 
 ---
 
-## GPT-6.1 Terra (medium) — combo 3 not run
+## GPT-6.1 Terra (medium) — combo 3 not run (scored as fail)
 
 ### Combo 1 — top + side + wrist · ✅ success · 151 calls · $1.23 · 2 grasps, 1 failed
 - **Setup.** Its desktop captures first showed the wrong window: Chrome had no visible window and Preview was in front (Calls 6–19).
@@ -192,7 +192,7 @@ supplied `NexArm.stp` CAD file — at most a few read its header.
 
 ## DeepSeek V4.1 Flash 1017 (max) — combo 1 only
 - **Outcome.** Combo 1 failed: the session ran to **280 LLM calls**, past the 200-call budget ($0.83 at opencode's reported price).
-  Combos 2 and 3 were not run.
+  Combos 2 and 3 were not run (scored as fails by rule).
 - **Routing.** Runs were pinned to the Together / Fireworks / Baseten OpenRouter endpoints, because the DeepSeek first-party endpoint is
   blocked by the account's data-policy setting.
 - **Not in this repo.** The combo-1 run folder was left out (228 MB session export, not reviewed).

@@ -1,5 +1,5 @@
 {
-  "_about": "Curated outcome + manipulation summary per run. outcome is verified against images (see verification), grasp counts come from reading each timeline (runs/<run>/session/timeline.md). grasp_attempts = distinct gripper closures on the screwdriver; failed = closures that did not result in a lifted screwdriver.",
+  "_about": "Curated outcome + manipulation summary per run. outcome is verified against images (see verification), grasp counts come from reading each timeline (runs/<run>/session/timeline.md). grasp_attempts = distinct gripper closures on the screwdriver; failed = closures that did not result in a lifted screwdriver. Cells that were not run are scored as FAIL (operator rule), flagged assumed=true.",
   "runs": [
     {
       "model": "anthropic/claude-opus-5.5",
@@ -115,11 +115,12 @@
       "model": "openai/gpt-6.1-terra",
       "combo": 3,
       "run_id": null,
-      "outcome": "not_run",
+      "outcome": "fail",
       "grasp_attempts": null,
       "failed_grasps": null,
       "placement_attempts": null,
-      "verification": "no run recorded for this cell"
+      "verification": "not run; scored as fail per operator rule (any unrun combo is assumed failed)",
+      "assumed": true
     },
     {
       "model": "~openai/gpt-astra-latest",
@@ -165,21 +166,23 @@
       "model": "deepseek/deepseek-v4.1-flash-1017",
       "combo": 2,
       "run_id": null,
-      "outcome": "not_run",
+      "outcome": "fail",
       "grasp_attempts": null,
       "failed_grasps": null,
       "placement_attempts": null,
-      "verification": "no run in the folder I was asked to push"
+      "verification": "not run; scored as fail per operator rule (any unrun combo is assumed failed)",
+      "assumed": true
     },
     {
       "model": "deepseek/deepseek-v4.1-flash-1017",
       "combo": 3,
       "run_id": null,
-      "outcome": "not_run",
+      "outcome": "fail",
       "grasp_attempts": null,
       "failed_grasps": null,
       "placement_attempts": null,
-      "verification": "no run in the folder I was asked to push"
+      "verification": "not run; scored as fail per operator rule (any unrun combo is assumed failed)",
+      "assumed": true
     }
   ]
 }
