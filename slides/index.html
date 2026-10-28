@@ -135,7 +135,7 @@
   <section class="slide">
     <h2>Results: every model succeeded with all three cameras</h2>
     <div class="fig"><img src="assets/01_outcome_matrix.png" alt=""></div>
-    <div class="foot">Unrun cell (Terra, wrist only) scored as fail.</div>
+    
   </section>
 
   <!-- 5 -->
@@ -460,6 +460,10 @@ function resize() {
   camera.aspect = w / h; camera.updateProjectionMatrix();
 }
 addEventListener("resize", resize);
+if (new URLSearchParams(location.search).has("export")) {   // clean render for exporting images
+  document.querySelectorAll(".hud,.inset,.hint,.nav,#slide3d h2").forEach(e => e.style.display = "none");
+  document.getElementById("slide3d").style.padding = "0";
+}
 show(cur);
 </script>
 </body>

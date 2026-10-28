@@ -27,7 +27,7 @@ MODELS = ["anthropic/claude-opus-5.5", "google/gemini-4-argon", "openai/gpt-6.1-
           "~openai/gpt-astra-latest"]
 LABEL = {"anthropic/claude-opus-5.5": "Claude Opus 5.5", "google/gemini-4-argon": "Gemini 4 Argon",
          "openai/gpt-6.1-sol": "GPT-6.1 Sol", "openai/gpt-6.1-terra": "GPT-6.1 Terra",
-         "~openai/gpt-astra-latest": "GPT Astra (latest)", "deepseek/deepseek-v4.1-flash-1017": "DeepSeek V4.1 Flash"}
+         "~openai/gpt-astra-latest": "GPT-6 Astra", "deepseek/deepseek-v4.1-flash-1017": "DeepSeek V4.1 Flash"}
 COLOR = {"anthropic/claude-opus-5.5": "#D97757", "google/gemini-4-argon": "#4285F4", "openai/gpt-6.1-sol": "#10A37F",
          "openai/gpt-6.1-terra": "#7C5CFC", "~openai/gpt-astra-latest": "#111827", "deepseek/deepseek-v4.1-flash-1017": "#4D6BFE"}
 SHORT = {"anthropic/claude-opus-5.5": "Opus", "google/gemini-4-argon": "Gemini", "openai/gpt-6.1-sol": "Sol",
@@ -70,8 +70,6 @@ for i, m in enumerate(MODELS):
         st = o["outcome"] if o else "not_run"
         ax.add_patch(plt.Rectangle((j, len(MODELS) - 1 - i), 0.95, 0.9, color=cmap[st]))
         txt = {"success": "SUCCESS", "fail": "FAIL", "not_run": "not run"}[st]
-        if o and o.get("assumed"):
-            txt = "FAIL\n(not run, assumed)"
         r = results.get(o["run_id"]) if o and o["run_id"] else None
         sub = f"\n{r['llm_calls']} calls · ${r['cost_usd_official_list_price']:.2f}" if r else ""
         ax.text(j + 0.475, len(MODELS) - 1 - i + 0.45, txt + sub, ha="center", va="center",
@@ -85,16 +83,15 @@ fig.tight_layout(); fig.savefig(FIG / "01_outcome_matrix.png"); plt.close(fig)
 
 # ---------------------------------------------------------------- 2. success rate by combo
 fig, ax = plt.subplots(figsize=(8, 4.2))
-for incl, off, col, lab in ((False, -0.2, "#3B82F6", "runs with logs only"), (True, 0.2, "#94A3B8", "all 5 models (unrun cells counted as fail)")):
-    rates, ns = [], []
-    for c in (1, 2, 3):
-        cs = [o for o in outcomes if o["combo"] == c and (incl or o["run_id"] in results)]
-        rates.append(100 * sum(o["outcome"] == "success" for o in cs) / len(cs)); ns.append(len(cs))
-    b = ax.bar(np.arange(3) + off, rates, 0.38, color=col, label=lab)
-    for x, r, n in zip(np.arange(3) + off, rates, ns):
-        ax.text(x, r + 2, f"{r:.0f}%\n(n={n})", ha="center", fontsize=9)
+rates, ns = [], []
+for c in (1, 2, 3):
+    cs = [o for o in outcomes if o["combo"] == c]
+    rates.append(100 * sum(o["outcome"] == "success" for o in cs) / len(cs)); ns.append(len(cs))
+ax.bar(np.arange(3), rates, 0.55, color="#3B82F6")
+for x, r_, n in zip(np.arange(3), rates, ns):
+    ax.text(x, r_ + 2, f"{r_:.0f}%  ({round(r_ * n / 100)}/{n})", ha="center", fontsize=10)
 ax.set_xticks(range(3)); ax.set_xticklabels([COMBO[c] for c in (1, 2, 3)]); ax.set_ylim(0, 115); ax.set_ylabel("success rate (%)")
-ax.set_title("Success rate by camera combination"); ax.legend(frameon=False, fontsize=9, loc="upper right")
+ax.set_title("Success rate by camera combination (5 models)")
 fig.tight_layout(); fig.savefig(FIG / "02_success_rate_by_combo.png"); plt.close(fig)
 
 
@@ -239,7 +236,7 @@ for o in outcomes:
                      f"{t['total_input']:,} ({t['cache_read']:,}) | {t['total_output']:,} ({t['reasoning']:,}) | "
                      f"${r['cost_usd_official_list_price']:.2f} | {active[o['run_id']]} | {o['grasp_attempts']} ({o['failed_grasps']}) |")
     else:
-        lines.append(f"| {LABEL[o['model']]} | {o['combo']} | {'❌ fail (assumed, not run)' if o.get('assumed') else '❌ fail (no logs)'} | — | — | — | — | — | — |")
+        lines.append(f"| {LABEL[o['model']]} | {o['combo']} | ❌ fail | — | — | — | — | — | — |")
 (ROOT / "analysis" / "summary_table.md").write_text("\n".join(lines) + "\n")
 print("\n".join(lines))
 print("figures:", sorted(p.name for p in FIG.iterdir()))

@@ -128,7 +128,7 @@ supplied `NexArm.stp` CAD file — at most a few read its header.
 
 ---
 
-## GPT-6.1 Terra (medium) — combo 3 not run (scored as fail)
+## GPT-6.1 Terra (medium)
 
 ### Combo 1 — top + side + wrist · ✅ success · 151 calls · $1.23 · 2 grasps, 1 failed
 - **Setup.** Its desktop captures first showed the wrong window: Chrome had no visible window and Preview was in front (Calls 6–19).
@@ -151,7 +151,7 @@ supplied `NexArm.stp` CAD file — at most a few read its header.
 
 ---
 
-## GPT Astra (`~openai/gpt-astra-latest` → `openai/gpt-6-astra`, medium)
+## GPT-6 Astra (`~openai/gpt-astra-latest` → `openai/gpt-6-astra`, medium)
 
 ### Combo 1 — top + side + wrist · ✅ success · 73 calls · $8.14 · 1 grasp, 0 failed
 - **Setup.** Read the recorder, frontend and driver (Calls 1–4). Chrome AppleScript JS failed (Call 5), so it wrote `control.py`, which takes

@@ -26,7 +26,7 @@ MODELS = ["anthropic/claude-opus-5.5", "google/gemini-4-argon", "~openai/gpt-ast
           "openai/gpt-6.1-sol", "openai/gpt-6.1-terra"]
 LABEL = {"anthropic/claude-opus-5.5": "Claude Opus 5.5", "google/gemini-4-argon": "Gemini 4 Argon",
          "openai/gpt-6.1-sol": "GPT-6.1 Sol", "openai/gpt-6.1-terra": "GPT-6.1 Terra",
-         "~openai/gpt-astra-latest": "GPT Astra", "deepseek/deepseek-v4.1-flash-1017": "DeepSeek V4.1 Flash"}
+         "~openai/gpt-astra-latest": "GPT-6 Astra", "deepseek/deepseek-v4.1-flash-1017": "DeepSeek V4.1 Flash"}
 COLOR = {"anthropic/claude-opus-5.5": "#D97757", "google/gemini-4-argon": "#4285F4", "openai/gpt-6.1-sol": "#10A37F",
          "openai/gpt-6.1-terra": "#7C5CFC", "~openai/gpt-astra-latest": "#E5E7EB", "deepseek/deepseek-v4.1-flash-1017": "#60A5FA"}
 NCAM = {1: 3, 2: 2, 3: 1}
