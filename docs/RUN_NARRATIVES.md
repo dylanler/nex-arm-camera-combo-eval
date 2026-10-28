@@ -190,9 +190,9 @@ supplied `NexArm.stp` CAD file — at most a few read its header.
 
 ---
 
-## DeepSeek V4.1 Flash 1017 (max) — failed all three combos
-- **Outcome.** Failed on all three combos (operator report). The combo-1 session ran to **280 LLM calls**, past the 200-call budget, and
-  cost $0.83 at the price opencode reported.
+## DeepSeek V4.1 Flash 1017 (max) — combo 1 only
+- **Outcome.** Combo 1 failed: the session ran to **280 LLM calls**, past the 200-call budget ($0.83 at opencode's reported price).
+  Combos 2 and 3 were not run.
 - **Routing.** Runs were pinned to the Together / Fireworks / Baseten OpenRouter endpoints, because the DeepSeek first-party endpoint is
   blocked by the account's data-policy setting.
-- **Not in this repo.** The run folders are excluded at the operator's request.
+- **Not in this repo.** The combo-1 run folder was left out (228 MB session export, not reviewed).

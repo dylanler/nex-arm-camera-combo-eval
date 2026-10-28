@@ -9,11 +9,11 @@
 
 ## TL;DR
 - **All three cameras worked best.** With top-down + side + wrist cameras, **5 of 5** models succeeded. With top + wrist, 3 of 5 did,
-  and with the wrist camera alone, 3 of 4 (DeepSeek excluded; it failed every combo).
+  and with the wrist camera alone, 3 of 4. DeepSeek is excluded from these counts (only combo 1 was run, and it failed).
 - **Fewer cameras meant more failed grasps.** The average was 0.4 failed grasps per run with 3 cameras, 1.0 with 2, and **3.0** with the
   wrist only. LLM calls rose from about 88 to about 114 per run, and active time from about 17 to about 26 minutes.
 - **Claude Opus 5.5, Gemini 4 Argon and GPT Astra succeeded on all 3 combos.** GPT-6.1 Sol and Terra only succeeded with all three
-  cameras. DeepSeek V4.1 Flash (max effort) failed every combo; on combo 1 it blew through the 200-call budget (280 calls).
+  cameras. DeepSeek V4.1 Flash (max effort) failed combo 1 by going past the 200-call budget (280 calls); its other combos were not run.
 - **Cost:** the 14 logged runs cost **$40.08** at the providers' own list prices, using 94.9 M input tokens (mostly cached) and 0.32 M
   output tokens.
   - Gemini 4 Argon was the cheapest reliable model at $1.15–1.61 per run.
@@ -98,9 +98,9 @@ Each prompt asks the model to:
 | GPT Astra (latest) | 1 | ✅ success | 73 | 5,524,890 (5,353,888) | 13,075 (3,605) | $8.14 | 14.9 | 1 (0) |
 | GPT Astra (latest) | 2 | ✅ success | 71 | 3,638,637 (3,548,317) | 16,459 (3,190) | $5.50 | 20.5 | 2 (1) |
 | GPT Astra (latest) | 3 | ✅ success | 134 | 7,856,235 (7,764,237) | 27,394 (11,089) | $10.28 | 28.8 | 5 (4) |
-| DeepSeek V4.1 Flash | 1 | ❌ fail (280 calls > 200 budget) | — | — | — | — | — | — |
-| DeepSeek V4.1 Flash | 2 | ❌ fail | — | — | — | — | — | — |
-| DeepSeek V4.1 Flash | 3 | ❌ fail | — | — | — | — | — | — |
+| DeepSeek V4.1 Flash | 1 | ❌ fail (280 calls > 200 budget; folder not included) | — | — | — | — | — | — |
+| DeepSeek V4.1 Flash | 2 | — not run | — | — | — | — | — | — |
+| DeepSeek V4.1 Flash | 3 | — not run | — | — | — | — | — | — |
 
 **Column definitions**
 - **Input tokens:** fresh input + cache reads + cache writes.
@@ -132,7 +132,7 @@ Per-run machine-readable data: [`analysis/results.csv`](analysis/results.csv), [
 | GPT Astra (latest) | 3 / 3 | 278 | $23.93 | Reliable but 4–6× the cost; most inventive tooling |
 | GPT-6.1 Sol | 1 / 3 | 335 | $3.36 | Cheapest success ($0.84, combo 1); failed both reduced-camera runs |
 | GPT-6.1 Terra | 1 / 2 | 264 | $2.53 | Highest call count of any success (151); combo 3 not run |
-| DeepSeek V4.1 Flash (max) | 0 / 3 | — | — | Exceeded the call budget on combo 1 |
+| DeepSeek V4.1 Flash (max) | 0 / 1 | — | — | Combo 1 exceeded the call budget; combos 2 and 3 not run |
 
 ### More charts
 | | |
@@ -255,8 +255,9 @@ Things that went wrong during the experiment, so the results can be read honestl
    the prompt.
 7. **Reasoning effort is not identical.** DeepSeek ran at **max**, all others at medium.
 8. **Sample size is 1 run per cell.** The camera trend is consistent across metrics, but the cells are single runs.
-9. **Terra combo 3 was not run.** DeepSeek's run folders are excluded at the operator's request. Only the latest run per model × combo is
-   included; superseded attempts are not.
+9. **Not run / not included.** Terra combo 3 and DeepSeek combos 2 and 3 were not run. The DeepSeek combo-1 folder was left out because its
+   session export is 228 MB and I did not review it; it can be added. Only the latest run per model × combo is included; superseded
+   attempts are not.
 10. **Outcome verification.** Outcomes are verified from images (final recorded frame, or the model's final still). The models'
     self-reported metadata JSONs were written before their final reply, so their token and cost numbers are slightly lower than the
     totals here. `stats.json` is computed from the complete session.

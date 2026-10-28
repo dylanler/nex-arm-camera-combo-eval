@@ -83,7 +83,7 @@ fig.tight_layout(); fig.savefig(FIG / "01_outcome_matrix.png"); plt.close(fig)
 
 # ---------------------------------------------------------------- 2. success rate by combo
 fig, ax = plt.subplots(figsize=(8, 4.2))
-for incl, off, col, lab in ((False, -0.2, "#3B82F6", "5 models with logs (DeepSeek excluded)"), (True, 0.2, "#94A3B8", "all 6 models (DeepSeek counted as fail)")):
+for incl, off, col, lab in ((False, -0.2, "#3B82F6", "5 models with logs (DeepSeek excluded)"), (True, 0.2, "#94A3B8", "incl. DeepSeek combo 1 (fail)")):
     rates, ns = [], []
     for c in (1, 2, 3):
         cs = [o for o in outcomes if o["combo"] == c and o["outcome"] != "not_run" and (incl or not o["model"].startswith("deepseek"))]

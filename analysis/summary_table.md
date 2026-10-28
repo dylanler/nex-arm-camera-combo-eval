@@ -16,5 +16,5 @@
 | GPT Astra (latest) | 2 | ✅ success | 71 | 3,638,637 (3,548,317) | 16,459 (3,190) | $5.50 | 20.5 | 2 (1) |
 | GPT Astra (latest) | 3 | ✅ success | 134 | 7,856,235 (7,764,237) | 27,394 (11,089) | $10.28 | 28.8 | 5 (4) |
 | DeepSeek V4.1 Flash | 1 | ❌ fail | — | — | — | — | — | — |
-| DeepSeek V4.1 Flash | 2 | ❌ fail | — | — | — | — | — | — |
-| DeepSeek V4.1 Flash | 3 | ❌ fail | — | — | — | — | — | — |
+| DeepSeek V4.1 Flash | 2 | — not run | — | — | — | — | — | — |
+| DeepSeek V4.1 Flash | 3 | — not run | — | — | — | — | — | — |
