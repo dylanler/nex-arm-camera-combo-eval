@@ -141,6 +141,18 @@ Per-run machine-readable data: [`analysis/results.csv`](analysis/results.csv), [
 ![Model trade-off](docs/figures/15_model_tradeoff.png)
 ![Tokens vs time](docs/figures/14_tokens_vs_time.png)
 
+**Why more cameras can cost more even when the run goes smoothly (GPT-6 Astra, combo 1 $8.14 vs combo 2 $5.50).**
+Both runs made about the same number of calls (73 vs 71), and combo 1 was the *cleaner* run (1 grasp, no misses), so it wasn't a rabbit hole.
+The difference is image size:
+- **Bigger images.** In combo 1 the model read a single 1920×1080 three-camera composite after every move: about **2,500 tokens per image**.
+  In combo 2 it read 640×480 single-camera frames: about **880 tokens per image**.
+- **Images pile up in context.** Every image stays in the conversation and is re-sent (as a cache read) on every later call. The prompt
+  grows step by step: median **77K vs 50K tokens per call**, ending at 120K vs 90K.
+- **What it adds up to.** 5.35M vs 3.55M cached input tokens ($5.35 vs $3.55 at $1/M), plus twice the cache writes ($2.13 vs $1.13).
+
+So each camera adds image tokens to *every* step, and the cost of a step grows with the history. Downscaling or cropping frames, or
+dropping old images from context, would cut this directly. Combo 3 cost the most ($10.28) for the opposite reason: 134 calls and 4 missed grasps.
+
 ![Cumulative cost](docs/figures/09_cumulative_cost.png)
 ![Tool mix](docs/figures/10_tool_mix.png)
 
