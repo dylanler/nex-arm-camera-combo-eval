@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>NexArm camera-combo eval</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root { --bg:#0b0f17; --fg:#e8edf5; --muted:#93a0b4; --accent:#f59e0b;
+          --logi:#38bdf8; --rs:#a78bfa; --wrist:#f472b6; }
+  * { box-sizing:border-box; }
+  html,body { margin:0; height:100%; background:#000; color:var(--fg);
+              font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .deck { position:fixed; inset:0; display:grid; place-items:center; }
+  .slide { position:absolute; width:min(100vw, 177.78vh); height:min(56.25vw, 100vh); background:var(--bg);
+           padding:3.2% 4%; display:none; flex-direction:column; overflow:hidden; }
+  .slide.active { display:flex; }
+  h1 { font-size:clamp(28px,4.2vw,64px); margin:0 0 .3em; letter-spacing:-.02em; }
+  h2 { font-size:clamp(20px,2.4vw,40px); margin:0 0 .4em; letter-spacing:-.01em; }
+  p, li { font-size:clamp(13px,1.35vw,22px); line-height:1.45; color:var(--fg); }
+  .muted { color:var(--muted); }
+  .accent { color:var(--accent); }
+  .row { display:flex; gap:3%; flex:1; min-height:0; }
+  .col { flex:1; min-width:0; display:flex; flex-direction:column; min-height:0; }
+  .fig { flex:1; min-height:0; display:flex; align-items:center; justify-content:center; }
+  .fig img { max-width:100%; max-height:100%; object-fit:contain; border-radius:8px; background:#fff; }
+  .foot { position:absolute; bottom:1.6%; right:2.4%; font-size:12px; color:var(--muted); }
+  .pill { display:inline-block; padding:.15em .6em; border-radius:999px; font-weight:600; font-size:.9em; }
+  /* --- 3D slide --- */
+  #stage { position:relative; flex:1; min-height:0; border-radius:10px; overflow:hidden; background:#121826; }
+  #stage canvas { display:block; }
+  .label3d { font: 600 13px ui-sans-serif, -apple-system, Helvetica, Arial; padding:3px 8px; border-radius:6px;
+             color:#0b0f17; white-space:nowrap; pointer-events:none; box-shadow:0 2px 8px rgba(0,0,0,.35); }
+  .label3d.off { background:#4b5563 !important; color:#d1d5db; text-decoration:line-through; }
+  .label3d.obj { background:rgba(255,255,255,.85); font-weight:500; }
+  .hud { position:absolute; left:12px; top:12px; display:flex; flex-direction:column; gap:8px; z-index:2; }
+  .hud .group { background:rgba(11,15,23,.82); border:1px solid #263041; border-radius:10px; padding:8px 10px; }
+  .hud .title { font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+  .hud button { font:600 12px ui-sans-serif, -apple-system, Helvetica, Arial; color:var(--fg); background:#1f2937;
+                border:1px solid #374151; border-radius:7px; padding:6px 9px; margin:2px 2px 2px 0; cursor:pointer; }
+  .hud button.on { background:var(--accent); color:#111; border-color:var(--accent); }
+  .legend { position:absolute; right:12px; top:12px; z-index:2; background:rgba(11,15,23,.82); border:1px solid #263041;
+            border-radius:10px; padding:10px 12px; font-size:13px; line-height:1.6; max-width:290px; }
+  .sw { display:inline-block; width:11px; height:11px; border-radius:3px; margin-right:7px; vertical-align:-1px; }
+  .inset { position:absolute; right:12px; bottom:12px; z-index:2; width:23%; border-radius:8px; border:2px solid #263041;
+           overflow:hidden; background:#000; }
+  .inset img { width:100%; display:block; }
+  .inset div { position:absolute; left:0; right:0; bottom:0; font-size:11px; padding:3px 6px; background:rgba(0,0,0,.6); }
+  .hint { position:absolute; left:12px; bottom:10px; z-index:2; font-size:12px; color:var(--muted); }
+  .nav { position:fixed; bottom:10px; left:50%; transform:translateX(-50%); font-size:12px; color:#6b7280; z-index:5; }
+  .kicker { letter-spacing:.12em; text-transform:uppercase; }
+  .chips { display:flex; flex-wrap:wrap; gap:10px; margin:.6em 0 1.2em; }
+  .chips span { border:1px solid #334155; border-radius:999px; padding:.3em .9em; font-size:clamp(12px,1.2vw,20px); color:var(--fg); }
+  .cards { display:flex; flex-direction:column; gap:3%; justify-content:center; }
+  .cards.three { flex-direction:row; flex:1; align-items:stretch; gap:3%; }
+  .card { flex:1; background:#111827; border:1px solid #263041; border-left:6px solid var(--c); border-radius:12px; padding:3% 4%;
+          display:flex; flex-direction:column; justify-content:center; gap:.3em; font-size:clamp(13px,1.4vw,24px); }
+  .cards.three .card { border-left:1px solid #263041; border-top:6px solid var(--c); text-align:center; align-items:center; }
+  .card .big { font-size:clamp(26px,3.6vw,64px); font-weight:800; color:var(--c); line-height:1; }
+  .card span { color:var(--muted); font-size:.85em; }
+  .stats { display:flex; justify-content:center; gap:6%; margin-top:.4em; }
+  .stats div { text-align:center; } .stats b { display:block; font-size:clamp(24px,3vw,52px); color:var(--accent); }
+  .stats span { color:var(--muted); font-size:clamp(11px,1vw,16px); }
+  video { width:100%; flex:1; min-height:0; object-fit:contain; background:#000; border-radius:10px; }
+  .cap { text-align:center; margin:.5em 0 0; }
+  .legend .role { margin-bottom:6px; font-size:14px; }
+</style>
+<script type="importmap">
+{ "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div class="deck">
+
+  <!-- 1 -->
+  <section class="slide title">
+    <div style="margin:auto 0">
+      <p class="muted kicker">NexArm camera-combo eval · Oct 2026</p>
+      <h1>Do more cameras help an LLM agent<br/>control a robot arm?</h1>
+      <div class="chips"><span>5 models</span><span>3 camera combos</span><span>1 task</span><span>prompt sent once</span><span>200-call budget</span></div>
+      <p class="accent" style="font-size:clamp(16px,1.8vw,30px)">“Place the yellow screwdriver in the bowl.”</p>
+    </div>
+    <div class="foot">← / → to navigate</div>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide">
+    <h2>The rig: three cameras, three jobs</h2>
+    <div class="row">
+      <div class="col" style="flex:.85"><div class="fig"><img src="assets/lightbox_photo.jpg" alt="Lightbox rig" style="background:none"></div></div>
+      <div class="col cards">
+        <div class="card" style="--c:var(--logi)"><div class="big">x · y</div><b>Top-down Logitech</b><span>where the arm and objects are on the table</span></div>
+        <div class="card" style="--c:var(--rs)"><div class="big">z</div><b>Side RealSense, low corner</b><span>how high the gripper is above the table</span></div>
+        <div class="card" style="--c:var(--wrist)"><div class="big">grip</div><b>Wrist camera</b><span>precise alignment of the fingers on the handle</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 : 3D camera placement -->
+  <section class="slide" id="slide3d">
+    <h2>Where the cameras are, and what each one is for</h2>
+    <div id="stage">
+      <div class="hud">
+        <div class="group"><div class="title">Camera combo</div>
+          <button data-combo="1" class="on">1 · all three</button>
+          <button data-combo="2">2 · top + wrist</button>
+          <button data-combo="3">3 · wrist only</button>
+        </div>
+        <div class="group"><div class="title">Look through</div>
+          <button data-view="overview" class="on">Overview</button>
+          <button data-view="logitech">Top-down</button>
+          <button data-view="realsense">Side</button>
+          <button data-view="wrist">Wrist</button>
+          <button data-view="top">Plan view</button>
+        </div>
+        <div class="group"><div class="title">Display</div>
+          <button id="btnFrustum" class="on">Fields of view</button>
+          <button id="btnSpin">Auto-rotate</button>
+        </div>
+      </div>
+      <div class="legend" id="legend">
+        <div class="role"><span class="sw" style="background:var(--logi)"></span><b>Top-down</b> → <b>x / y</b><br/><span class="muted">where the arm is on the table</span></div>
+        <div class="role"><span class="sw" style="background:var(--rs)"></span><b>Side (low corner)</b> → <b>z</b><br/><span class="muted">how high the gripper is</span></div>
+        <div class="role"><span class="sw" style="background:var(--wrist)"></span><b>Wrist</b> → <b>fine grip</b><br/><span class="muted">precise final alignment</span></div>
+        <div style="margin-top:8px" class="muted" id="comboNote">Combo 1: all three cameras enabled.</div>
+      </div>
+      <div class="inset"><img src="assets/lightbox_photo.jpg" alt=""><div>reference photo</div></div>
+      <div class="hint">Drag to orbit · scroll to zoom · sizes approximate</div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide">
+    <h2>Results: every model succeeded with all three cameras</h2>
+    <div class="fig"><img src="assets/01_outcome_matrix.png" alt=""></div>
+    <div class="foot">Unrun cell (Terra, wrist only) scored as fail.</div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide">
+    <h2>Take away cameras, and grasps start failing</h2>
+    <div class="fig"><img src="assets/12_effort_by_combo.png" alt=""></div>
+    <div class="stats"><div><b>0.4</b><span>failed grasps / run<br/>3 cameras</span></div><div><b>1.0</b><span>top + wrist</span></div><div><b>3.0</b><span>wrist only</span></div></div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide">
+    <h2>Same model, fewer cameras: Claude Opus 5.5</h2>
+    <div class="row">
+      <div class="col"><video src="assets/clips/opus_c1.mp4" autoplay muted loop playsinline></video><p class="cap"><b>3 cameras</b> · 1 grasp · 75 calls · $1.93</p></div>
+      <div class="col"><video src="assets/clips/opus_c3.mp4" autoplay muted loop playsinline></video><p class="cap"><b>Wrist only</b> · 3 grasps (2 missed) · 108 calls · $2.35</p></div>
+    </div>
+    <div class="foot">Last 4 minutes of each run, 8× speed.</div>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide">
+    <h2>Trade-off 1: model price vs number of cameras</h2>
+    <div class="fig"><img src="assets/13_cost_vs_cameras.png" alt="" style="background:none"></div>
+    <p class="cap">Cheaper models (Sol, Terra) only succeed with all 3 cameras. Opus, Gemini and Astra also succeed with the wrist alone.</p>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide">
+    <h2>Trade-off 2: reliability vs cost</h2>
+    <div class="fig"><img src="assets/15_model_tradeoff.png" alt="" style="background:none"></div>
+    <p class="cap">Astra is as reliable as Gemini and Opus, but costs 4–5× more per run.</p>
+  </section>
+
+  <!-- 9 -->
+  <section class="slide">
+    <h2>Trade-off 3: tokens vs time</h2>
+    <div class="fig"><img src="assets/14_tokens_vs_time.png" alt="" style="background:none"></div>
+    <p class="cap">Tokens drive time only loosely. Inference speed (provider, standard / flex / fast tier, effort level) matters as much.</p>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide">
+    <h2>Takeaways</h2>
+    <div class="cards three">
+      <div class="card" style="--c:var(--rs)"><div class="big">📷 + 📷 + 📷</div><b>Cameras are cheap reliability</b><span>Three views took every model to 5/5. The side view fixes depth.</span></div>
+      <div class="card" style="--c:var(--accent)"><div class="big">$ ↔ 📷</div><b>Or pay for a stronger model</b><span>Opus, Gemini and Astra manage with one camera; Sol and Terra can't.</span></div>
+      <div class="card" style="--c:var(--logi)"><div class="big">⏱</div><b>Tokens ≠ time</b><span>Pick the inference tier for your latency budget.</span></div>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide">
+    <h2>Final state of every run</h2>
+    <div class="fig"><img src="assets/11_final_state_gallery.jpg" alt=""></div>
+  </section>
+</div>
+<div class="nav" id="nav"></div>
+
+<script type="module">
+import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { CSS2DRenderer, CSS2DObject } from "three/addons/renderers/CSS2DRenderer.js";
+import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
+
+/* ---------------- deck navigation ---------------- */
+const slides = [...document.querySelectorAll(".slide")];
+let cur = Math.max(0, Math.min(slides.length - 1, (parseInt(location.hash.slice(1)) || 1) - 1));
+function show(i) {
+  cur = (i + slides.length) % slides.length;
+  slides.forEach((s, k) => s.classList.toggle("active", k === cur));
+  document.getElementById("nav").textContent = `${cur + 1} / ${slides.length}`;
+  history.replaceState(null, "", "#" + (cur + 1));
+  if (slides[cur].id === "slide3d") { initScene(); resize(); }
+}
+addEventListener("keydown", (e) => {
+  if (["ArrowRight", "PageDown", " "].includes(e.key)) show(cur + 1);
+  if (["ArrowLeft", "PageUp"].includes(e.key)) show(cur - 1);
+});
+
+/* ---------------- 3D scene (units: cm, y up, +z towards the viewer / open front of the box) ---------------- */
+let renderer, labelRenderer, scene, camera, controls, inited = false;
+const stage = document.getElementById("stage");
+const C = { logitech: 0x38bdf8, realsense: 0xa78bfa, wrist: 0xf472b6 };
+const cams = {};          // name -> { group, frustum, label, sensorCam }
+let tween = null;
+
+function mat(color, opts = {}) { return new THREE.MeshStandardMaterial({ color, roughness: .6, metalness: .1, ...opts }); }
+function label(text, cls, color) {
+  const el = document.createElement("div");
+  el.className = "label3d " + (cls || "");
+  el.textContent = text;
+  if (color) el.style.background = "#" + color.toString(16).padStart(6, "0");
+  return new CSS2DObject(el);
+}
+function box(w, h, d, m, x, y, z) {
+  const b = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), m); b.position.set(x, y, z); b.castShadow = b.receiveShadow = true; return b;
+}
+function rod(a, b, r, m) {           // cylinder between two points
+  const dir = new THREE.Vector3().subVectors(b, a); const len = dir.length();
+  const mesh = new THREE.Mesh(new THREE.CylinderGeometry(r, r, len, 16), m);
+  mesh.position.copy(a).addScaledVector(dir, .5);
+  mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir.normalize());
+  mesh.castShadow = true; return mesh;
+}
+function link(a, b, w, d, m) {       // rectangular link between two points
+  const dir = new THREE.Vector3().subVectors(b, a); const len = dir.length();
+  const mesh = new THREE.Mesh(new RoundedBoxGeometry(w, len, d, 2, .6), m);
+  mesh.position.copy(a).addScaledVector(dir, .5);
+  mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir.clone().normalize());
+  mesh.castShadow = true; return mesh;
+}
+
+/* frustum: translucent pyramid from a sensor pose */
+function frustum(sensorCam, far, color) {
+  const g = new THREE.Group();
+  const h = Math.tan(THREE.MathUtils.degToRad(sensorCam.fov / 2)) * far, w = h * sensorCam.aspect;
+  const p = [[0, 0, 0], [-w, -h, -far], [w, -h, -far], [w, h, -far], [-w, h, -far]].map(v => new THREE.Vector3(...v));
+  const geo = new THREE.BufferGeometry().setFromPoints([p[0], p[1], p[2], p[0], p[2], p[3], p[0], p[3], p[4], p[0], p[4], p[1], p[1], p[2], p[3], p[1], p[3], p[4]]);
+  geo.computeVertexNormals();
+  g.add(new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color, transparent: true, opacity: .13, side: THREE.DoubleSide, depthWrite: false })));
+  const e = [0, 1, 0, 2, 0, 3, 0, 4, 1, 2, 2, 3, 3, 4, 4, 1].map(i => p[i]);
+  g.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(e), new THREE.LineBasicMaterial({ color, transparent: true, opacity: .9 })));
+  sensorCam.add(g);
+  return g;
+}
+
+/* a camera body + its virtual sensor camera, positioned at pos and aimed at target */
+function makeCam(name, pos, target, fov, aspect, far, bodySize, labelText, up = new THREE.Vector3(0, 1, 0)) {
+  const sensor = new THREE.PerspectiveCamera(fov, aspect, .5, 400);
+  sensor.position.copy(pos); sensor.up.copy(up); sensor.lookAt(target);
+  const body = new THREE.Mesh(new RoundedBoxGeometry(...bodySize, 2, .5), mat(0x1f2937, { roughness: .4 }));
+  body.position.z = bodySize[2] / 2 - .2; body.castShadow = true;
+  const lens = new THREE.Mesh(new THREE.CylinderGeometry(.9, .9, .6, 20), mat(0x0f172a, { metalness: .6, roughness: .2 }));
+  lens.rotation.x = Math.PI / 2; lens.position.z = -.25;
+  const ring = new THREE.Mesh(new THREE.TorusGeometry(1.15, .22, 10, 24), new THREE.MeshBasicMaterial({ color: C[name] }));
+  ring.position.z = -.5;
+  sensor.add(body, lens, ring);
+  const fr = frustum(sensor, far, C[name]);
+  const lb = label(labelText, "", C[name]); lb.position.set(0, bodySize[1] / 2 + 2.2, 0); sensor.add(lb);
+  scene.add(sensor);
+  cams[name] = { sensor, frustum: fr, label: lb, home: { pos: pos.clone(), target: target.clone() } };
+  return sensor;
+}
+
+function initScene() {
+  if (inited) return; inited = true;
+  renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  stage.prepend(renderer.domElement);
+  labelRenderer = new CSS2DRenderer();
+  Object.assign(labelRenderer.domElement.style, { position: "absolute", top: "0", left: "0", pointerEvents: "none" });
+  stage.appendChild(labelRenderer.domElement);
+
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x121826);
+  camera = new THREE.PerspectiveCamera(42, 16 / 9, .5, 1000);
+  controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true; controls.target.set(0, 14, 0); controls.maxPolarAngle = Math.PI * .495;
+  controls.minDistance = 30; controls.maxDistance = 260;
+  setView("overview", true);
+
+  /* lights */
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x334155, .9));
+  const led = new THREE.DirectionalLight(0xffffff, 1.6); led.position.set(-5, 90, 10); led.castShadow = true;
+  led.shadow.mapSize.set(2048, 2048); Object.assign(led.shadow.camera, { left: -60, right: 60, top: 60, bottom: -60 });
+  scene.add(led);
+  const fill = new THREE.DirectionalLight(0xffffff, .5); fill.position.set(60, 40, 80); scene.add(fill);
+
+  /* wooden table */
+  scene.add(box(110, 3, 95, mat(0x3b2f2a, { roughness: .8 }), 0, -1.5, 8));
+  /* lightbox: 60 x 60 x 60, open front (+z) */
+  const S = 60, half = S / 2;
+  const white = mat(0xf8fafc, { roughness: .95 });
+  const silver = mat(0xcbd5e1, { roughness: .35, metalness: .55, side: THREE.DoubleSide });
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(S, S - 8), white); floor.rotation.x = -Math.PI / 2;
+  floor.position.set(0, .05, 4); floor.receiveShadow = true; scene.add(floor);
+  // curved sweep into the back wall
+  const sweep = new THREE.Mesh(new THREE.CylinderGeometry(8, 8, S, 24, 1, true, Math.PI, Math.PI / 2), mat(0xf8fafc, { side: THREE.DoubleSide, roughness: .95 }));
+  sweep.rotation.z = Math.PI / 2; sweep.position.set(0, 8, -half + 8); sweep.receiveShadow = true; scene.add(sweep);
+  const back = new THREE.Mesh(new THREE.PlaneGeometry(S, S - 8), white); back.position.set(0, 8 + (S - 8) / 2, -half); back.receiveShadow = true; scene.add(back);
+  for (const sx of [-1, 1]) {
+    const wall = new THREE.Mesh(new THREE.PlaneGeometry(S, S), silver.clone());
+    wall.material.transparent = true; wall.material.opacity = .55;
+    wall.rotation.y = Math.PI / 2; wall.position.set(sx * half, half, 0); scene.add(wall);
+  }
+  const diffuser = new THREE.Mesh(new THREE.PlaneGeometry(S, S), new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xfff7e6, emissiveIntensity: .55, transparent: true, opacity: .35, side: THREE.DoubleSide }));
+  diffuser.rotation.x = Math.PI / 2; diffuser.position.set(0, S, 0); scene.add(diffuser);
+  // frame edges
+  const edges = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(S, S, S)), new THREE.LineBasicMaterial({ color: 0x94a3b8 }));
+  edges.position.set(0, half, 0); scene.add(edges);
+  const lbBox = label("Lightbox ≈ 60 cm cube", "obj"); lbBox.position.set(-half + 2, S + 3, -half); scene.add(lbBox);
+
+  /* bowl */
+  const bowlPts = []; for (let i = 0; i <= 12; i++) { const t = i / 12; bowlPts.push(new THREE.Vector2(4.5 + 4 * Math.pow(t, .8), t * 7)); }
+  const bowl = new THREE.Mesh(new THREE.LatheGeometry(bowlPts, 48), mat(0x9ca3af, { side: THREE.DoubleSide, roughness: .7 }));
+  bowl.position.set(-10, .1, 2); bowl.castShadow = bowl.receiveShadow = true; scene.add(bowl);
+  const lbBowl = label("bowl", "obj"); lbBowl.position.set(-10, 10, 2); scene.add(lbBowl);
+
+  /* screwdriver (start spot, right of the bowl) */
+  const sd = new THREE.Group();
+  const handle = new THREE.Mesh(new THREE.CylinderGeometry(1.2, 1.4, 9, 16), mat(0xfacc15, { roughness: .4 })); handle.rotation.z = Math.PI / 2; handle.position.x = 4.5;
+  const shaft = new THREE.Mesh(new THREE.CylinderGeometry(.3, .3, 10, 10), mat(0xd1d5db, { metalness: .9, roughness: .25 })); shaft.rotation.z = Math.PI / 2; shaft.position.x = -5;
+  sd.add(handle, shaft); sd.position.set(10, 1.4, 4); sd.rotation.y = -1.1; sd.traverse(o => o.castShadow = true); scene.add(sd);
+  const lbSd = label("yellow screwdriver", "obj"); lbSd.position.set(10, 5, 4); scene.add(lbSd);
+
+  /* robot arm (rest pose, roughly as in the photo) */
+  const black = mat(0x111827, { roughness: .45, metalness: .3 });
+  const arm = new THREE.Group(); scene.add(arm);
+  arm.add(box(18, 1, 14, mat(0x0f172a), 2, .5, 25));                         // mounting plate
+  const base = new THREE.Mesh(new THREE.CylinderGeometry(6, 6.8, 8, 8), black); base.position.set(2, 5, 25); base.castShadow = true; arm.add(base);
+  const turret = new THREE.Mesh(new THREE.CylinderGeometry(5, 5.5, 4, 8), black); turret.position.set(2, 11, 25); arm.add(turret);
+  const shoulder = new THREE.Vector3(2, 13, 24), elbow = new THREE.Vector3(5, 36, 10), wrist = new THREE.Vector3(8, 19, 7);
+  arm.add(link(shoulder, elbow, 4.5, 3.5, black), link(elbow, wrist, 3.6, 3, black));
+  const elbowJ = new THREE.Mesh(new THREE.SphereGeometry(2.6, 16, 12), black); elbowJ.position.copy(elbow); arm.add(elbowJ);
+  const gripTip = new THREE.Vector3(8.5, 11, 4);
+  arm.add(link(wrist, gripTip, 4.5, 2.5, black));
+  arm.add(rod(new THREE.Vector3(7.2, 13, 4.5), new THREE.Vector3(7.2, 9.5, 3.5), .45, black), rod(new THREE.Vector3(9.8, 13, 4.5), new THREE.Vector3(9.8, 9.5, 3.5), .45, black));
+  const lbArm = label("Hiwonder NexArm (6-DOF)", "obj"); lbArm.position.set(-6, 16, 27); scene.add(lbArm);
+
+  /* Logitech boom stand: clamp at the front-right corner, two-segment arm, camera over the table */
+  const pole = mat(0x0b0b0f, { roughness: .5, metalness: .4 });
+  const p0 = new THREE.Vector3(27, 0, 27), p1 = new THREE.Vector3(27, 28, 22), p2 = new THREE.Vector3(26, 56, 6), p3 = new THREE.Vector3(10, 52, 0);
+  scene.add(rod(p0, p1, .9, pole), rod(p1, p2, .9, pole), rod(p2, p3, .8, pole));
+  scene.add(box(5, 3, 5, pole, 27, 1.5, 27));
+  makeCam("logitech", new THREE.Vector3(7, 50, -1), new THREE.Vector3(2, 0, 4), 43, 4 / 3, 50, [9.5, 2.9, 2.6],
+          "TOP-DOWN · x / y", new THREE.Vector3(0, 0, -1));
+
+  /* RealSense on a small tripod outside the front-left corner, looking across the table */
+  const t0 = new THREE.Vector3(-35, 0, 37), t1 = new THREE.Vector3(-35, 8.5, 37);
+  for (let k = 0; k < 3; k++) { const a = k * 2.094; scene.add(rod(t1, new THREE.Vector3(-35 + 4 * Math.cos(a), 0, 37 + 4 * Math.sin(a)), .35, pole)); }
+  scene.add(rod(t0.clone().setY(5), t1, .45, pole));
+  makeCam("realsense", new THREE.Vector3(-35, 10, 37), new THREE.Vector3(0, 3, 2), 42, 16 / 9, 62, [9.9, 2.3, 2.3],
+          "SIDE · z (height)");
+
+  /* wrist camera on the gripper, looking forward/down along the fingers */
+  makeCam("wrist", new THREE.Vector3(11.5, 17, 7.5), new THREE.Vector3(6, 0, -6), 55, 4 / 3, 22, [3.4, 3.4, 2.2],
+          "WRIST · fine grip");
+
+  /* scale bar */
+  const bar = new THREE.Mesh(new THREE.BoxGeometry(10, .3, .6), new THREE.MeshBasicMaterial({ color: 0xf59e0b }));
+  bar.position.set(-24, .4, 30); scene.add(bar);
+  const lbBar = label("10 cm", "obj"); lbBar.position.set(-24, 2.2, 30); scene.add(lbBar);
+
+  /* axis marker: x / y on the table (top-down camera), z up (side camera) */
+  const o = new THREE.Vector3(-27, 0.3, 26);
+  for (const [dir, col, txt] of [[[1, 0, 0], 0xef4444, "x"], [[0, 0, -1], 0x22c55e, "y"], [[0, 1, 0], 0x3b82f6, "z (height)"]]) {
+    scene.add(new THREE.ArrowHelper(new THREE.Vector3(...dir), o, 12, col, 2.2, 1.4));
+    const l = label(txt, "", col); l.position.copy(o).addScaledVector(new THREE.Vector3(...dir), 14.5); scene.add(l);
+  }
+  scene.remove(bar); scene.remove(lbBar);
+
+  /* UI */
+  stage.querySelectorAll("[data-combo]").forEach(b => b.onclick = () => setCombo(+b.dataset.combo));
+  stage.querySelectorAll("[data-view]").forEach(b => b.onclick = () => setView(b.dataset.view));
+  document.getElementById("btnFrustum").onclick = (e) => { e.target.classList.toggle("on"); applyCombo(); };
+  document.getElementById("btnSpin").onclick = (e) => { controls.autoRotate = !controls.autoRotate; e.target.classList.toggle("on", controls.autoRotate); };
+  controls.autoRotateSpeed = 1.2;
+  setCombo(1);
+  new ResizeObserver(resize).observe(stage);
+  renderer.setAnimationLoop(tick);
+}
+
+const COMBOS = { 1: ["logitech", "realsense", "wrist"], 2: ["logitech", "wrist"], 3: ["wrist"] };
+const NOTES = { 1: "Combo 1: all three cameras enabled.", 2: "Combo 2: the side RealSense is DISABLED.", 3: "Combo 3: only the wrist camera; top-down and side DISABLED." };
+let combo = 1;
+function setCombo(c) {
+  combo = c;
+  stage.querySelectorAll("[data-combo]").forEach(b => b.classList.toggle("on", +b.dataset.combo === c));
+  document.getElementById("comboNote").textContent = NOTES[c];
+  applyCombo();
+}
+function applyCombo() {
+  const showFr = document.getElementById("btnFrustum").classList.contains("on");
+  for (const [n, cm] of Object.entries(cams)) {
+    const on = COMBOS[combo].includes(n);
+    cm.frustum.visible = showFr && on;
+    cm.label.element.classList.toggle("off", !on);
+    cm.label.element.textContent = cm.label.element.textContent.replace(" · DISABLED", "") + (on ? "" : " · DISABLED");
+    cm.sensor.children.forEach(ch => { if (ch.material && ch.material.color && ch.geometry?.type === "TorusGeometry") ch.material.color.setHex(on ? C[n] : 0x4b5563); });
+  }
+}
+
+const VIEWS = {
+  overview: { pos: [92, 70, 112], target: [0, 16, 0], fov: 42 },
+  top: { pos: [0.01, 175, 8], target: [0, 0, 8], fov: 42 },
+};
+function setView(name, instant = false) {
+  stage.querySelectorAll("[data-view]").forEach(b => b.classList.toggle("on", b.dataset.view === name));
+  let to;
+  if (cams[name]) {
+    const s = cams[name].sensor; const dir = new THREE.Vector3(); s.getWorldDirection(dir);
+    to = { pos: s.position.clone().addScaledVector(dir, 1.2), target: s.position.clone().addScaledVector(dir, 30), fov: s.fov, up: s.up.clone() };
+    Object.values(cams).forEach(c => c.frustum.visible = false);          // look through the camera: hide frustums
+  } else {
+    const v = VIEWS[name]; to = { pos: new THREE.Vector3(...v.pos), target: new THREE.Vector3(...v.target), fov: v.fov, up: new THREE.Vector3(0, 1, 0) };
+    if (inited) applyCombo();
+  }
+  if (instant || !camera) { camera.position.copy(to.pos); controls.target.copy(to.target); camera.fov = to.fov; camera.up.copy(to.up); camera.updateProjectionMatrix(); return; }
+  tween = { t: 0, from: { pos: camera.position.clone(), target: controls.target.clone(), fov: camera.fov, up: camera.up.clone() }, to };
+  controls.autoRotate = false; document.getElementById("btnSpin").classList.remove("on");
+}
+
+function tick() {
+  if (tween) {
+    tween.t = Math.min(1, tween.t + 0.035); const k = tween.t < .5 ? 2 * tween.t * tween.t : 1 - Math.pow(-2 * tween.t + 2, 2) / 2;
+    camera.position.lerpVectors(tween.from.pos, tween.to.pos, k);
+    controls.target.lerpVectors(tween.from.target, tween.to.target, k);
+    camera.up.lerpVectors(tween.from.up, tween.to.up, k).normalize();
+    camera.fov = tween.from.fov + (tween.to.fov - tween.from.fov) * k; camera.updateProjectionMatrix();
+    if (tween.t >= 1) tween = null;
+  }
+  controls.update();
+  renderer.render(scene, camera);
+  labelRenderer.render(scene, camera);
+}
+function resize() {
+  if (!inited) return;
+  const w = stage.clientWidth, h = stage.clientHeight;
+  renderer.setSize(w, h); labelRenderer.setSize(w, h);
+  camera.aspect = w / h; camera.updateProjectionMatrix();
+}
+addEventListener("resize", resize);
+show(cur);
+</script>
+</body>
+</html>

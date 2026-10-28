@@ -1,0 +1,52 @@
+{
+  "anthropic/claude-opus-5.5": {
+    "success": 3,
+    "cells": 3,
+    "total_cost": 5.89,
+    "cost_per_run": 1.96,
+    "cost_per_success": 1.96,
+    "mtokens_per_run": 4.9,
+    "min_cameras_that_worked": 1,
+    "active_min_per_run": 12.4
+  },
+  "google/gemini-4-argon": {
+    "success": 3,
+    "cells": 3,
+    "total_cost": 4.37,
+    "cost_per_run": 1.46,
+    "cost_per_success": 1.46,
+    "mtokens_per_run": 7.08,
+    "min_cameras_that_worked": 1,
+    "active_min_per_run": 17.3
+  },
+  "~openai/gpt-astra-latest": {
+    "success": 3,
+    "cells": 3,
+    "total_cost": 23.93,
+    "cost_per_run": 7.98,
+    "cost_per_success": 7.98,
+    "mtokens_per_run": 5.69,
+    "min_cameras_that_worked": 1,
+    "active_min_per_run": 21.4
+  },
+  "openai/gpt-6.1-sol": {
+    "success": 1,
+    "cells": 3,
+    "total_cost": 3.36,
+    "cost_per_run": 1.12,
+    "cost_per_success": 3.36,
+    "mtokens_per_run": 6.59,
+    "min_cameras_that_worked": 3,
+    "active_min_per_run": 27.8
+  },
+  "openai/gpt-6.1-terra": {
+    "success": 1,
+    "cells": 3,
+    "total_cost": 2.53,
+    "cost_per_run": 1.26,
+    "cost_per_success": 2.53,
+    "mtokens_per_run": 11.2,
+    "min_cameras_that_worked": 3,
+    "active_min_per_run": 23.9
+  }
+}

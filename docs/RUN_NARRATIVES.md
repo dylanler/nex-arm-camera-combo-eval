@@ -187,12 +187,3 @@ supplied `NexArm.stp` CAD file — at most a few read its header.
   I'm changing to a steeper approach". After more height and roll trials it got a secure hold at Call 116 (t+23:49).
 - **Place.** Released over the bowl (Call 120) and confirmed with the wrist camera (Call 126).
 - **Most expensive run** of the experiment ($10.28).
-
----
-
-## DeepSeek V4.1 Flash 1017 (max) — combo 1 only
-- **Outcome.** Combo 1 failed: the session ran to **280 LLM calls**, past the 200-call budget ($0.83 at opencode's reported price).
-  Combos 2 and 3 were not run (scored as fails by rule).
-- **Routing.** Runs were pinned to the Together / Fireworks / Baseten OpenRouter endpoints, because the DeepSeek first-party endpoint is
-  blocked by the account's data-policy setting.
-- **Not in this repo.** The combo-1 run folder was left out (228 MB session export, not reviewed).

@@ -8,12 +8,12 @@
 ![Outcome matrix](docs/figures/01_outcome_matrix.png)
 
 ## TL;DR
-- **All three cameras worked best.** Counting every unrun combo as a fail (operator rule), 6 models × 3 combos gives: top + side + wrist
-  **5 of 6** succeeded, top + wrist 3 of 6, and wrist only 3 of 6. Among runs that actually happened: 5/5, 3/5 and 3/4.
+- **All three cameras worked best.** Across 5 models × 3 combos (the one unrun combo counts as a fail): top + side + wrist **5 of 5**
+  succeeded, top + wrist 3 of 5, and wrist only 3 of 5.
 - **Fewer cameras meant more failed grasps.** The average was 0.4 failed grasps per run with 3 cameras, 1.0 with 2, and **3.0** with the
   wrist only. LLM calls rose from about 88 to about 114 per run, and active time from about 17 to about 26 minutes.
 - **Claude Opus 5.5, Gemini 4 Argon and GPT Astra succeeded on all 3 combos.** GPT-6.1 Sol and Terra only succeeded with all three
-  cameras. DeepSeek V4.1 Flash (max effort) failed combo 1 by going past the 200-call budget (280 calls); its other two combos were not run and count as fails.
+  cameras.
 - **Cost:** the 14 logged runs cost **$40.08** at the providers' own list prices, using 94.9 M input tokens (mostly cached) and 0.32 M
   output tokens.
   - Gemini 4 Argon was the cheapest reliable model at $1.15–1.61 per run.
@@ -66,9 +66,8 @@ do the task, and report its own token usage and cost.
 | `openai/gpt-6.1-sol` | medium | default (OpenAI) |
 | `openai/gpt-6.1-terra` | medium | default (OpenAI) |
 | `~openai/gpt-astra-latest` (resolved to `openai/gpt-6-astra`) | medium | default (OpenAI) |
-| `deepseek/deepseek-v4.1-flash-1017` | **max** (it has no "medium"; OpenRouter silently maps medium→low) | pinned to Together / Fireworks / Baseten. DeepSeek's own endpoint is excluded by the account's data policy |
 
-**Prompt.** [`setup/prompt.md`](setup/prompt.md) is the base; the 18 exact prompts are in [`eval-prompts/`](eval-prompts/).
+**Prompt.** [`setup/prompt.md`](setup/prompt.md) is the base; the exact prompts are in [`eval-prompts/`](eval-prompts/).
 They are identical except for the work-dir name, the three camera lines (`ENABLED` / `DISABLED`), and the model's price table.
 Each prompt asks the model to:
 - create a run directory;
@@ -98,9 +97,6 @@ Each prompt asks the model to:
 | GPT Astra (latest) | 1 | ✅ success | 73 | 5,524,890 (5,353,888) | 13,075 (3,605) | $8.14 | 14.9 | 1 (0) |
 | GPT Astra (latest) | 2 | ✅ success | 71 | 3,638,637 (3,548,317) | 16,459 (3,190) | $5.50 | 20.5 | 2 (1) |
 | GPT Astra (latest) | 3 | ✅ success | 134 | 7,856,235 (7,764,237) | 27,394 (11,089) | $10.28 | 28.8 | 5 (4) |
-| DeepSeek V4.1 Flash | 1 | ❌ fail (280 calls > 200 budget; no logs here) | — | — | — | — | — | — |
-| DeepSeek V4.1 Flash | 2 | ❌ fail (assumed, not run) | — | — | — | — | — | — |
-| DeepSeek V4.1 Flash | 3 | ❌ fail (assumed, not run) | — | — | — | — | — | — |
 
 **Column definitions**
 - **Input tokens:** fresh input + cache reads + cache writes.
@@ -115,11 +111,11 @@ Per-run machine-readable data: [`analysis/results.csv`](analysis/results.csv), [
 
 **By camera combo** (stats columns use only runs with logs; the last column counts unrun cells as fails)
 
-| Combo | Runs with logs | Success | Mean LLM calls | Mean active min | Grasp attempts | Failed grasps / run | Median cost | Success, all 6 cells (unrun = fail) |
+| Combo | Runs with logs | Success | Mean LLM calls | Mean active min | Grasp attempts | Failed grasps / run | Median cost | Success, all 5 models (unrun = fail) |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
-| 1 · top + side + wrist | 5 | **5 (100%)** | 88 | 16.9 | 7 | **0.4** | $1.23 | 5 / 6 (83%) |
-| 2 · top + wrist | 5 | 3 (60%) | 91 | 19.1 | 9 | 1.0 | $1.61 | 3 / 6 (50%) |
-| 3 · wrist only | 4 | 3 (75%) | 114 | 26.1 | 15 | **3.0** | $1.98 | 3 / 6 (50%) |
+| 1 · top + side + wrist | 5 | **5 (100%)** | 88 | 16.9 | 7 | **0.4** | $1.23 | 5 / 5 (100%) |
+| 2 · top + wrist | 5 | 3 (60%) | 91 | 19.1 | 9 | 1.0 | $1.61 | 3 / 5 (60%) |
+| 3 · wrist only | 4 | 3 (75%) | 114 | 26.1 | 15 | **3.0** | $1.98 | 3 / 5 (60%) |
 
 ![Effort by combo](docs/figures/12_effort_by_combo.png)
 
@@ -132,7 +128,6 @@ Per-run machine-readable data: [`analysis/results.csv`](analysis/results.csv), [
 | GPT Astra (latest) | 3 / 3 | 278 | $23.93 | Reliable but 4–6× the cost; most inventive tooling |
 | GPT-6.1 Sol | 1 / 3 | 335 | $3.36 | Cheapest success ($0.84, combo 1); failed both reduced-camera runs |
 | GPT-6.1 Terra | 1 / 3 | 264 | $2.53 | Highest call count of any success (151); combo 3 not run, counted as fail |
-| DeepSeek V4.1 Flash (max) | 0 / 3 | — | — | Combo 1 exceeded the call budget; combos 2 and 3 not run, counted as fails |
 
 ### More charts
 | | |
@@ -140,6 +135,11 @@ Per-run machine-readable data: [`analysis/results.csv`](analysis/results.csv), [
 | ![LLM calls](docs/figures/03_llm_calls.png) | ![Cost](docs/figures/04_cost_usd.png) |
 | ![Active minutes](docs/figures/05_active_minutes.png) | ![Grasp attempts](docs/figures/08_grasp_attempts.png) |
 | ![Input tokens](docs/figures/06_input_tokens.png) | ![Output tokens](docs/figures/07_output_tokens.png) |
+
+### Trade-offs: model price, number of cameras, tokens and time
+![Cost vs cameras](docs/figures/13_cost_vs_cameras.png)
+![Model trade-off](docs/figures/15_model_tradeoff.png)
+![Tokens vs time](docs/figures/14_tokens_vs_time.png)
 
 ![Cumulative cost](docs/figures/09_cumulative_cost.png)
 ![Tool mix](docs/figures/10_tool_mix.png)
@@ -191,6 +191,10 @@ Every individual LLM call is in `runs/<run>/session/timeline.md`.
 
   It reasoned in millimetres about geometry and succeeded on all three combos, at about 5× the cost.
 
+## Slides
+Open [`slides/index.html`](slides/index.html) through a local server (`cd slides && python3 -m http.server`). It includes an interactive three.js
+model of the lightbox showing where each camera sits and what it is for: top-down = x/y, side = z (height), wrist = fine grip.
+
 ## Video clips
 Each run has a 30-second clip: the **last 240 seconds of the main recording sped up 8×** (H.264, 1280 px, no audio). For the 5 runs where
 the screen capture stalled, the clip covers the last 240 s *before* the stall.
@@ -227,7 +231,6 @@ is applied per call; no call crossed it.
 | GPT-6.1 Sol | $2.00 | $0.10 | $2.50 | $10.00 | [OpenAI pricing](https://developers.openai.com/api/docs/pricing) |
 | GPT-6.1 Terra | $1.00 | $0.05 | $1.25 | $5.00 | OpenAI pricing |
 | GPT-6 Astra | $10.00 | $1.00 | $12.50 | $50.00 | OpenAI pricing |
-| DeepSeek V4.1 Flash | $0.30 (peak) / $0.15 | $0.006 / $0.003 | — | $1.20 / $0.60 | [DeepSeek pricing](https://api-docs.deepseek.com/quick_start/pricing/) |
 
 All prices are USD per 1M tokens. The script is [`analysis/analyze_sessions.py`](analysis/analyze_sessions.py).
 
@@ -253,11 +256,10 @@ Things that went wrong during the experiment, so the results can be read honestl
 6. **Leftover processes between runs.** Several models left a robot server running (some detached themselves), which held the serial
    port. One model (Opus combo 2) cleaned up the previous run's leftovers itself. A "stop every process you started" line was added to
    the prompt.
-7. **Reasoning effort is not identical.** DeepSeek ran at **max**, all others at medium.
+7. **Reasoning effort.** All five models ran at medium.
 8. **Sample size is 1 run per cell.** The camera trend is consistent across metrics, but the cells are single runs.
-9. **Not run / not included.** Terra combo 3 and DeepSeek combos 2 and 3 were not run and are scored as fails by rule. The DeepSeek combo-1 folder was left out because its
-   session export is 228 MB and I did not review it; it can be added. Only the latest run per model × combo is included; superseded
-   attempts are not.
+9. **Not run.** Terra combo 3 was not run and is scored as a fail by rule. Only the latest run per model × combo is included;
+   superseded attempts are not.
 10. **Outcome verification.** Outcomes are verified from images (final recorded frame, or the model's final still). The models'
     self-reported metadata JSONs were written before their final reply, so their token and cost numbers are slightly lower than the
     totals here. `stats.json` is computed from the complete session.
@@ -274,7 +276,7 @@ analysis/
   outcomes.json                verified outcome + grasp counts per run
   results.csv / results.json   per-run tokens, cost, calls, tool usage
   recordings.json              which recording/clip belongs to which run, stall points
-eval-prompts/                  the 18 exact prompts sent to opencode
+eval-prompts/                  the exact prompts sent to opencode (15)
 setup/                         base prompt, frontend (index.html/app.js/style.css), start.sh, record.py, NexArm STP,
   orchestration-scripts/       home-pose / joint-check helper and the early automated orchestrator
 runs/<model>-opencode-cam-combo-<n>-<datetime>/

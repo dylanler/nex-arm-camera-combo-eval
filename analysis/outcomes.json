@@ -151,38 +151,6 @@
       "failed_grasps": 4,
       "placement_attempts": 1,
       "verification": "final recorded frame: screwdriver inside bowl (wrist view)"
-    },
-    {
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "combo": 1,
-      "run_id": "deepseek-v4-1-flash-1017-max-opencode-cam-combo-1-20261027-225009",
-      "outcome": "fail",
-      "grasp_attempts": null,
-      "failed_grasps": null,
-      "placement_attempts": null,
-      "verification": "session exported 280 LLM calls (> 200 budget) and the model self-reported fail. Run folder left out of this repo (228 MB session export, not reviewed); can be added on request."
-    },
-    {
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "combo": 2,
-      "run_id": null,
-      "outcome": "fail",
-      "grasp_attempts": null,
-      "failed_grasps": null,
-      "placement_attempts": null,
-      "verification": "not run; scored as fail per operator rule (any unrun combo is assumed failed)",
-      "assumed": true
-    },
-    {
-      "model": "deepseek/deepseek-v4.1-flash-1017",
-      "combo": 3,
-      "run_id": null,
-      "outcome": "fail",
-      "grasp_attempts": null,
-      "failed_grasps": null,
-      "placement_attempts": null,
-      "verification": "not run; scored as fail per operator rule (any unrun combo is assumed failed)",
-      "assumed": true
     }
   ]
 }
