@@ -70,6 +70,23 @@ through the `patch` tool.
 - **Cost note:** combo 1 cost more than combo 2 at the same call count. It read a 1920×1080 composite (about 2,500 tokens) after every
   move, and every image stays in the context.
 
+## Perception mode: every model used still snapshots; none used video
+- **All 14 runs ran a snapshot-and-move loop:** move a joint, grab one still per camera, read the image, decide the next move. The model
+  read a camera image in 23–44% of its calls; the other calls were moves, shell commands and code reads.
+- **No model read a video file** (no .mp4/.mov/.gif reads in any session). Every image the models saw was a JPEG/PNG still (24–70 per
+  run).
+- **Gemini 4 Argon accepts video input natively, but never used it.** It read 62 / 70 / 37 JPEG stills. Its helper grabbed a single
+  frame with ffmpeg (`-frames:v 1`); in combo 3 it grabbed 3 frames with `-update 1`, keeping only the last, to let the exposure settle.
+- **No model wrote computer-vision code:** no colour thresholding, contours or object detection. Localization was the LLM looking at
+  stills and estimating pixel positions.
+- **The background loops that exist are not vision loops:**
+  - Opus c3 (`robot_server.py`): a thread that keeps refreshing the latest wrist frame on disk.
+  - Astra c3 (`app-wrist.js`): the browser posts the wrist frame to a file every 500 ms.
+  - Gemini c3: waits for stable joint readings.
+  - Astra c2: waits for a DevTools reply.
+
+  In all four, the model still read single stills.
+
 ## Cross-model failure → recovery patterns
 | Failure | Seen in | Recovery |
 |---|---|---|
