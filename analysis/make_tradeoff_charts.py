@@ -118,7 +118,7 @@ for m in MODELS:
             color=COLOR[m] if m != "~openai/gpt-astra-latest" else "#e8edf5")
 ax.set_xscale("log"); ax.set_xticks([0.5, 1, 2, 5, 10]); ax.set_xticklabels(["$0.50", "$1", "$2", "$5", "$10"])
 ax.set_xlim(0.3, 20); ax.set_ylim(-14, 112); ax.set_yticks([0, 33, 67, 100]); ax.set_yticklabels(["0/3", "1/3", "2/3", "3/3"])
-ax.set_xlabel("average cost per run (provider list price, log scale)"); ax.set_ylabel("combos solved (unrun = fail)")
+ax.set_xlabel("average cost per run (provider list price, log scale)"); ax.set_ylabel("combos solved")
 ax.grid(True)
 ax.set_title("Reliability vs cost: Gemini and Opus solve all 3 combos at about $1.50–2 per run", fontsize=15, pad=14)
 fig.tight_layout(); fig.savefig(FIG / "15_model_tradeoff.png"); plt.close(fig)
